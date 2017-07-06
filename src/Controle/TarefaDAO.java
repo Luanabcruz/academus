@@ -12,13 +12,15 @@ public class TarefaDAO {
 
     public void cadastrarTarefa(Tarefa tarefa) throws SQLException {
         Connection con = Conexao.getConnection();
-        String sql = "INSERT INTO tarefa(cod_tarefa, turma_cod, descricao, data_inicio, data_fim)VALUES(default,?,?,?,?)";
+        String sql = "INSERT INTO tarefa(cod_tarefa, turma_cod, descricao, data_inicio, data_fim, matricula, resposta)VALUES(default,?,?,?,?,?,?)";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, tarefa.getTurma().getCodTurma());
             stmt.setString(2, tarefa.getDescricao());
             stmt.setDate(3, tarefa.getDataInicio());
             stmt.setDate(4, tarefa.getDataFim());
+            stmt.setInt(5, tarefa.getAluno().getMatricula());
+            stmt.setString(6, tarefa.getResposta());
             stmt.execute();
             System.out.println("Inserido no Banco..");
             stmt.close();
@@ -53,10 +55,12 @@ public class TarefaDAO {
 
         if (result.next()) {
             TurmaDAO tdao = new TurmaDAO();
+            AlunoDAO adao = new AlunoDAO();
             String descricao = result.getString("descricao");
             Date dataInicio = result.getDate("data_inicio");
             Date dataFim = result.getDate("data_fim");
-            tarefa = new Tarefa(codTarefa, tdao.buscarTurma(result.getInt("turma_cod")), descricao, dataInicio, dataFim);
+            String resposta = result.getString("resposta");
+            tarefa = new Tarefa(codTarefa, tdao.buscarTurma(result.getInt("turma_cod")), descricao, dataInicio, dataFim, adao.buscarAluno(result.getInt("matricula")), resposta);
         }
         result.close();
         stmt.close();

@@ -9,13 +9,36 @@ public class Tarefa {
     private String descricao;
     private Date dataInicio;
     private Date dataFim;
+    private Aluno aluno;
+    private String resposta;
 
-    public Tarefa(int codTarefa, Turma turma, String descricao, Date dataInicio, Date dataFim) {
+    public Tarefa() {
+    }
+
+    public Tarefa(int codTarefa, Turma turma, String descricao, Date dataInicio, Date dataFim, Aluno aluno, String resposta) {
         this.codTarefa = codTarefa;
         this.turma = turma;
         this.descricao = descricao;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
+        this.aluno = aluno;
+        this.resposta = resposta;
+    }
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    public String getResposta() {
+        return resposta;
+    }
+
+    public void setResposta(String resposta) {
+        this.resposta = resposta;
     }
 
     public int getCodTarefa() {
