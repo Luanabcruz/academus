@@ -116,7 +116,7 @@ public class ProfessorDAO {
             String telefone = result.getString("telefone");
             String email = result.getString("email");
             Boolean status = result.getBoolean("status");
-            CursoDAO cdao=new CursoDAO();
+            CursoDAO cdao = new CursoDAO();
             professor = new Professor(siape, titulo, cdao.buscarCurso(result.getInt("curso_cod")), nome, senha, cpf, dataNascimento, cidade, uf, rua, bairro, telefone, cep, email, status);
         }
         result.close();
@@ -126,13 +126,13 @@ public class ProfessorDAO {
         return professor;
     }
 
-    public Turma buscarProfTurma(int siape) throws SQLException {
+    public ArrayList<Turma> buscarProfTurma(int siape) throws SQLException {
         Connection con = Conexao.getConnection();
-        //professor.getSiape();
         String sql = "select * from turma inner join disciplina on (turma.disciplina_cod=disciplina.cod_disciplina) where turma.siape = " + siape;
         PreparedStatement stmt = con.prepareStatement(sql);
         ResultSet result = stmt.executeQuery();
-        Turma turma = new Turma();
+
+        ArrayList<Turma> turmas = new ArrayList<>();
 
         while (result.next()) {
             DisciplinaDAO ddao = new DisciplinaDAO();
@@ -142,13 +142,14 @@ public class ProfessorDAO {
             int codTurma = result.getInt("cod_turma");
             int sala = result.getInt("sala");
             String horario = result.getString("horario");
-            turma = new Turma(codTurma, cdao.buscarCurso(result.getInt("curso_cod")), pedao.buscarPeriodo(result.getInt("periodo_cod")), sala, horario, ddao.buscarDisciplina(result.getInt("disciplina_cod")), pdao.buscarProfessor(siape));
+            Turma turma = new Turma(codTurma, cdao.buscarCurso(result.getInt("curso_cod")), pedao.buscarPeriodo(result.getInt("periodo_cod")), sala, horario, ddao.buscarDisciplina(result.getInt("disciplina_cod")), pdao.buscarProfessor(siape));
+            turmas.add(turma);
         }
         result.close();
         stmt.close();
         con.close();
 
-        return turma;
+        return turmas;
     }
 
     public ArrayList<Professor> visualizarProfessores() throws SQLException {
