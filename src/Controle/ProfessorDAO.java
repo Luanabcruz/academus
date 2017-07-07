@@ -183,7 +183,7 @@ public class ProfessorDAO {
 
         return professores;
     }
-    
+
     public int loginProfessor(int siape, String senha) throws SQLException {
         Connection con = Conexao.getConnection();
         String sql = "SELECT * FROM professor WHERE siape =" + siape + "and senha = '" + senha + "'";
@@ -200,6 +200,7 @@ public class ProfessorDAO {
         con.close();
 
         return retorno;
+
     }
 
 }

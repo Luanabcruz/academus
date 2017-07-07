@@ -17,28 +17,28 @@ public class AlunoDAO {
     Aluno aluno = null;
     LogDAO log = new LogDAO();
     String tabela, func;
-   
-    public Vector Pesquisar (String pesq) throws Exception{
+
+    public Vector Pesquisar(String pesq) throws Exception {
         Vector tb = new Vector();
-        String url = "SELECT * FROM aluno where nome like '" + pesq + "%'" ;
+        String url = "SELECT * FROM aluno where nome like '" + pesq + "%'";
         Connection con = Conexao.getConnection();
         PreparedStatement ps = con.prepareStatement(url);
         ResultSet rs = ps.executeQuery();
-        while(rs.next()){
+        while (rs.next()) {
             Vector nl = new Vector();
             nl.add(rs.getString("nome"));
             nl.add(rs.getInt("matricula"));
             tb.add(nl);
-        }     
+        }
         return tb;
     }
-    
+
     public void cadastrarAluno(Aluno aluno, int codUsuario, String nomeUsuario) throws SQLException {
         Connection con = Conexao.getConnection();
         tabela = "aluno";
-        func = "Cadastrar Aluno";        
+        func = "Cadastrar Aluno";
         log.inserirLog(codUsuario, nomeUsuario, tabela, aluno.getMatricula(), func);
-        
+
         String sql = "INSERT INTO aluno(matricula, nome, senha, cpf, data_nascimento, cidade, uf, rua, bairro, cep, telefone, email, status, cra, ano_ingressante, curso_cod)VALUES(default,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -69,9 +69,9 @@ public class AlunoDAO {
     public void alterarAluno(Aluno aluno, int codUsuario, String nomeUsuario) throws SQLException {
         Connection con = Conexao.getConnection();
         tabela = "aluno";
-        func = "Alterar Aluno";        
+        func = "Alterar Aluno";
         log.inserirLog(codUsuario, nomeUsuario, tabela, aluno.getMatricula(), func);
-        
+
         String sql = "UPDATE aluno SET nome = ?, senha = ?, cpf = ?, data_nascimento = ?, cidade= ?, uf = ?, rua = ?, bairro = ?, cep = ?, telefone = ?, email = ? where matricula=" + aluno.getMatricula();
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -97,9 +97,9 @@ public class AlunoDAO {
 
     public void desativarAluno(int matricula, boolean status, int codUsuario, String nomeUsuario) throws SQLException {
         tabela = "aluno";
-        func = "Desativar Aluno";        
+        func = "Desativar Aluno";
         log.inserirLog(codUsuario, nomeUsuario, tabela, matricula, func);
-        
+
         Connection con = Conexao.getConnection();
         String sql = "UPDATE aluno SET  status = ? where matricula=" + matricula;
         try {
@@ -137,7 +137,7 @@ public class AlunoDAO {
             String telefone = result.getString("telefone");
             String email = result.getString("email");
             Boolean status = result.getBoolean("status");
-            
+
             aluno = new Aluno(matricula, cdao.buscarCurso(result.getInt("curso_cod")), cra, anoIngressante, nome, senha, cpf, dataNascimento, cidade, uf, rua, bairro, telefone, cep, email, status);
         }
         result.close();
@@ -197,10 +197,35 @@ public class AlunoDAO {
 
         return retorno;
     }
-        
+
     public ArrayList<Nota> buscarAlunoTurma(int matricula) throws SQLException {
         Connection con = Conexao.getConnection();
         String sql = "select * from nota inner join turma on (turma.cod_turma=nota.turma_cod) where nota.matricula = " + matricula;
+        PreparedStatement stmt = con.prepareStatement(sql);
+        ResultSet result = stmt.executeQuery();
+
+        ArrayList<Nota> notas = new ArrayList<>();
+
+        while (result.next()) {
+            AlunoDAO adao = new AlunoDAO();
+            TurmaDAO tdao = new TurmaDAO();
+            int turmaCod = result.getInt("turma_cod");
+            int nota1 = result.getInt("nota_1");
+            int nota2 = result.getInt("nota_2");
+            int nota3 = result.getInt("nota_3");
+            Nota nota = new Nota(turmaCod, adao.buscarAluno(result.getInt("matricula")), tdao.buscarTurma(result.getInt("turma_cod")), nota1, nota2, nota3);
+            notas.add(nota);
+        }
+        result.close();
+        stmt.close();
+        con.close();
+
+        return notas;
+    }
+
+    public ArrayList<Nota> turmasNotasAlunoProfessor(int codTurma, int siape) throws SQLException {
+        Connection con = Conexao.getConnection();
+        String sql = "select distinct * from nota inner join turma on (turma.cod_turma= " + codTurma + ") inner join professor on (professor.siape=" + siape + ")";
         PreparedStatement stmt = con.prepareStatement(sql);
         ResultSet result = stmt.executeQuery();
 
