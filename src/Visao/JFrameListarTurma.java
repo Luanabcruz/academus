@@ -45,10 +45,19 @@ public class JFrameListarTurma extends javax.swing.JFrame {
         initComponents();
         getContentPane().setBackground(Color.white);
         
-       this.aLTurma = professorDAO.buscarProfTurma(professor.getSiape());
         
+        try{
+            //Lista de Turmas com os dados para a tabela
+            this.aLTurma = professorDAO.buscarProfTurma(professor.getSiape());
         
+        } catch(SQLException sqlex){
+            JOptionPane.showMessageDialog(rootPane, "Erro nos dados de turma!\nErro: "+sqlex.getMessage());
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Erro nos dados de turma!\nErro: "+ex.getMessage());
+        }
+                
         //configura tabela
+        
         this.configTable();       
         
         
@@ -59,7 +68,7 @@ public class JFrameListarTurma extends javax.swing.JFrame {
 
     }
     
-    public void configTable(){
+    private void configTable(){
         String cod, nome, sala, horario, dados_linha;
         modeloTable = (DefaultTableModel) jTListaTurmas.getModel();
         jTListaTurmas.getColumnModel().getColumn(0).setHeaderValue("Disciplinas");
@@ -71,13 +80,14 @@ public class JFrameListarTurma extends javax.swing.JFrame {
         jTListaTurmas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jTListaTurmas.isCellEditable(1, 1);
         
+        try{
         
-        
-        for (Turma turma: aLTurma){
-            
-            modeloTable.addRow(new Object[] {turma.getDisciplina().getDescricao(), turma.getSala(), turma.getHorario()});
+            aLTurma.stream().forEach((turma) -> {
+                modeloTable.addRow(new Object[] {turma.getDisciplina().getDescricao(), turma.getSala(), turma.getHorario()});
+            });
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Erro ao preencher tabela!\nErro: "+ex.getMessage());
         }
-        
         jTListaTurmas.updateUI();
         
         
@@ -170,7 +180,7 @@ public class JFrameListarTurma extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jB_confirmarExcluirDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_confirmarExcluirDisciplinaActionPerformed
-
+        this.dispose();
     }//GEN-LAST:event_jB_confirmarExcluirDisciplinaActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -191,6 +201,9 @@ public class JFrameListarTurma extends javax.swing.JFrame {
         if (evt.getClickCount() == 2){
             
             JOptionPane.showMessageDialog(rootPane, jTListaTurmas.getSelectedRow()+","+jTListaTurmas.getSelectedColumn());
+            
+            
+            
         }
         
         

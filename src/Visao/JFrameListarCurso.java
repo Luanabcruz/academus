@@ -8,48 +8,45 @@ package Visao;
 import Modelo.Curso;
 import Controle.CursoDAO;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 
 /**
- * 
-    private int codCurso;
-    private int admCod;
-    private int universidadeCod;
-    private String nomeCurso;
- *  private float conceitoCurso;
- *  private String descricao;
- *  private int cargaCurso;
- *  private boolean statusCurso;
- */
-
-/**
  *
  * @author Flávio
  */
 public class JFrameListarCurso extends javax.swing.JFrame {
-    Curso model = new Curso();
-    CursoDAO control = new CursoDAO();
+    private Curso model;
+    private CursoDAO control;
    
     private DefaultTableModel modeloTable;
+    private ArrayList<Curso> alCursos;
+    
     /**
      * Creates new form cadastrarCurso
+     * @throws java.sql.SQLException
      */
-    public JFrameListarCurso() {
+    public JFrameListarCurso() throws SQLException {
         initComponents();
         getContentPane().setBackground(Color.white);
         
         
+        this.alCursos = control.visualizarCursos();
+        
         // configura tabela de lista de cursos
-        configTable();
+        this.configTable();
         
     }
     
     
-    public void configTable(){
-        String cod, nome;
+    private void configTable() throws SQLException{
+        
         modeloTable = (DefaultTableModel) jTListaCurso.getModel();
         jTListaCurso.getColumnModel().getColumn(0).setHeaderValue("Codigo");
         jTListaCurso.getColumnModel().getColumn(1).setHeaderValue("Nome");
@@ -61,6 +58,13 @@ public class JFrameListarCurso extends javax.swing.JFrame {
         jTListaCurso.getTableHeader().setReorderingAllowed(false);
         jTListaCurso.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jTListaCurso.isCellEditable(1, 1);
+        
+        
+        alCursos.stream().forEach((curso) -> {
+            modeloTable.addRow(new Object[] {curso.getCodCurso(), curso.getNomeCurso(),
+                curso.getConceitoCurso(), curso.getDescricao(),
+                curso.getCargaCurso(), curso.getStatusCurso()});
+        });
         
         
         jTListaCurso.updateUI();
@@ -146,7 +150,7 @@ public class JFrameListarCurso extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jB_fecharListarCoordenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_fecharListarCoordenadorActionPerformed
-
+        this.dispose();
     }//GEN-LAST:event_jB_fecharListarCoordenadorActionPerformed
 
     /**
@@ -178,9 +182,11 @@ public class JFrameListarCurso extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(() -> {
+            try {
                 new JFrameListarCurso().setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(JFrameListarCurso.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }
