@@ -5,8 +5,25 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 
 public class DisciplinaDAO {
+    
+    public Vector Pesquisar (String pesq) throws Exception{
+        Vector tb = new Vector();
+        String url = "SELECT * FROM disciplina where nome_disc like '" + pesq + "%'" ;
+        Connection con = Conexao.getConnection();
+        PreparedStatement ps = con.prepareStatement(url);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            Vector nl = new Vector();
+            nl.add(rs.getString("nome_disc"));
+            nl.add(rs.getInt("cod_disciplina"));
+            tb.add(nl);
+        }     
+        return tb;
+    }
+    
     
     public void cadastrarDisciplina(Disciplina disciplina) throws SQLException {
         Connection con = Conexao.getConnection();
@@ -29,7 +46,7 @@ public class DisciplinaDAO {
     
     public Disciplina buscarDisciplina(int codDisciplina) throws SQLException {
         Connection con = Conexao.getConnection();
-        String sql = "SELECT * FROM disciplina WHERE cod_disciplina =1" + codDisciplina;
+        String sql = "SELECT * FROM disciplina WHERE cod_disciplina =" + codDisciplina;
         PreparedStatement stmt = con.prepareStatement(sql);
         ResultSet result = stmt.executeQuery();
         Disciplina disciplina = null;

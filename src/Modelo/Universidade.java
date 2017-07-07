@@ -27,6 +27,10 @@ public class Universidade {
         this.email = email;
     }
 
+    public Universidade() {
+        
+    }
+
     public String getCampus() {
         return campus;
     }

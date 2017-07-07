@@ -5,8 +5,9 @@
  */
 package Visao;
 
-import Controle.DisciplinaDAO;
-import Modelo.Disciplina;
+import Controle.AlunoDAO;
+import Modelo.Aluno;
+import Modelo.Nota;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -18,9 +19,11 @@ import javax.swing.table.DefaultTableModel;
  * @author Anderson
  */
 public class JFrameHistoricoAluno extends javax.swing.JFrame {
-    Disciplina model = new Disciplina();
-    DisciplinaDAO control = new DisciplinaDAO();
-    private ArrayList<Disciplina> alDisciplina;
+    
+    Aluno aluno = new Aluno();
+    AlunoDAO alunoDAO = new AlunoDAO();
+    
+    private ArrayList<Nota> alAlunoNotas;
     private DefaultTableModel modeloTable;
     
     
@@ -30,46 +33,34 @@ public class JFrameHistoricoAluno extends javax.swing.JFrame {
     public JFrameHistoricoAluno() {
         initComponents();
         getContentPane().setBackground(Color.white);
-        
-                
         //Lista de alunos.
         try{
             
-            // faltam dados para o historico
-            
-            //this.alDisciplina = control.historicoAlunos();
+            this.alAlunoNotas = alunoDAO.buscarAlunoTurma(aluno.getMatricula());
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Erro ao carregar lista de alunos");
+            JOptionPane.showMessageDialog(rootPane, "Erro ao carregar dados de notas!!");
         }
-        
-        
-        
-        
+        this.configTable();
     }
     
         
     private void configTable(){
         this.modeloTable = (DefaultTableModel) jTHistoricoAluno.getModel();
-        //jTHistoricoAluno.getColumnModel().getColumn(0).setHeaderValue("codigo");
-        //jTHistoricoAluno.getColumnModel().getColumn(1).setHeaderValue("Nome");
-        jTHistoricoAluno.getTableHeader().setResizingAllowed(false);
+        //jTHistoricoAluno.getTableHeader().setResizingAllowed(false);
         jTHistoricoAluno.getTableHeader().setReorderingAllowed(false);
         jTHistoricoAluno.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        //jTHistoricoAluno.isCellEditable(1, 1);
         
         try{
             //seta dados na tabela historico usando Interators
-            alDisciplina.stream().forEach((disciplina) -> {
+            alAlunoNotas.stream().forEach((nota) -> {
                 modeloTable.addRow(new Object[] {
-                
-                // faltao dados da lista para historico
-                
+                nota.getTurma().getDisciplina().getNomeDisc(),nota.getTurma().getDisciplina().getNomeDisc(), 
+                    nota.getNota1(), nota.getNota2(), nota.getNota3()
                 });
             });
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Erro ao listar Alunos");
+            JOptionPane.showMessageDialog(rootPane, "Erro ao listar Disciplinas!");
         }
-        
         jTHistoricoAluno.updateUI();
     }
     

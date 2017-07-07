@@ -8,12 +8,28 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class ProfessorDAO {
 
     LogDAO log = new LogDAO();
     String tabela, func;
 
+    public Vector Pesquisar (String pesq) throws Exception{
+        Vector tb = new Vector();
+        String url = "SELECT * FROM professor where nome like '" + pesq + "%'" ;
+        Connection con = Conexao.getConnection();
+        PreparedStatement ps = con.prepareStatement(url);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            Vector nl = new Vector();
+            nl.add(rs.getString("nome"));
+            nl.add(rs.getInt("siape"));
+            tb.add(nl);
+        }     
+        return tb;
+    }
+    
     public void cadastrarProfessor(Professor professor, int codUsuario, String nomeUsuario) throws SQLException {
         Connection con = Conexao.getConnection();
         tabela = "professor";
@@ -182,6 +198,24 @@ public class ProfessorDAO {
         con.close();
 
         return professores;
+    }
+    
+    public int loginProfessor(int siape, String senha) throws SQLException {
+        Connection con = Conexao.getConnection();
+        String sql = "SELECT * FROM professor WHERE siape =" + siape + "and senha = '" + senha + "'";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        ResultSet result = stmt.executeQuery();
+        int retorno = 0;
+
+        if (result.next()) {
+            retorno = 1;
+        }
+
+        result.close();
+        stmt.close();
+        con.close();
+
+        return retorno;
     }
 
 }

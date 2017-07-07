@@ -21,9 +21,11 @@ import Modelo.Professor;
 import Modelo.Turma;
 import java.awt.Color;
 import java.sql.SQLException;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -76,6 +78,8 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
         jT_nota2AlterarNota = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jT_nota3AlterarNota = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableBuscaNota = new javax.swing.JTable();
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -87,7 +91,7 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(36, 44, 68));
         jLabel2.setText("Código da turma");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 140, 110, 27);
+        jLabel2.setBounds(20, 270, 110, 27);
 
         jT_codigoturmaAlterarNota.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_codigoturmaAlterarNota.setForeground(new java.awt.Color(36, 44, 68));
@@ -98,7 +102,7 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jT_codigoturmaAlterarNota);
-        jT_codigoturmaAlterarNota.setBounds(20, 170, 349, 30);
+        jT_codigoturmaAlterarNota.setBounds(20, 300, 349, 30);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagens/curso.fw.png"))); // NOI18N
         getContentPane().add(jLabel4);
@@ -123,7 +127,7 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(36, 44, 68));
         jLabel5.setText("Matricula do Aluno");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(20, 200, 210, 27);
+        jLabel5.setBounds(20, 330, 210, 27);
 
         jB_cancelarAlterarCurso.setBackground(new java.awt.Color(255, 51, 51));
         jB_cancelarAlterarCurso.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
@@ -135,7 +139,7 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_cancelarAlterarCurso);
-        jB_cancelarAlterarCurso.setBounds(330, 350, 110, 36);
+        jB_cancelarAlterarCurso.setBounds(330, 480, 110, 33);
 
         jB_buscarAlterarNota.setBackground(new java.awt.Color(0, 204, 51));
         jB_buscarAlterarNota.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
@@ -147,24 +151,29 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_buscarAlterarNota);
-        jB_buscarAlterarNota.setBounds(160, 100, 110, 36);
+        jB_buscarAlterarNota.setBounds(160, 100, 110, 33);
 
         jLabel7.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(36, 44, 68));
         jLabel7.setText("Nota 2");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(420, 200, 200, 27);
+        jLabel7.setBounds(420, 330, 200, 27);
 
         jT_nota1AlterarNota.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_nota1AlterarNota.setForeground(new java.awt.Color(36, 44, 68));
         jT_nota1AlterarNota.setText(" ");
         getContentPane().add(jT_nota1AlterarNota);
-        jT_nota1AlterarNota.setBounds(420, 170, 190, 36);
+        jT_nota1AlterarNota.setBounds(420, 300, 190, 30);
 
         jT_buscarAlterarNota.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_buscarAlterarNota.setForeground(new java.awt.Color(36, 44, 68));
+        jT_buscarAlterarNota.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jT_buscarAlterarNotaKeyReleased(evt);
+            }
+        });
         getContentPane().add(jT_buscarAlterarNota);
-        jT_buscarAlterarNota.setBounds(20, 100, 100, 36);
+        jT_buscarAlterarNota.setBounds(20, 100, 100, 30);
 
         jB_confirmarAlterarNota.setBackground(new java.awt.Color(0, 204, 51));
         jB_confirmarAlterarNota.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
@@ -176,7 +185,7 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_confirmarAlterarNota);
-        jB_confirmarAlterarNota.setBounds(460, 350, 110, 36);
+        jB_confirmarAlterarNota.setBounds(460, 480, 110, 33);
 
         jT_matriculaalunoAlterarNota.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_matriculaalunoAlterarNota.setForeground(new java.awt.Color(36, 44, 68));
@@ -187,33 +196,71 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jT_matriculaalunoAlterarNota);
-        jT_matriculaalunoAlterarNota.setBounds(20, 230, 349, 30);
+        jT_matriculaalunoAlterarNota.setBounds(20, 360, 349, 30);
 
         jLabel8.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(36, 44, 68));
         jLabel8.setText("Nota 1");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(420, 140, 200, 27);
+        jLabel8.setBounds(420, 270, 200, 27);
 
         jT_nota2AlterarNota.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_nota2AlterarNota.setForeground(new java.awt.Color(36, 44, 68));
         jT_nota2AlterarNota.setText(" ");
         getContentPane().add(jT_nota2AlterarNota);
-        jT_nota2AlterarNota.setBounds(420, 230, 190, 36);
+        jT_nota2AlterarNota.setBounds(420, 360, 190, 30);
 
         jLabel10.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(36, 44, 68));
         jLabel10.setText("Nota 3");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(420, 260, 200, 27);
+        jLabel10.setBounds(420, 390, 200, 27);
 
         jT_nota3AlterarNota.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_nota3AlterarNota.setForeground(new java.awt.Color(36, 44, 68));
         jT_nota3AlterarNota.setText(" ");
         getContentPane().add(jT_nota3AlterarNota);
-        jT_nota3AlterarNota.setBounds(420, 290, 190, 36);
+        jT_nota3AlterarNota.setBounds(420, 420, 190, 30);
 
-        setSize(new java.awt.Dimension(724, 446));
+        jTableBuscaNota.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null}
+            },
+            new String [] {
+                "CodigoNota", "CodigoTurma", "Disciplina"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableBuscaNota.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableBuscaNotaMouseClicked(evt);
+            }
+        });
+        jTableBuscaNota.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTableBuscaNotaKeyReleased(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTableBuscaNota);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(20, 140, 490, 110);
+
+        setSize(new java.awt.Dimension(724, 560));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -228,12 +275,12 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
                  model = control.buscarNota(codNota);
                     if(model!=null){
                         jT_nota1AlterarNota.setText(String.valueOf(model.getNota1()));
-                        jT_matriculaalunoAlterarNota.setText(String.valueOf(model.getMatricula()));
-                        jT_codigoturmaAlterarNota.setText(String.valueOf(model.getTurmaCod()));
+                        jT_matriculaalunoAlterarNota.setText(String.valueOf(model.getAluno().getMatricula()));
+                        jT_codigoturmaAlterarNota.setText(String.valueOf(model.getTurma().getCodTurma()));
                         jT_nota2AlterarNota.setText(String.valueOf(model.getNota2()));
                         jT_nota3AlterarNota.setText(String.valueOf(model.getNota3()));
-                        codigoMatriculaMudado=model.getMatricula();
-                        codigoTurmaMudado=model.getTurmaCod();
+                        codigoMatriculaMudado=model.getAluno().getMatricula();
+                        codigoTurmaMudado=model.getTurma().getCodTurma();
                         buscou=1;
                     }else{
                         jT_nota1AlterarNota.setText("");
@@ -293,8 +340,8 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
                     if(modelVerifica!=null){
                         if(modelVerificaAluno!=null){
                                 try {
-                                    model.setTurmaCod((Integer.parseInt(jT_codigoturmaAlterarNota.getText())));
-                                    model.setMatricula(Integer.parseInt(jT_matriculaalunoAlterarNota.getText()));
+                                    model.getTurma().setCodTurma((Integer.parseInt(jT_codigoturmaAlterarNota.getText())));
+                                    model.getAluno().setMatricula(Integer.parseInt(jT_matriculaalunoAlterarNota.getText()));
                                         if(jT_nota3AlterarNota.getText().equals("")){
                                              model.setNota3(0);
                                         }else{
@@ -356,6 +403,63 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jT_matriculaalunoAlterarNotaActionPerformed
 
+    private void jTableBuscaNotaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableBuscaNotaMouseClicked
+        int linha = jTableBuscaNota.getSelectedRow();
+        model=null;
+        try {
+            model = control.buscarNota(Integer.parseInt(jTableBuscaNota.getValueAt(linha,0).toString()));
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrameAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(model!=null){
+            try {
+                model=null;
+                model = control.buscarNota(Integer.parseInt(jTableBuscaNota.getValueAt(linha,0).toString()));
+                //jT_nomealunoAlterarAluno.setText(jTableBuscaAluno.getValueAt(linha,0).toString());
+                jT_nota1AlterarNota.setText(String.valueOf(model.getNota1()));
+                jT_matriculaalunoAlterarNota.setText(String.valueOf(model.getAluno().getMatricula()));
+                jT_codigoturmaAlterarNota.setText(String.valueOf(model.getTurma().getCodTurma()));
+                jT_nota2AlterarNota.setText(String.valueOf(model.getNota2()));
+                jT_nota3AlterarNota.setText(String.valueOf(model.getNota3()));
+                codigoMatriculaMudado=model.getAluno().getMatricula();
+                codigoTurmaMudado=model.getTurma().getCodTurma();
+                buscou=1;
+            } catch (SQLException ex) {
+                Logger.getLogger(JFrameAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jTableBuscaNotaMouseClicked
+
+    private void jTableBuscaNotaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableBuscaNotaKeyReleased
+
+    }//GEN-LAST:event_jTableBuscaNotaKeyReleased
+
+    private void jT_buscarAlterarNotaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jT_buscarAlterarNotaKeyReleased
+        Vector cabecalho = new  Vector();
+        cabecalho.add("CodigoNota");
+        cabecalho.add("CodigoTurma");
+        cabecalho.add("Disciplina");
+        if(!jT_buscarAlterarNota.getText().equals("")){
+            try {
+                DefaultTableModel nv = new DefaultTableModel(control.Pesquisar(Integer.parseInt(jT_buscarAlterarNota.getText())),cabecalho);
+                jTableBuscaNota.setModel(nv);
+            } catch (Exception ex) {
+                Logger.getLogger(JFrameAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       }else{
+            jT_nota1AlterarNota.setText("");
+            jT_matriculaalunoAlterarNota.setText("");
+            jT_codigoturmaAlterarNota.setText("");
+            jT_buscarAlterarNota.setText("");
+            jT_nota2AlterarNota.setText("");
+            jT_nota3AlterarNota.setText("");  
+            jT_buscarAlterarNota.setText("");
+            DefaultTableModel nv = new DefaultTableModel(new Vector(),cabecalho);
+            jTableBuscaNota.setModel(nv);
+        }
+        
+    }//GEN-LAST:event_jT_buscarAlterarNotaKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -405,12 +509,14 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jT_buscarAlterarNota;
     private javax.swing.JTextField jT_codigoturmaAlterarNota;
     private javax.swing.JTextField jT_matriculaalunoAlterarNota;
     private javax.swing.JTextField jT_nota1AlterarNota;
     private javax.swing.JTextField jT_nota2AlterarNota;
     private javax.swing.JTextField jT_nota3AlterarNota;
+    private javax.swing.JTable jTableBuscaNota;
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }

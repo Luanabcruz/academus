@@ -346,7 +346,7 @@ public class JFrameCadastrarDisciplina extends javax.swing.JFrame {
     private void jB_cadastrarDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cadastrarDisciplinaActionPerformed
         
         model.setNomeDisc(jT_nomeDisciplina.getText());
-        model.setCursoCod((int) jComboBox_listaCursos.getSelectedItem());
+        //model.setCursoCod((int) jComboBox_listaCursos.getSelectedItem());//Implementar o autocomplete no jTextField. 
         model.setCredito(Integer.parseInt(jT_creditoDisciplina.getText()));
         model.setDescricao(jT_descricaoDisciplina.getText());
         try {
