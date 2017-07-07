@@ -183,5 +183,23 @@ public class ProfessorDAO {
 
         return professores;
     }
+    
+    public int loginProfessor(int siape, String senha) throws SQLException {
+        Connection con = Conexao.getConnection();
+        String sql = "SELECT * FROM professor WHERE siape =" + siape + "and senha = '" + senha + "'";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        ResultSet result = stmt.executeQuery();
+        int retorno = 0;
+
+        if (result.next()) {
+            retorno = 1;
+        }
+
+        result.close();
+        stmt.close();
+        con.close();
+
+        return retorno;
+    }
 
 }
