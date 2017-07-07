@@ -5,6 +5,7 @@ import Modelo.Administrador;
 import Modelo.Aluno;
 import Modelo.InformarTurma;
 import Modelo.Log;
+import Modelo.Nota;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -19,15 +20,10 @@ public class mainTesteDAO {
     public static void main(String[] args) throws SQLException {
 
         ArrayList<Object> profTurma = new ArrayList<>();
-
-        profTurma.add(0, "Luana");
-        profTurma.add(0, "Aluna");
-        profTurma.add(1, "Joana");
-        profTurma.add(1, "Professora");
-
-        //for (int i = 0; i < profTurma.size(); i++) {
-            System.out.println(profTurma.get(0)); // código não muito útil....
-            System.out.println(profTurma.get(1));
-        //}
+        AlunoDAO adao = new AlunoDAO();
+        
+        ArrayList<Nota> notas = new ArrayList<>();
+        notas = adao.buscarAlunoTurma(1);
+        
     }
 }
