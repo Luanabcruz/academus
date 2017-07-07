@@ -372,7 +372,7 @@ public class JFrameAlterarInformarTurma extends javax.swing.JFrame {
         int linha = jTableBuscaInformarTurma.getSelectedRow();
         model=null;
         try {
-            model = control.buscarDisciplina(Integer.parseInt(jTableBuscaInformarTurma.getValueAt(linha,1).toString()));
+            model = control.buscarInformarTurma(Integer.parseInt(jTableBuscaInformarTurma.getValueAt(linha,1).toString()));
             //            System.out.println(model);
         } catch (SQLException ex) {
             Logger.getLogger(JFrameAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
@@ -380,14 +380,12 @@ public class JFrameAlterarInformarTurma extends javax.swing.JFrame {
         if(model!=null){
             try {
                 model=null;
-                model = control.buscarDisciplina(Integer.parseInt(jTableBuscaInformarTurma.getValueAt(linha,1).toString()));
+                model = control.buscarInformarTurma(Integer.parseInt(jTableBuscaInformarTurma.getValueAt(linha,1).toString()));
                 //jT_nomealunoAlterarAluno.setText(jTableBuscaAluno.getValueAt(linha,0).toString());
-                jT_creditosAlterarDisciplina.setText(String.valueOf(model.getCredito()));
-                jT_descricaoAlterarDisciplina.setText(model.getDescricao());
-                jT_codigocursoAlterarDisciplina.setText(String.valueOf(model.getCurso().getCodCurso()));
-                jT_nomedisciplinaAlterarDisciplina.setText(String.valueOf(model.getNomeDisc()));
-                jT_statusAlterarDisciplina.setText(String.valueOf(model.getStatus()));
-                codigoCursoMudado=model.getCurso().getCodCurso();
+                jT_codigodisciplinaAlterarInformarTurma.setText(String.valueOf(model.getDisciplinaCod()));
+                 jT_siapeprofessorAlterarInformarTurma.setText(String.valueOf(model.getSiape()));
+                 jT_codigocursoAlterarInformarTurma.setText(String.valueOf(model.getCursoCod()));
+                codigoCursoMudado=model.getCursoCod();
                 buscou=1;
             } catch (SQLException ex) {
                 Logger.getLogger(JFrameAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);

@@ -38,7 +38,7 @@ public class JFrameCadastrarDisciplina extends javax.swing.JFrame {
     /**
      *
      */
-    public void PopularCurso(){
+    private void PopularCurso(){
         jComboBox_listaCursos.removeAllItems();
         CursoDAO dao = new CursoDAO();
         ArrayList<Curso> listaDeCursos = new ArrayList();

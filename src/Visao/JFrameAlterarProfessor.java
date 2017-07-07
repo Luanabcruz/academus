@@ -329,7 +329,7 @@ public class JFrameAlterarProfessor extends javax.swing.JFrame {
                 {null, null}
             },
             new String [] {
-                "Nome", "Matricula"
+                "Nome", "SIAPE"
             }
         ) {
             Class[] types = new Class [] {
@@ -377,7 +377,7 @@ public class JFrameAlterarProfessor extends javax.swing.JFrame {
     private void jT_buscarAlterarProfessorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jT_buscarAlterarProfessorKeyReleased
         Vector cabecalho = new  Vector();
         cabecalho.add("Nome");
-        cabecalho.add("Matricula");
+        cabecalho.add("SIAPE");
         if(!jT_buscarAlterarProfessor.getText().equals("")){
             try {
                 DefaultTableModel nv = new DefaultTableModel(controle.Pesquisar(jT_buscarAlterarProfessor.getText()),cabecalho);

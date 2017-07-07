@@ -66,7 +66,7 @@ public class CoordenadorDAO {
     public void alterarCoordenador(Coordenador coordenador, int codUsuario, String nomeUsuario) throws SQLException {
         Connection con = Conexao.getConnection();
         tabela = "coordenador";
-        func = "Cadastrar Coordenador";
+        func = "Alterar Coordenador";
         log.inserirLog(codUsuario, nomeUsuario, tabela, coordenador.getSiape(), func);
 
         String sql = "UPDATE coordenador SET nome = ?, senha = ?, cpf = ?, data_nascimento = ?, cidade= ?, uf = ?, rua = ?, bairro = ?, cep = ?, telefone = ?, email = ?, titulo = ? where siape=" + coordenador.getSiape();

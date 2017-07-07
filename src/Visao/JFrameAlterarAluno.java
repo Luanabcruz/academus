@@ -504,7 +504,37 @@ public class JFrameAlterarAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_jT_buscarAlterarAlunoKeyReleased
 
     private void jTableBuscaAlunoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableBuscaAlunoKeyReleased
-        
+        Vector cabecalho = new  Vector();
+        cabecalho.add("Nome");
+        cabecalho.add("Matricula");
+        if(!jT_buscarAlterarAluno.getText().equals("")){
+            try {
+                DefaultTableModel nv = new DefaultTableModel(controle.Pesquisar(jT_buscarAlterarAluno.getText()),cabecalho);
+                jTableBuscaAluno.setModel(nv);
+            } catch (Exception ex) {
+                Logger.getLogger(JFrameAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       }else{
+            jT_cidadeAlterarAluno.setText("");
+            jT_senhaAlterarAluno.setText("");
+            jT_codigocursoAlterarAluno.setText("");
+            jT_nomealunoAlterarAluno.setText("");
+            jT_bairroAlterarAluno.setText("");
+            jT_cepAlterarAluno.setText("");
+            jT_cpfAlterarAluno.setText("");
+            jT_craAlterarAluno.setText("");
+            jT_emailAlterarAluno.setText("");
+            jT_nascimentoAlterarAluno.setText("");
+            jT_periodoAlterarAluno.setText("");
+            jT_ruaAlterarAluno.setText("");
+            jT_senhaAlterarAluno.setText("");
+            jT_statusAlterarAluno.setText("");
+            jT_telefoneAlterarAluno.setText("");
+            jT_ufAlterarAluno.setText("");
+            DefaultTableModel nv = new DefaultTableModel(new Vector(),cabecalho);
+            jTableBuscaAluno.setModel(nv);
+        }
+
     }//GEN-LAST:event_jTableBuscaAlunoKeyReleased
 
     private void jTableBuscaAlunoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableBuscaAlunoMouseClicked

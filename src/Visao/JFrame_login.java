@@ -38,7 +38,9 @@ public class JFrame_login extends javax.swing.JFrame {
     int retorno;
 
     //Variáveis Globais
+    //Identificador do usuário
     public static int user;
+    //Nome do usuário
     public static String nome_user;
 
     /**
@@ -225,7 +227,7 @@ public class JFrame_login extends javax.swing.JFrame {
         try {
             retorno = control_aluno.loginAluno(user, senha);
             if (retorno == 1) {
-                bemvindoAluno(user);
+                bemvindoAluno();
                 JFrame_aluno frame = new JFrame_aluno();
                 frame.setVisible(true);
                 dispose();
@@ -242,6 +244,7 @@ public class JFrame_login extends javax.swing.JFrame {
         try {
             retorno = control_adm.loginAdm(user, senha);
             if (retorno == 1) {
+                bemvindoAdm();
                 JFrame_adm frame = new JFrame_adm();
                 bemvindoAdm();
                 frame.setVisible(true);
@@ -259,6 +262,7 @@ public class JFrame_login extends javax.swing.JFrame {
         try {
             retorno = control_professor.loginProfessor(user, senha);
             if (retorno == 1) {
+                bemvindoProf();
                 JFrame_prof frame = new JFrame_prof();
                 bemvindoProf();
                 frame.setVisible(true);
@@ -285,8 +289,8 @@ public class JFrame_login extends javax.swing.JFrame {
         }
     }
 
-    public void bemvindoAluno(int id) throws SQLException {
-        model_aluno = control_aluno.buscarAluno(id);
+    public void bemvindoAluno() throws SQLException {
+        model_aluno = control_aluno.buscarAluno(user);
         if (model_aluno != null) {
             nome_user = model_aluno.getNome();
         }
