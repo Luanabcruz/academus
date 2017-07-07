@@ -17,9 +17,11 @@ import Modelo.Professor;
 import Modelo.Turma;
 import java.awt.Color;
 import java.sql.SQLException;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -32,6 +34,7 @@ public class JFrameAlterarTurma extends javax.swing.JFrame {
     int codigoCursoMudado=-1;
     int codigoSiapeMudado=-1;
     int codigoPeriodoMudado=-1;
+    int codigoDisciplinaMudado=-1;
     /**
      * Creates new form cadastrarCurso
      */
@@ -85,7 +88,7 @@ public class JFrameAlterarTurma extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(36, 44, 68));
         jLabel2.setText("Código do Curso");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 140, 110, 27);
+        jLabel2.setBounds(20, 160, 110, 27);
 
         jT_codigocursoAlterarTurma.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_codigocursoAlterarTurma.setForeground(new java.awt.Color(36, 44, 68));
@@ -96,7 +99,7 @@ public class JFrameAlterarTurma extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jT_codigocursoAlterarTurma);
-        jT_codigocursoAlterarTurma.setBounds(20, 170, 349, 30);
+        jT_codigocursoAlterarTurma.setBounds(20, 190, 349, 30);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagens/curso.fw.png"))); // NOI18N
         getContentPane().add(jLabel4);
@@ -121,7 +124,7 @@ public class JFrameAlterarTurma extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(36, 44, 68));
         jLabel5.setText("SIAPE do professor da turma");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(20, 200, 210, 27);
+        jLabel5.setBounds(20, 220, 210, 27);
 
         jB_cancelarAlterarCurso.setBackground(new java.awt.Color(255, 51, 51));
         jB_cancelarAlterarCurso.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
@@ -133,7 +136,7 @@ public class JFrameAlterarTurma extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_cancelarAlterarCurso);
-        jB_cancelarAlterarCurso.setBounds(330, 350, 110, 33);
+        jB_cancelarAlterarCurso.setBounds(330, 370, 110, 33);
 
         jB_buscarAlterarTurma.setBackground(new java.awt.Color(0, 204, 51));
         jB_buscarAlterarTurma.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
@@ -151,18 +154,23 @@ public class JFrameAlterarTurma extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(36, 44, 68));
         jLabel7.setText("Sala da Turma");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(420, 200, 200, 27);
+        jLabel7.setBounds(420, 220, 200, 27);
 
         jT_codigoperiodoAlterarTurma.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_codigoperiodoAlterarTurma.setForeground(new java.awt.Color(36, 44, 68));
         jT_codigoperiodoAlterarTurma.setText(" ");
         getContentPane().add(jT_codigoperiodoAlterarTurma);
-        jT_codigoperiodoAlterarTurma.setBounds(420, 170, 190, 30);
+        jT_codigoperiodoAlterarTurma.setBounds(420, 190, 190, 30);
 
         jT_buscarAlterarTurma.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_buscarAlterarTurma.setForeground(new java.awt.Color(36, 44, 68));
+        jT_buscarAlterarTurma.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jT_buscarAlterarTurmaKeyReleased(evt);
+            }
+        });
         getContentPane().add(jT_buscarAlterarTurma);
-        jT_buscarAlterarTurma.setBounds(20, 100, 100, 30);
+        jT_buscarAlterarTurma.setBounds(20, 100, 130, 30);
 
         jB_confirmarAlterarTurma.setBackground(new java.awt.Color(0, 204, 51));
         jB_confirmarAlterarTurma.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
@@ -174,7 +182,7 @@ public class JFrameAlterarTurma extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_confirmarAlterarTurma);
-        jB_confirmarAlterarTurma.setBounds(460, 350, 110, 33);
+        jB_confirmarAlterarTurma.setBounds(460, 370, 110, 33);
 
         jT_siapeprofessorAlterarTurma.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_siapeprofessorAlterarTurma.setForeground(new java.awt.Color(36, 44, 68));
@@ -185,37 +193,37 @@ public class JFrameAlterarTurma extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jT_siapeprofessorAlterarTurma);
-        jT_siapeprofessorAlterarTurma.setBounds(20, 230, 349, 30);
+        jT_siapeprofessorAlterarTurma.setBounds(20, 250, 349, 30);
 
         jLabel8.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(36, 44, 68));
         jLabel8.setText("Código do periodo da turma");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(420, 140, 200, 27);
+        jLabel8.setBounds(420, 160, 200, 27);
 
         jT_salaAlterarTurma.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_salaAlterarTurma.setForeground(new java.awt.Color(36, 44, 68));
         jT_salaAlterarTurma.setText(" ");
         getContentPane().add(jT_salaAlterarTurma);
-        jT_salaAlterarTurma.setBounds(420, 230, 190, 30);
+        jT_salaAlterarTurma.setBounds(420, 250, 190, 30);
 
         jLabel10.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(36, 44, 68));
         jLabel10.setText("Horário da Turma");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(420, 260, 200, 27);
+        jLabel10.setBounds(420, 280, 200, 27);
 
         jT_horarioAlterarTurma.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_horarioAlterarTurma.setForeground(new java.awt.Color(36, 44, 68));
         jT_horarioAlterarTurma.setText(" ");
         getContentPane().add(jT_horarioAlterarTurma);
-        jT_horarioAlterarTurma.setBounds(420, 290, 190, 30);
+        jT_horarioAlterarTurma.setBounds(420, 310, 190, 30);
 
         jLabel6.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(36, 44, 68));
         jLabel6.setText("Código da Disciplina");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(20, 260, 210, 27);
+        jLabel6.setBounds(20, 280, 210, 27);
 
         jT_codigodisciplinaAlterarTurma.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_codigodisciplinaAlterarTurma.setForeground(new java.awt.Color(36, 44, 68));
@@ -226,9 +234,9 @@ public class JFrameAlterarTurma extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jT_codigodisciplinaAlterarTurma);
-        jT_codigodisciplinaAlterarTurma.setBounds(20, 290, 349, 30);
+        jT_codigodisciplinaAlterarTurma.setBounds(20, 310, 349, 30);
 
-        setSize(new java.awt.Dimension(724, 446));
+        setSize(new java.awt.Dimension(724, 468));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -242,17 +250,20 @@ public class JFrameAlterarTurma extends javax.swing.JFrame {
              try {
                  model = control.buscarTurma(codTurma);
                     if(model!=null){
-                        jT_codigoperiodoAlterarTurma.setText(String.valueOf(model.getPeriodoCod()));
-                        jT_siapeprofessorAlterarTurma.setText(String.valueOf(model.getSiape()));
-                        jT_codigocursoAlterarTurma.setText(String.valueOf(model.getCursoCod()));
+                        jT_codigodisciplinaAlterarTurma.setText(String.valueOf(model.getDisciplina().getCodDisciplina()));
+                        jT_codigoperiodoAlterarTurma.setText(String.valueOf(model.getPeriodo().getCodPeriodo()));
+                        jT_siapeprofessorAlterarTurma.setText(String.valueOf(model.getProfessor().getSiape()));
+                        jT_codigocursoAlterarTurma.setText(String.valueOf(model.getCurso().getCodCurso()));
                         jT_salaAlterarTurma.setText(String.valueOf(model.getSala()));
                         jT_horarioAlterarTurma.setText(String.valueOf(model.getHorario()));
-                        codigoCursoMudado=model.getCursoCod();
-                        codigoPeriodoMudado=model.getPeriodoCod();
-                        codigoSiapeMudado=model.getSiape();
+                        jT_siapeprofessorAlterarTurma.setText(String.valueOf(model.getProfessor().getSiape()));
+                        codigoCursoMudado=model.getCurso().getCodCurso();
+                        codigoPeriodoMudado=model.getPeriodo().getCodPeriodo();
+                        codigoSiapeMudado=model.getCurso().getCodCurso();
                         buscou=1;
                     }else{
                         jT_codigoperiodoAlterarTurma.setText("");
+                        jT_codigodisciplinaAlterarTurma.setText("");
                         jT_siapeprofessorAlterarTurma.setText("");
                         jT_codigocursoAlterarTurma.setText("");
                         jT_buscarAlterarTurma.setText("");
@@ -272,6 +283,7 @@ public class JFrameAlterarTurma extends javax.swing.JFrame {
             jT_codigoperiodoAlterarTurma.setText("");
             jT_siapeprofessorAlterarTurma.setText("");
             jT_codigocursoAlterarTurma.setText("");
+            jT_codigodisciplinaAlterarTurma.setText("");
             jT_buscarAlterarTurma.setText("");
             jT_salaAlterarTurma.setText("");
             jT_horarioAlterarTurma.setText("");
@@ -321,14 +333,15 @@ public class JFrameAlterarTurma extends javax.swing.JFrame {
                         if(modelVerificaSiape!=null){
                             if(modelVerificaPeriodo!=null){
                                 try {
-                                    model.setCursoCod((Integer.parseInt(jT_codigocursoAlterarTurma.getText())));
-                                    model.setSiape(Integer.parseInt(jT_siapeprofessorAlterarTurma.getText()));
+                                    model.getCurso().setCodCurso((Integer.parseInt(jT_codigocursoAlterarTurma.getText())));
+                                    model.getProfessor().setSiape(Integer.parseInt(jT_siapeprofessorAlterarTurma.getText()));
                                     model.setHorario(jT_horarioAlterarTurma.getText());
-                                    model.setPeriodoCod(Integer.parseInt(jT_codigoperiodoAlterarTurma.getText()));
+                                    model.getPeriodo().setCodPeriodo(Integer.parseInt(jT_codigoperiodoAlterarTurma.getText()));
                                     model.setSala(Integer.parseInt(jT_salaAlterarTurma.getText()));
                                     control.alterarTurma(model);
                                     JOptionPane.showMessageDialog(null,"Turma alterada com sucesso!");
                                     jT_codigoperiodoAlterarTurma.setText("");
+                                    jT_codigodisciplinaAlterarTurma.setText("");
                                     jT_siapeprofessorAlterarTurma.setText("");
                                     jT_codigocursoAlterarTurma.setText("");
                                     jT_buscarAlterarTurma.setText("");
@@ -358,6 +371,7 @@ public class JFrameAlterarTurma extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Você deve buscar uma Turma primeiro!");
             jT_codigoperiodoAlterarTurma.setText("");
             jT_siapeprofessorAlterarTurma.setText("");
+            jT_codigodisciplinaAlterarTurma.setText("");
             jT_codigocursoAlterarTurma.setText("");
             jT_buscarAlterarTurma.setText("");
             jT_salaAlterarTurma.setText("");
@@ -381,6 +395,11 @@ public class JFrameAlterarTurma extends javax.swing.JFrame {
     private void jT_codigodisciplinaAlterarTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jT_codigodisciplinaAlterarTurmaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jT_codigodisciplinaAlterarTurmaActionPerformed
+
+    private void jT_buscarAlterarTurmaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jT_buscarAlterarTurmaKeyReleased
+        
+
+    }//GEN-LAST:event_jT_buscarAlterarTurmaKeyReleased
 
     /**
      * @param args the command line arguments

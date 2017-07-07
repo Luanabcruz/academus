@@ -17,7 +17,7 @@ public class ProfessorDAO {
 
     public Vector Pesquisar (String pesq) throws Exception{
         Vector tb = new Vector();
-        String url = "SELECT * FROM professor where nome like '" + pesq + "%'" ;
+        String url = "SELECT DISTINCT * FROM professor where nome like '" + pesq + "%'" ;
         Connection con = Conexao.getConnection();
         PreparedStatement ps = con.prepareStatement(url);
         ResultSet rs = ps.executeQuery();

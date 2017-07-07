@@ -37,6 +37,8 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
     int buscou=0;
     int codigoMatriculaMudado=-1;
     int codigoTurmaMudado=-1;
+    int siape=1;
+    int codTuma=3;
     
     /**
      * Creates new form cadastrarCurso
@@ -61,19 +63,15 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
-        jLabel2 = new javax.swing.JLabel();
-        jT_codigoturmaAlterarNota = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jB_cancelarAlterarCurso = new javax.swing.JButton();
         jB_buscarAlterarNota = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jT_nota1AlterarNota = new javax.swing.JTextField();
         jT_buscarAlterarNota = new javax.swing.JTextField();
         jB_confirmarAlterarNota = new javax.swing.JButton();
-        jT_matriculaalunoAlterarNota = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jT_nota2AlterarNota = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -86,23 +84,6 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 0));
         getContentPane().setLayout(null);
-
-        jLabel2.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(36, 44, 68));
-        jLabel2.setText("Código da turma");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 270, 110, 27);
-
-        jT_codigoturmaAlterarNota.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
-        jT_codigoturmaAlterarNota.setForeground(new java.awt.Color(36, 44, 68));
-        jT_codigoturmaAlterarNota.setText(" ");
-        jT_codigoturmaAlterarNota.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jT_codigoturmaAlterarNotaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jT_codigoturmaAlterarNota);
-        jT_codigoturmaAlterarNota.setBounds(20, 300, 349, 30);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagens/curso.fw.png"))); // NOI18N
         getContentPane().add(jLabel4);
@@ -122,12 +103,6 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
         jLabel3.setText("Buscar Código da Nota");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(20, 70, 220, 27);
-
-        jLabel5.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(36, 44, 68));
-        jLabel5.setText("Matricula do Aluno");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(20, 330, 210, 27);
 
         jB_cancelarAlterarCurso.setBackground(new java.awt.Color(255, 51, 51));
         jB_cancelarAlterarCurso.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
@@ -157,13 +132,13 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(36, 44, 68));
         jLabel7.setText("Nota 2");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(420, 330, 200, 27);
+        jLabel7.setBounds(30, 330, 200, 27);
 
         jT_nota1AlterarNota.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_nota1AlterarNota.setForeground(new java.awt.Color(36, 44, 68));
         jT_nota1AlterarNota.setText(" ");
         getContentPane().add(jT_nota1AlterarNota);
-        jT_nota1AlterarNota.setBounds(420, 300, 190, 30);
+        jT_nota1AlterarNota.setBounds(30, 300, 190, 30);
 
         jT_buscarAlterarNota.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_buscarAlterarNota.setForeground(new java.awt.Color(36, 44, 68));
@@ -187,40 +162,29 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
         getContentPane().add(jB_confirmarAlterarNota);
         jB_confirmarAlterarNota.setBounds(460, 480, 110, 33);
 
-        jT_matriculaalunoAlterarNota.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
-        jT_matriculaalunoAlterarNota.setForeground(new java.awt.Color(36, 44, 68));
-        jT_matriculaalunoAlterarNota.setText(" ");
-        jT_matriculaalunoAlterarNota.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jT_matriculaalunoAlterarNotaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jT_matriculaalunoAlterarNota);
-        jT_matriculaalunoAlterarNota.setBounds(20, 360, 349, 30);
-
         jLabel8.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(36, 44, 68));
         jLabel8.setText("Nota 1");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(420, 270, 200, 27);
+        jLabel8.setBounds(30, 270, 200, 27);
 
         jT_nota2AlterarNota.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_nota2AlterarNota.setForeground(new java.awt.Color(36, 44, 68));
         jT_nota2AlterarNota.setText(" ");
         getContentPane().add(jT_nota2AlterarNota);
-        jT_nota2AlterarNota.setBounds(420, 360, 190, 30);
+        jT_nota2AlterarNota.setBounds(30, 360, 190, 30);
 
         jLabel10.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(36, 44, 68));
         jLabel10.setText("Nota 3");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(420, 390, 200, 27);
+        jLabel10.setBounds(30, 390, 200, 27);
 
         jT_nota3AlterarNota.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_nota3AlterarNota.setForeground(new java.awt.Color(36, 44, 68));
         jT_nota3AlterarNota.setText(" ");
         getContentPane().add(jT_nota3AlterarNota);
-        jT_nota3AlterarNota.setBounds(420, 420, 190, 30);
+        jT_nota3AlterarNota.setBounds(30, 420, 190, 30);
 
         jTableBuscaNota.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -269,141 +233,79 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
     }//GEN-LAST:event_jB_cancelarAlterarCursoActionPerformed
 
     private void jB_buscarAlterarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_buscarAlterarNotaActionPerformed
-         if(!(jT_buscarAlterarNota.getText().equals(""))){
-             int codNota =(Integer.parseInt(jT_buscarAlterarNota.getText()));
+            
+        
+    }//GEN-LAST:event_jB_buscarAlterarNotaActionPerformed
+
+    private void jB_confirmarAlterarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_confirmarAlterarNotaActionPerformed
+        int linha = jTableBuscaNota.getSelectedRow();
+        model=null;
+        try {
+            model = control.buscarNota(Integer.parseInt(jTableBuscaNota.getValueAt(linha,0).toString()));
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrameAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if(model==null){
+            /*}else if(model.getUniversidadeCod()!=(Integer.parseInt(jT_universidadeAlterarCurso.getText()))){
+                    JOptionPane.showMessageDialog(null,"Número da universidade não pode ser alterado!");*/
+                    Turma modelVerifica = new Turma();
+                    TurmaDAO controlVerifica = new TurmaDAO();
+                    Aluno modelVerificaAluno = new Aluno();
+                    AlunoDAO controlVerificaAluno = new AlunoDAO();
+                        try {
+                            if(jT_nota3AlterarNota.getText().equals("")){
+                                 model.setNota3(0);
+                            }else{
+                                model.setNota3(Float.parseFloat(jT_nota3AlterarNota.getText()));
+                            }
+                            if(jT_nota2AlterarNota.getText().equals("")){
+                                 model.setNota2(0);
+                            }else{
+                                model.setNota2(Float.parseFloat(jT_nota2AlterarNota.getText()));
+                            }
+                            if(jT_nota1AlterarNota.getText().equals("")){
+                                 model.setNota1(0);
+                            }else{
+                                model.setNota1(Float.parseFloat(jT_nota1AlterarNota.getText()));
+                            }
+                            control.alterarNota(model);
+                            JOptionPane.showMessageDialog(null,"Notas alteradas com sucesso!");
+                            jT_nota1AlterarNota.setText("");
+                            jT_buscarAlterarNota.setText("");
+                            jT_nota2AlterarNota.setText("");
+                            jT_nota3AlterarNota.setText("");  
+                            codigoMatriculaMudado=-1;
+                            codigoTurmaMudado=-1;                        
+                            buscou=0;
+                        } catch (SQLException ex) {
+                            Logger.getLogger(JFrameAlterarNota.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        
+        }
+    }//GEN-LAST:event_jB_confirmarAlterarNotaActionPerformed
+
+    private void jTableBuscaNotaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableBuscaNotaMouseClicked
+         int codNota =(Integer.parseInt(jT_buscarAlterarNota.getText()));
              try {
                  model = control.buscarNota(codNota);
                     if(model!=null){
                         jT_nota1AlterarNota.setText(String.valueOf(model.getNota1()));
-                        jT_matriculaalunoAlterarNota.setText(String.valueOf(model.getAluno().getMatricula()));
-                        jT_codigoturmaAlterarNota.setText(String.valueOf(model.getTurma().getCodTurma()));
                         jT_nota2AlterarNota.setText(String.valueOf(model.getNota2()));
                         jT_nota3AlterarNota.setText(String.valueOf(model.getNota3()));
-                        codigoMatriculaMudado=model.getAluno().getMatricula();
-                        codigoTurmaMudado=model.getTurma().getCodTurma();
                         buscou=1;
                     }else{
                         jT_nota1AlterarNota.setText("");
-                        jT_matriculaalunoAlterarNota.setText("");
-                        jT_codigoturmaAlterarNota.setText("");
                         jT_buscarAlterarNota.setText("");
                         jT_nota2AlterarNota.setText("");
                         jT_nota3AlterarNota.setText("");
-                        codigoMatriculaMudado=-1;
-                        codigoTurmaMudado=-1;
                         buscou=0;
                         JOptionPane.showMessageDialog(null, "Esta Nota não existe!");
                     }
              } catch (SQLException ex) {
                  Logger.getLogger(JFrameAlterarNota.class.getName()).log(Level.SEVERE, null, ex);
              }
-        }else{
-            JOptionPane.showMessageDialog(null, "Insira algum número no campo para buscar uma Nota!");
-            jT_nota1AlterarNota.setText("");
-            jT_matriculaalunoAlterarNota.setText("");
-            jT_codigoturmaAlterarNota.setText("");
-            jT_buscarAlterarNota.setText("");
-            jT_nota2AlterarNota.setText("");
-            jT_nota3AlterarNota.setText("");
-            codigoMatriculaMudado=-1;
-            codigoTurmaMudado=-1;
-            buscou=0;
-         }
-    }//GEN-LAST:event_jB_buscarAlterarNotaActionPerformed
-
-    private void jB_confirmarAlterarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_confirmarAlterarNotaActionPerformed
-        if(buscou==1){
-            /*}else if(model.getUniversidadeCod()!=(Integer.parseInt(jT_universidadeAlterarCurso.getText()))){
-                    JOptionPane.showMessageDialog(null,"Número da universidade não pode ser alterado!");*/
-                if((jT_codigoturmaAlterarNota.getText().equals(""))||(jT_matriculaalunoAlterarNota.getText().equals("")))
-                {
-                    JOptionPane.showMessageDialog(null,"Os campos do codigo da turma e da matricula do aluno devem ser preenchidos!");
-                }else{
-                    Turma modelVerifica = new Turma();
-                    TurmaDAO controlVerifica = new TurmaDAO();
-                    Aluno modelVerificaAluno = new Aluno();
-                    AlunoDAO controlVerificaAluno = new AlunoDAO();
-                        if(codigoTurmaMudado!=Integer.parseInt(jT_codigoturmaAlterarNota.getText())){
-                            try {
-                                modelVerifica = controlVerifica.buscarTurma(Integer.parseInt(jT_codigoturmaAlterarNota.getText()));
-                            } catch (SQLException ex) {
-                                Logger.getLogger(JFrameAlterarNota.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-                        if(codigoMatriculaMudado!=Integer.parseInt(jT_matriculaalunoAlterarNota.getText())){
-                            try {
-                                modelVerificaAluno = controlVerificaAluno.buscarAluno(Integer.parseInt(jT_matriculaalunoAlterarNota.getText()));
-                            } catch (SQLException ex) {
-                                Logger.getLogger(JFrameAlterarNota.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-                    if(modelVerifica!=null){
-                        if(modelVerificaAluno!=null){
-                                try {
-                                    model.getTurma().setCodTurma((Integer.parseInt(jT_codigoturmaAlterarNota.getText())));
-                                    model.getAluno().setMatricula(Integer.parseInt(jT_matriculaalunoAlterarNota.getText()));
-                                        if(jT_nota3AlterarNota.getText().equals("")){
-                                             model.setNota3(0);
-                                        }else{
-                                            model.setNota3(Float.parseFloat(jT_nota3AlterarNota.getText()));
-                                        }
-                                        if(jT_nota2AlterarNota.getText().equals("")){
-                                             model.setNota2(0);
-                                        }else{
-                                            model.setNota2(Float.parseFloat(jT_nota2AlterarNota.getText()));
-                                        }
-                                        if(jT_nota1AlterarNota.getText().equals("")){
-                                             model.setNota1(0);
-                                        }else{
-                                            model.setNota1(Float.parseFloat(jT_nota1AlterarNota.getText()));
-                                        }
-                                    control.alterarNota(model);
-                                    JOptionPane.showMessageDialog(null,"Notas alteradas com sucesso!");
-                                    jT_nota1AlterarNota.setText("");
-                                    jT_matriculaalunoAlterarNota.setText("");
-                                    jT_codigoturmaAlterarNota.setText("");
-                                    jT_buscarAlterarNota.setText("");
-                                    jT_nota2AlterarNota.setText("");
-                                    jT_nota3AlterarNota.setText("");  
-                                    codigoMatriculaMudado=-1;
-                                    codigoTurmaMudado=-1;                        
-                                    buscou=0;
-                                } catch (SQLException ex) {
-                                    Logger.getLogger(JFrameAlterarNota.class.getName()).log(Level.SEVERE, null, ex);
-                                }
-                        }else{
-                            JOptionPane.showMessageDialog(null,"A matricula a qual você digitou, não existe!");
-                            codigoMatriculaMudado=-1;
-                        }
-                    }else{
-                        JOptionPane.showMessageDialog(null,"O código da turma o qual você digitou, não existe!");
-                        codigoTurmaMudado=-1;
-                    }
-                }
-        }else{
-            JOptionPane.showMessageDialog(null, "Você deve buscar um código de nota primeiro!");
-            jT_nota1AlterarNota.setText("");
-            jT_matriculaalunoAlterarNota.setText("");
-            jT_codigoturmaAlterarNota.setText("");
-            jT_buscarAlterarNota.setText("");
-            jT_nota2AlterarNota.setText("");
-            jT_nota3AlterarNota.setText("");  
-            jT_buscarAlterarNota.setText("");
-            codigoMatriculaMudado=-1;
-            codigoTurmaMudado=-1;
-            buscou=0;
-        }
-    }//GEN-LAST:event_jB_confirmarAlterarNotaActionPerformed
-
-    private void jT_codigoturmaAlterarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jT_codigoturmaAlterarNotaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jT_codigoturmaAlterarNotaActionPerformed
-
-    private void jT_matriculaalunoAlterarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jT_matriculaalunoAlterarNotaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jT_matriculaalunoAlterarNotaActionPerformed
-
-    private void jTableBuscaNotaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableBuscaNotaMouseClicked
+        
         int linha = jTableBuscaNota.getSelectedRow();
         model=null;
         try {
@@ -417,8 +319,6 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
                 model = control.buscarNota(Integer.parseInt(jTableBuscaNota.getValueAt(linha,0).toString()));
                 //jT_nomealunoAlterarAluno.setText(jTableBuscaAluno.getValueAt(linha,0).toString());
                 jT_nota1AlterarNota.setText(String.valueOf(model.getNota1()));
-                jT_matriculaalunoAlterarNota.setText(String.valueOf(model.getAluno().getMatricula()));
-                jT_codigoturmaAlterarNota.setText(String.valueOf(model.getTurma().getCodTurma()));
                 jT_nota2AlterarNota.setText(String.valueOf(model.getNota2()));
                 jT_nota3AlterarNota.setText(String.valueOf(model.getNota3()));
                 codigoMatriculaMudado=model.getAluno().getMatricula();
@@ -436,9 +336,9 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
 
     private void jT_buscarAlterarNotaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jT_buscarAlterarNotaKeyReleased
         Vector cabecalho = new  Vector();
-        cabecalho.add("CodigoNota");
-        cabecalho.add("CodigoTurma");
-        cabecalho.add("Disciplina");
+        cabecalho.add("Nome");
+        cabecalho.add("Matricula");
+        
         if(!jT_buscarAlterarNota.getText().equals("")){
             try {
                 DefaultTableModel nv = new DefaultTableModel(control.Pesquisar(Integer.parseInt(jT_buscarAlterarNota.getText())),cabecalho);
@@ -448,8 +348,6 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
             }
        }else{
             jT_nota1AlterarNota.setText("");
-            jT_matriculaalunoAlterarNota.setText("");
-            jT_codigoturmaAlterarNota.setText("");
             jT_buscarAlterarNota.setText("");
             jT_nota2AlterarNota.setText("");
             jT_nota3AlterarNota.setText("");  
@@ -502,17 +400,13 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
     private javax.swing.JButton jB_confirmarAlterarNota;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jT_buscarAlterarNota;
-    private javax.swing.JTextField jT_codigoturmaAlterarNota;
-    private javax.swing.JTextField jT_matriculaalunoAlterarNota;
     private javax.swing.JTextField jT_nota1AlterarNota;
     private javax.swing.JTextField jT_nota2AlterarNota;
     private javax.swing.JTextField jT_nota3AlterarNota;
