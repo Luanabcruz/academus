@@ -39,17 +39,17 @@
           <Component id="jLabel14" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jTextField_matriculaCadAluno" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
                   <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField_nomeCadAluno" alignment="0" min="-2" pref="335" max="-2" attributes="0"/>
-                  <Component id="jTextField_ruaCadAluno" alignment="0" min="-2" pref="242" max="-2" attributes="0"/>
+                  <Component id="jTextField_nomeCadAluno" alignment="0" pref="335" max="32767" attributes="0"/>
                   <Component id="jT_cidadeCadAluno" alignment="0" min="-2" pref="242" max="-2" attributes="0"/>
                   <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField_emailCadAluno" alignment="0" min="-2" pref="335" max="-2" attributes="0"/>
+                  <Component id="jTextField_emailCadAluno" alignment="0" pref="335" max="32767" attributes="0"/>
+                  <Component id="jTextField_ruaCadAluno" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -72,7 +72,7 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jComboBox_cidadeUsuario" min="-2" pref="105" max="-2" attributes="0"/>
+                                  <Component id="jComboBox_statusCadAluno" min="-2" pref="105" max="-2" attributes="0"/>
                                   <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -96,15 +96,10 @@
                       </Group>
                       <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="213" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="jT_craCadAluno" min="-2" pref="158" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
+                          <Component id="jT_craCadAluno" min="-2" pref="158" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace pref="92" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -169,7 +164,7 @@
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jComboBox_cidadeUsuario" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboBox_statusCadAluno" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
                               <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -215,6 +210,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField_matriculaCadAluno">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField_matriculaCadAlunoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField_nomeCadAluno">
     </Component>
@@ -230,17 +228,15 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Object&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox_cidadeUsuario">
+    <Component class="javax.swing.JComboBox" name="jComboBox_statusCadAluno">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Object&gt;"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField_emailCadAluno">
     </Component>

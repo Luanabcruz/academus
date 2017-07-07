@@ -15,20 +15,26 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.xml.crypto.Data;
 
 /**
  *
  * @author laercio
  */
-public class JFrameCadastrarAluno extends javax.swing.JFrame {
-    Usuario model = new Usuario();
-    UsuarioDAO controle = new UsuarioDAO();
+public class JFrameCadastrarAluno extends javax.swing.JFrame{
+    
+    Aluno model = new Aluno();
+    AlunoDAO controle = new AlunoDAO();
 
     public JFrameCadastrarAluno() {
         initComponents();
         this.setLocationRelativeTo(null);
+        PopularUF();
         
     }
 
@@ -38,16 +44,22 @@ public class JFrameCadastrarAluno extends javax.swing.JFrame {
         AlunoDAO dao = new AlunoDAO();
         ArrayList<Aluno> listaDeAlunos = new ArrayList();
         
-        try {
+       try {
             listaDeAlunos = dao.visualizarAlunos();
             Iterator it = listaDeAlunos.iterator();
-            for (Aluno listaAlu : listaDeAlunos) {
-                jComboBox_ufUsuario.addItem(listaAlu.getCep());
+            while(it.hasNext()){
+                jComboBox_ufUsuario.addItem(it.next());
+               DefaultComboBoxModel defaultComboBox = new DefaultComboBoxModel(listaDeAlunos.toArray());
+               jComboBox_ufUsuario.setModel(defaultComboBox);
+                jComboBox_ufUsuario.addItem(it);
+                System.out.println("steste" + it);
+               
             }
+            JOptionPane.showMessageDialog(null, "Listado com sucesso");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error ao listar UF!");
+            JOptionPane.showMessageDialog(null, "Error ao listar combobox!");
         }
-    }
+    }                  
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,7 +76,7 @@ public class JFrameCadastrarAluno extends javax.swing.JFrame {
         jTextField_nomeCadAluno = new javax.swing.JTextField();
         jTextField_ruaCadAluno = new javax.swing.JTextField();
         jComboBox_ufUsuario = new javax.swing.JComboBox<Object>();
-        jComboBox_cidadeUsuario = new javax.swing.JComboBox();
+        jComboBox_statusCadAluno = new javax.swing.JComboBox<Object>();
         jTextField_emailCadAluno = new javax.swing.JTextField();
         jB_cadastrar = new javax.swing.JButton();
         jB_cadastrar1 = new javax.swing.JButton();
@@ -102,7 +114,11 @@ public class JFrameCadastrarAluno extends javax.swing.JFrame {
         jLabel14.setText("Cadastrar Aluno");
         jLabel14.setOpaque(true);
 
-        jComboBox_cidadeUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jTextField_matriculaCadAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_matriculaCadAlunoActionPerformed(evt);
+            }
+        });
 
         jB_cadastrar.setBackground(new java.awt.Color(255, 51, 51));
         jB_cadastrar.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
@@ -183,17 +199,17 @@ public class JFrameCadastrarAluno extends javax.swing.JFrame {
             .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextField_matriculaCadAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
                     .addComponent(jLabel13)
                     .addComponent(jLabel16)
                     .addComponent(jLabel17)
-                    .addComponent(jTextField_nomeCadAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_ruaCadAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_nomeCadAluno, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
                     .addComponent(jT_cidadeCadAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15)
-                    .addComponent(jTextField_emailCadAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField_emailCadAluno, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                    .addComponent(jTextField_ruaCadAluno))
                 .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -213,7 +229,7 @@ public class JFrameCadastrarAluno extends javax.swing.JFrame {
                                 .addGap(141, 141, 141))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBox_cidadeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboBox_statusCadAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel23)
                                     .addComponent(jLabel24))
                                 .addContainerGap())))
@@ -230,12 +246,9 @@ public class JFrameCadastrarAluno extends javax.swing.JFrame {
                                 .addGap(6, 6, 6)))
                         .addGap(159, 159, 159)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel21)
-                                .addContainerGap(213, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jT_craCadAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                            .addComponent(jLabel21)
+                            .addComponent(jT_craCadAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(92, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,7 +302,7 @@ public class JFrameCadastrarAluno extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel23)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox_cidadeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBox_statusCadAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(88, 88, 88)
                                 .addComponent(jLabel21)))))
                 .addGap(5, 5, 5)
@@ -343,40 +356,61 @@ public class JFrameCadastrarAluno extends javax.swing.JFrame {
     }
     
     private void jB_cadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cadastrar1ActionPerformed
-        
-        if(model==null){
-        model.setNome(jTextField_matriculaCadAluno.getText());
-        model.setSenha(jPasswordField_senhaUsuario.getText());
-        model.setCpf(jTextField_nomeCadAluno.getText());
-        Date out;
-        model.setDataNascimento(FormatDate(jFormattedTextField_dataNascimentoUsuario.getText()));
-        model.setUf((String) jComboBox_ufUsuario.getSelectedItem());
-        model.setCidade((String) jComboBox_cidadeUsuario.getSelectedItem());
-        model.setRua(jTextField_ruaCadAluno.getText());
-        model.setBairro(jTextField_bairroUsuario.getText());
-        model.setCep(jTextField_cepUsuario.getText());
-        model.setTelefone(jTextField_foneUsuario.getText());
-        model.setStatus((boolean) jComboBox_statusUsuario.getSelectedItem());
-        model.setEmail(jTextField_emailCadAluno.getText());
-        
-        }else {
 
-        JOptionPane.showMessageDialog(null, "Novo usuario cadastrado com sucesso!");
-        
-        jTextField_matriculaCadAluno.setText("");
-        jPasswordField_senhaUsuario.setText("");
-        jTextField_nomeCadAluno.setText("");
-        jFormattedTextField_dataNascimentoUsuario.setText("");
-        jComboBox_ufUsuario.getSelectedItem();
-        jComboBox_cidadeUsuario.getSelectedItem();
-        jTextField_ruaCadAluno.setText("");
-        jTextField_bairroUsuario.setText("");
-        jTextField_cepUsuario.setText("");
-        jTextField_foneUsuario.setText("");
-        jComboBox_statusUsuario.getSelectedItem();
-        jTextField_emailCadAluno.setText("");
+        if(model!=null){
+           model.setMatricula(Integer.parseInt(jTextField_matriculaCadAluno.getText()));
+           model.setNome(jTextField_nomeCadAluno.getText());
+           model.setRua(jTextField_ruaCadAluno.getText());
+           model.setCidade(jT_cidadeCadAluno.getText());
+           model.setEmail(jTextField_emailCadAluno.getText());
+           model.setAnoIngressante(jT_anoIngressoCadAluno.getText());
+           //model.setCurso(jT_cursoCadAluno.get);
+
+           model.setDataNascimento(FormatDate(jF_dataNascCadAluno.getText()));
+           model.setTelefone(jT_foneCadAluno.getText());
+           model.setCep(jT_cepCadAluno.getText());
+           model.setCra(Float.parseFloat(jT_craCadAluno.getText()));
+           model.setUf((String) jComboBox_ufUsuario.getSelectedItem());
+           model.setStatus((boolean) jComboBox_statusCadAluno.getSelectedItem());
+            try {
+                controle.cadastrarAluno(model,1,model.getNome());
+                JOptionPane.showMessageDialog(null, "Novo usuario cadastrado com sucesso!");
+                jTextField_matriculaCadAluno.setText(" ");
+                jTextField_nomeCadAluno.setText(" ");
+                jTextField_ruaCadAluno.setText(" ");
+                jT_cidadeCadAluno.setText(" ");
+                jTextField_emailCadAluno.setText(" ");
+                jT_anoIngressoCadAluno.setText(" ");
+                jF_dataNascCadAluno.setText(" ");
+                jT_foneCadAluno.setText(" ");
+                jT_cepCadAluno.setText(" ");
+                jT_craCadAluno.setText(" ");
+                jComboBox_ufUsuario.getSelectedItem();
+                jComboBox_statusCadAluno.getSelectedItem();
+                   
+            } catch (SQLException ex) {
+                Logger.getLogger(JFrameCadastrarAluno.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                 
+        }else {
+                jTextField_matriculaCadAluno.setText(" ");
+                jTextField_nomeCadAluno.setText(" ");
+                jTextField_ruaCadAluno.setText(" ");
+                jT_cidadeCadAluno.setText(" ");
+                jTextField_emailCadAluno.setText(" ");
+                jT_anoIngressoCadAluno.setText(" ");
+                jF_dataNascCadAluno.setText(" ");
+                jT_foneCadAluno.setText(" ");
+                jT_cepCadAluno.setText(" ");
+                jT_craCadAluno.setText(" ");
+                jComboBox_ufUsuario.getSelectedItem();
+                jComboBox_statusCadAluno.getSelectedItem();
         }
     }//GEN-LAST:event_jB_cadastrar1ActionPerformed
+
+    private void jTextField_matriculaCadAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_matriculaCadAlunoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_matriculaCadAlunoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -419,7 +453,7 @@ public class JFrameCadastrarAluno extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jB_cadastrar;
     private javax.swing.JButton jB_cadastrar1;
-    private javax.swing.JComboBox jComboBox_cidadeUsuario;
+    private javax.swing.JComboBox<Object> jComboBox_statusCadAluno;
     private javax.swing.JComboBox<Object> jComboBox_ufUsuario;
     private javax.swing.JFormattedTextField jF_dataNascCadAluno;
     private javax.swing.JLabel jLabel10;
