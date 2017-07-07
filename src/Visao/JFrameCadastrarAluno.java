@@ -6,16 +6,20 @@
 package Visao;
 
 import Controle.AlunoDAO;
+import Controle.CursoDAO;
 import Modelo.Aluno;
+import Modelo.Curso;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -217,12 +221,19 @@ public class JFrameCadastrarAluno extends javax.swing.JFrame{
                 {null, null}
             },
             new String [] {
-                "Código", "Curso"
+                "Nome do Curso", "Código"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -449,12 +460,38 @@ public class JFrameCadastrarAluno extends javax.swing.JFrame{
     }//GEN-LAST:event_jTextField_matriculaCadAlunoActionPerformed
 
     private void jT_cursoCadAlunoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jT_cursoCadAlunoKeyReleased
-    
+        Vector cabecalho = new  Vector();
+        cabecalho.add("Nome");
+        cabecalho.add("Codigo");
+        CursoDAO control= new CursoDAO();
+        if(!jT_cursoCadAluno.getText().equals("")){
+            try {
+                DefaultTableModel nv = new DefaultTableModel(control.Pesquisar(jT_cursoCadAluno.getText()),cabecalho);
+                jT_tabelaCursos.setModel(nv);
+            } catch (Exception ex) {
+                Logger.getLogger(JFrameAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       }else{
+            
+            DefaultTableModel nv = new DefaultTableModel(new Vector(),cabecalho);
+            jT_tabelaCursos.setModel(nv);
+        }
     
     }//GEN-LAST:event_jT_cursoCadAlunoKeyReleased
 
     private void jT_tabelaCursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jT_tabelaCursosMouseClicked
-        
+       int linha = jT_tabelaCursos.getSelectedRow();
+        Curso modelCurso = new Curso();
+        CursoDAO control = new CursoDAO();
+        try {
+            modelCurso = control.buscarCurso(Integer.parseInt(jT_tabelaCursos.getValueAt(linha,1).toString()));
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrameAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(modelCurso!=null){
+            int codigoSelecionado = modelCurso.getCodCurso();
+            System.out.println(codigoSelecionado);
+        }
         
     }//GEN-LAST:event_jT_tabelaCursosMouseClicked
 
