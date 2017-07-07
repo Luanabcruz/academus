@@ -55,7 +55,7 @@ public class JFrameCadastrarCurso extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jTextPane1);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 0));
         getContentPane().setLayout(null);
 
@@ -63,12 +63,12 @@ public class JFrameCadastrarCurso extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(36, 44, 68));
         jLabel2.setText("Nome");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(25, 104, 64, 27);
+        jLabel2.setBounds(25, 104, 37, 27);
 
         Jt_nomeCurso.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         Jt_nomeCurso.setForeground(new java.awt.Color(36, 44, 68));
         getContentPane().add(Jt_nomeCurso);
-        Jt_nomeCurso.setBounds(25, 137, 349, 36);
+        Jt_nomeCurso.setBounds(25, 137, 349, 30);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagens/curso.fw.png"))); // NOI18N
         getContentPane().add(jLabel4);
@@ -92,7 +92,7 @@ public class JFrameCadastrarCurso extends javax.swing.JFrame {
         Jt_cargaHorario.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         Jt_cargaHorario.setForeground(new java.awt.Color(36, 44, 68));
         getContentPane().add(Jt_cargaHorario);
-        Jt_cargaHorario.setBounds(450, 137, 100, 36);
+        Jt_cargaHorario.setBounds(450, 137, 100, 30);
 
         jLabel5.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(36, 44, 68));
@@ -103,7 +103,7 @@ public class JFrameCadastrarCurso extends javax.swing.JFrame {
         jT_conceito.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_conceito.setForeground(new java.awt.Color(36, 44, 68));
         getContentPane().add(jT_conceito);
-        jT_conceito.setBounds(450, 230, 100, 36);
+        jT_conceito.setBounds(450, 230, 100, 30);
 
         jLabel6.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(36, 44, 68));
@@ -121,7 +121,7 @@ public class JFrameCadastrarCurso extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_cadastrar);
-        jB_cadastrar.setBounds(330, 350, 110, 36);
+        jB_cadastrar.setBounds(330, 350, 110, 33);
 
         jT_descricaoCurso.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_descricaoCurso.setForeground(new java.awt.Color(36, 44, 68));
@@ -142,7 +142,7 @@ public class JFrameCadastrarCurso extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_cadastrar1);
-        jB_cadastrar1.setBounds(460, 350, 110, 36);
+        jB_cadastrar1.setBounds(460, 350, 110, 33);
 
         setSize(new java.awt.Dimension(724, 446));
         setLocationRelativeTo(null);
