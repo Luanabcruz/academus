@@ -153,8 +153,16 @@ public class JFrameCadastrarCurso extends javax.swing.JFrame {
     }//GEN-LAST:event_jB_cadastrarActionPerformed
 
     private void jB_cadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cadastrar1ActionPerformed
+       
+        if(!(Jt_nomeCurso.getText().trim().equals("") || jT_conceito.getText().trim().isEmpty()||
+            Jt_cargaHorario.getText().trim().isEmpty() || jT_descricaoCurso.getText().trim().equals(""))
+          ){
+            
+        }
+        
        model.setNomeCurso(Jt_nomeCurso.getText());
        model.setConceitoCurso(Float.parseFloat(jT_conceito.getText()));
+       model.setCargaCurso(Integer.parseInt(Jt_cargaHorario.getText()));
        model.setDescricao(jT_descricaoCurso.getText());
         try {
             controle.cadastrarCurso(model);

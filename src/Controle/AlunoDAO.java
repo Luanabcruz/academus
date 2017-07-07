@@ -159,7 +159,8 @@ public class AlunoDAO {
             Aluno aluno = new Aluno();
             aluno.setNome(result.getString("nome"));
             aluno.setMatricula(result.getInt("matricula"));
-            aluno.getCurso().setCodCurso(result.getInt("curso_cod"));
+            CursoDAO cdao = new CursoDAO();
+            aluno.setCurso(cdao.buscarCurso(result.getInt("curso_cod")));
             aluno.setCra(result.getFloat("cra"));
             aluno.setAnoIngressante(result.getString("ano_ingressante"));
             aluno.setCpf(result.getString("cpf"));
@@ -170,6 +171,8 @@ public class AlunoDAO {
             aluno.setBairro(result.getString("bairro"));
             aluno.setCep(result.getString("cep"));
             aluno.setTelefone(result.getString("telefone"));
+            aluno.setStatus(result.getBoolean("status"));
+            aluno.setSenha(result.getString("senha"));
             aluno.setEmail(result.getString("email"));
             alunos.add(aluno);
         }

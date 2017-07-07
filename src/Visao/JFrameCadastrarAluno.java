@@ -6,9 +6,7 @@
 package Visao;
 
 import Controle.AlunoDAO;
-import Controle.CursoDAO;
 import Modelo.Aluno;
-import Modelo.Curso;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -17,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,26 +30,45 @@ public class JFrameCadastrarAluno extends javax.swing.JFrame{
     public JFrameCadastrarAluno() {
         initComponents();
         this.setLocationRelativeTo(null);
-        popularUF();
+        //popularUF();
+        popularStatus();
         
     }
 
     //Esse método preenche o JCombobox de UF de Cadastro de Aluno;
-    public void popularUF(){
+    private void popularUF(){
         jComboBox_ufUsuario.removeAllItems();
-        AlunoDAO dao = new AlunoDAO();
         ArrayList<Aluno> listaDeUF = new ArrayList();
         
         try {
-            listaDeUF = dao.visualizarAlunos();
+            listaDeUF = controle.visualizarAlunos();
             Iterator it = listaDeUF.iterator();
             for (Aluno uf : listaDeUF) {
-                jComboBox_ufUsuario.addItem(uf);
+                jComboBox_ufUsuario.addItem(uf.getUf());
+                System.out.println("steste"+uf.getUf());
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error ao listar combobox!");
         }
-    }                  
+    }         
+    
+    //Esse método preenche o JCombobox de UF de Cadastro de Aluno;
+    private void popularStatus(){
+        jComboBox_statusCadAluno.removeAllItems();
+        ArrayList<Aluno> listaDeStatus = new ArrayList();
+        
+        try {
+            listaDeStatus = controle.visualizarAlunos();
+            Iterator it = listaDeStatus.iterator();
+            for (Aluno s : listaDeStatus) {
+                jComboBox_statusCadAluno.addItem(s.getStatus());
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error ao listar combobox!");
+        }
+    }            
+    
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -409,8 +425,7 @@ public class JFrameCadastrarAluno extends javax.swing.JFrame{
            model.setCidade(jT_cidadeCadAluno.getText());
            model.setEmail(jTextField_emailCadAluno.getText());
            model.setAnoIngressante(jT_anoIngressoCadAluno.getText());
-           //model.setCurso(jT_cursoCadAluno.getText()); //Falta Implementar o autocomplete.
-
+           model.getCurso().setCodCurso(Integer.parseInt(jT_cursoCadAluno.getText())); //Falta Implementar o autocomplete.
            model.setDataNascimento(FormatDate(jF_dataNascCadAluno.getText()));
            model.setTelefone(jT_foneCadAluno.getText());
            model.setCep(jT_cepCadAluno.getText());
