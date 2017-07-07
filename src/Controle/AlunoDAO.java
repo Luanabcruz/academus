@@ -1,6 +1,8 @@
 package Controle;
 
 import Modelo.Aluno;
+import Modelo.Nota;
+import Modelo.Turma;
 import Visao.JFrameAlterarAluno;
 import java.sql.Connection;
 import java.sql.Date;
@@ -194,6 +196,31 @@ public class AlunoDAO {
         con.close();
 
         return retorno;
+    }
+        
+    public ArrayList<Nota> buscarAlunoTurma(int matricula) throws SQLException {
+        Connection con = Conexao.getConnection();
+        String sql = "select * from nota inner join turma on (turma.cod_turma=nota.turma_cod) where nota.matricula = " + matricula;
+        PreparedStatement stmt = con.prepareStatement(sql);
+        ResultSet result = stmt.executeQuery();
+
+        ArrayList<Nota> notas = new ArrayList<>();
+
+        while (result.next()) {
+            AlunoDAO adao = new AlunoDAO();
+            TurmaDAO tdao = new TurmaDAO();
+            int turmaCod = result.getInt("turma_cod");
+            int nota1 = result.getInt("nota_1");
+            int nota2 = result.getInt("nota_2");
+            int nota3 = result.getInt("nota_3");
+            Nota nota = new Nota(turmaCod, adao.buscarAluno(result.getInt("matricula")), tdao.buscarTurma(result.getInt("turma_cod")), nota1, nota2, nota3);
+            notas.add(nota);
+        }
+        result.close();
+        stmt.close();
+        con.close();
+
+        return notas;
     }
 
 }

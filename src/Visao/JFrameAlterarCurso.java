@@ -7,11 +7,15 @@ package Visao;
 
 import Modelo.Curso;
 import Controle.CursoDAO;
+import Controle.UniversidadeDAO;
+import Modelo.Universidade;
 import java.awt.Color;
 import java.sql.SQLException;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -64,6 +68,8 @@ public class JFrameAlterarCurso extends javax.swing.JFrame {
         jT_cargaAlterarCurso = new javax.swing.JTextField();
         jB_confirmarAlterarCurso1 = new javax.swing.JButton();
         jT_descricaoAlterarCurso = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableBuscaCurso = new javax.swing.JTable();
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -75,7 +81,7 @@ public class JFrameAlterarCurso extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(36, 44, 68));
         jLabel2.setText("Nome do Curso");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 200, 110, 27);
+        jLabel2.setBounds(20, 330, 110, 27);
 
         jT_nomeAlterarCurso.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_nomeAlterarCurso.setForeground(new java.awt.Color(36, 44, 68));
@@ -86,11 +92,11 @@ public class JFrameAlterarCurso extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jT_nomeAlterarCurso);
-        jT_nomeAlterarCurso.setBounds(20, 230, 349, 30);
+        jT_nomeAlterarCurso.setBounds(20, 360, 349, 30);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagens/curso.fw.png"))); // NOI18N
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(230, 10, 32, 32);
+        jLabel4.setBounds(180, 10, 32, 32);
 
         jLabel1.setBackground(new java.awt.Color(36, 44, 68));
         jLabel1.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
@@ -99,11 +105,11 @@ public class JFrameAlterarCurso extends javax.swing.JFrame {
         jLabel1.setText("Alterar dados do Curso");
         jLabel1.setOpaque(true);
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 708, 57);
+        jLabel1.setBounds(0, 0, 620, 50);
 
         jLabel3.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(36, 44, 68));
-        jLabel3.setText("Buscar Código do Curso");
+        jLabel3.setText("Buscar nome do Curso");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(20, 70, 170, 27);
 
@@ -111,25 +117,25 @@ public class JFrameAlterarCurso extends javax.swing.JFrame {
         jT_universidadeAlterarCurso.setForeground(new java.awt.Color(36, 44, 68));
         jT_universidadeAlterarCurso.setText(" ");
         getContentPane().add(jT_universidadeAlterarCurso);
-        jT_universidadeAlterarCurso.setBounds(20, 170, 340, 36);
+        jT_universidadeAlterarCurso.setBounds(20, 300, 340, 30);
 
         jLabel5.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(36, 44, 68));
         jLabel5.setText("Descrição");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(20, 260, 90, 27);
+        jLabel5.setBounds(20, 390, 90, 27);
 
         jT_statusAlterarCurso.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_statusAlterarCurso.setForeground(new java.awt.Color(36, 44, 68));
         jT_statusAlterarCurso.setText(" ");
         getContentPane().add(jT_statusAlterarCurso);
-        jT_statusAlterarCurso.setBounds(450, 300, 100, 36);
+        jT_statusAlterarCurso.setBounds(450, 430, 100, 30);
 
         jLabel6.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(36, 44, 68));
         jLabel6.setText("Status");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(480, 270, 50, 27);
+        jLabel6.setBounds(480, 400, 50, 27);
 
         jB_cancelarAlterarCurso.setBackground(new java.awt.Color(255, 51, 51));
         jB_cancelarAlterarCurso.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
@@ -141,7 +147,7 @@ public class JFrameAlterarCurso extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_cancelarAlterarCurso);
-        jB_cancelarAlterarCurso.setBounds(330, 350, 110, 36);
+        jB_cancelarAlterarCurso.setBounds(330, 480, 110, 33);
 
         jB_buscarAlterarCurso.setBackground(new java.awt.Color(0, 204, 51));
         jB_buscarAlterarCurso.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
@@ -153,36 +159,41 @@ public class JFrameAlterarCurso extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_buscarAlterarCurso);
-        jB_buscarAlterarCurso.setBounds(160, 100, 110, 36);
+        jB_buscarAlterarCurso.setBounds(160, 100, 110, 33);
 
         jLabel7.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(36, 44, 68));
         jLabel7.setText("Conceito");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(470, 200, 60, 27);
+        jLabel7.setBounds(470, 330, 60, 27);
 
         jT_conceitoAlterarCurso.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_conceitoAlterarCurso.setForeground(new java.awt.Color(36, 44, 68));
         jT_conceitoAlterarCurso.setText(" ");
         getContentPane().add(jT_conceitoAlterarCurso);
-        jT_conceitoAlterarCurso.setBounds(450, 230, 100, 36);
+        jT_conceitoAlterarCurso.setBounds(450, 360, 100, 30);
 
         jT_buscarAlterarCurso.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_buscarAlterarCurso.setForeground(new java.awt.Color(36, 44, 68));
+        jT_buscarAlterarCurso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jT_buscarAlterarCursoKeyReleased(evt);
+            }
+        });
         getContentPane().add(jT_buscarAlterarCurso);
-        jT_buscarAlterarCurso.setBounds(20, 100, 100, 36);
+        jT_buscarAlterarCurso.setBounds(20, 100, 100, 30);
 
         jLabel8.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(36, 44, 68));
         jLabel8.setText("Carga Horária");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(450, 130, 110, 27);
+        jLabel8.setBounds(450, 260, 110, 27);
 
         jLabel9.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(36, 44, 68));
         jLabel9.setText("Universidade");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(20, 140, 110, 27);
+        jLabel9.setBounds(20, 270, 110, 27);
 
         jT_cargaAlterarCurso.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_cargaAlterarCurso.setForeground(new java.awt.Color(36, 44, 68));
@@ -193,7 +204,7 @@ public class JFrameAlterarCurso extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jT_cargaAlterarCurso);
-        jT_cargaAlterarCurso.setBounds(450, 160, 100, 36);
+        jT_cargaAlterarCurso.setBounds(450, 290, 100, 30);
 
         jB_confirmarAlterarCurso1.setBackground(new java.awt.Color(0, 204, 51));
         jB_confirmarAlterarCurso1.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
@@ -205,7 +216,7 @@ public class JFrameAlterarCurso extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_confirmarAlterarCurso1);
-        jB_confirmarAlterarCurso1.setBounds(460, 350, 110, 36);
+        jB_confirmarAlterarCurso1.setBounds(460, 480, 110, 33);
 
         jT_descricaoAlterarCurso.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_descricaoAlterarCurso.setForeground(new java.awt.Color(36, 44, 68));
@@ -216,9 +227,47 @@ public class JFrameAlterarCurso extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jT_descricaoAlterarCurso);
-        jT_descricaoAlterarCurso.setBounds(20, 290, 349, 30);
+        jT_descricaoAlterarCurso.setBounds(20, 420, 349, 30);
 
-        setSize(new java.awt.Dimension(724, 446));
+        jTableBuscaCurso.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null}
+            },
+            new String [] {
+                "Nome", "Matricula"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableBuscaCurso.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableBuscaCursoMouseClicked(evt);
+            }
+        });
+        jTableBuscaCurso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTableBuscaCursoKeyReleased(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTableBuscaCurso);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(20, 140, 450, 110);
+
+        setSize(new java.awt.Dimension(629, 602));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -237,8 +286,8 @@ public class JFrameAlterarCurso extends javax.swing.JFrame {
                         jT_descricaoAlterarCurso.setText(model.getDescricao());
                         jT_nomeAlterarCurso.setText(model.getNomeCurso());
                         jT_statusAlterarCurso.setText(String.valueOf(model.getStatusCurso()));
-                        jT_universidadeAlterarCurso.setText(String.valueOf(model.getUniversidadeCod()));
-                        numUniversidade=model.getUniversidadeCod();
+                        jT_universidadeAlterarCurso.setText(String.valueOf(model.getUniversidade().getCodUniversidade()));
+                        numUniversidade=model.getUniversidade().getCodUniversidade();
                         buscou=1;
                     }else{
                         jT_cargaAlterarCurso.setText("");
@@ -254,17 +303,7 @@ public class JFrameAlterarCurso extends javax.swing.JFrame {
              } catch (SQLException ex) {
                  Logger.getLogger(JFrameAlterarCurso.class.getName()).log(Level.SEVERE, null, ex);
              }
-        }else{
-            JOptionPane.showMessageDialog(null, "Insira algum número no campo para buscar um curso");
-            jT_cargaAlterarCurso.setText("");
-            jT_conceitoAlterarCurso.setText("");
-            jT_descricaoAlterarCurso.setText("");
-            jT_nomeAlterarCurso.setText("");
-            jT_statusAlterarCurso.setText("");
-            jT_universidadeAlterarCurso.setText("");
-            jT_buscarAlterarCurso.setText("");
-            buscou=0;
-         }
+        }
     }//GEN-LAST:event_jB_buscarAlterarCursoActionPerformed
 
     private void jB_confirmarAlterarCurso1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_confirmarAlterarCurso1ActionPerformed
@@ -275,25 +314,41 @@ public class JFrameAlterarCurso extends javax.swing.JFrame {
                 {
                     JOptionPane.showMessageDialog(null,"Todos os campos devem ser preenchidos!");
                 }else{
-                    try {
-                        model.setCargaCurso(Integer.parseInt(jT_cargaAlterarCurso.getText()));
-                        model.setConceitoCurso(Float.parseFloat(jT_conceitoAlterarCurso.getText()));
-                        model.setDescricao(jT_descricaoAlterarCurso.getText());
-                        model.setNomeCurso(jT_nomeAlterarCurso.getText());
-                        model.setStatusCurso(Boolean.valueOf(jT_statusAlterarCurso.getText()));
-                        control.alterarCurso(model);
-                        JOptionPane.showMessageDialog(null,"Curso alterado com sucesso!");
-                        jT_cargaAlterarCurso.setText("");
-                        jT_conceitoAlterarCurso.setText("");
-                        jT_descricaoAlterarCurso.setText("");
-                        jT_nomeAlterarCurso.setText("");
-                        jT_statusAlterarCurso.setText("");
-                        jT_universidadeAlterarCurso.setText("");
-                        jT_buscarAlterarCurso.setText("");
-                        buscou=0;
-                    } catch (SQLException ex) {
-                        Logger.getLogger(JFrameAlterarCurso.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    Universidade modelVerifica = new Universidade();
+                    modelVerifica=null;
+                    UniversidadeDAO controlVerifica = new UniversidadeDAO();
+                        if(numUniversidade!=Integer.parseInt(jT_universidadeAlterarCurso.getText())){
+                            try {
+                              int linha = jTableBuscaCurso.getSelectedRow();  
+                              modelVerifica = controlVerifica.buscarUniversidade(Integer.parseInt(jTableBuscaCurso.getValueAt(linha,1).toString()));
+                            } catch (SQLException ex) {
+                                Logger.getLogger(JFrameAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    if(modelVerifica!=null){    
+                        try {
+                            model.setCargaCurso(Integer.parseInt(jT_cargaAlterarCurso.getText()));
+                            model.setConceitoCurso(Float.parseFloat(jT_conceitoAlterarCurso.getText()));
+                            model.setDescricao(jT_descricaoAlterarCurso.getText());
+                            model.setNomeCurso(jT_nomeAlterarCurso.getText());
+                            model.setStatusCurso(Boolean.valueOf(jT_statusAlterarCurso.getText()));
+                            control.alterarCurso(model,1,"Antonino two");
+                            JOptionPane.showMessageDialog(null,"Curso alterado com sucesso!");
+                            jT_cargaAlterarCurso.setText("");
+                            jT_conceitoAlterarCurso.setText("");
+                            jT_descricaoAlterarCurso.setText("");
+                            jT_nomeAlterarCurso.setText("");
+                            jT_statusAlterarCurso.setText("");
+                            jT_universidadeAlterarCurso.setText("");
+                            jT_buscarAlterarCurso.setText("");
+                            buscou=0;
+                        } catch (SQLException ex) {
+                            Logger.getLogger(JFrameAlterarCurso.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                   }else{
+                        JOptionPane.showMessageDialog(null,"O código desta universidade o qual você digitou, não existe!");
+                        numUniversidade=-1;
+                    } 
                 }
         }else{
             JOptionPane.showMessageDialog(null, "Você deve buscar um curso primeiro!");
@@ -319,6 +374,63 @@ public class JFrameAlterarCurso extends javax.swing.JFrame {
     private void jT_descricaoAlterarCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jT_descricaoAlterarCursoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jT_descricaoAlterarCursoActionPerformed
+
+    private void jTableBuscaCursoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableBuscaCursoMouseClicked
+        int linha = jTableBuscaCurso.getSelectedRow();
+        model=null;
+        try {
+            model = control.buscarCurso(Integer.parseInt(jTableBuscaCurso.getValueAt(linha,1).toString()));
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrameAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(model!=null){
+            try {
+                model=null;
+                model = control.buscarCurso(Integer.parseInt(jTableBuscaCurso.getValueAt(linha,1).toString()));
+                //jT_nomealunoAlterarAluno.setText(jTableBuscaAluno.getValueAt(linha,0).toString());
+                jT_cargaAlterarCurso.setText(String.valueOf(model.getCargaCurso()));
+                jT_conceitoAlterarCurso.setText(String.valueOf(model.getConceitoCurso()));
+                jT_descricaoAlterarCurso.setText(model.getDescricao());
+                jT_nomeAlterarCurso.setText(model.getNomeCurso());
+                jT_statusAlterarCurso.setText(String.valueOf(model.getStatusCurso()));
+                jT_universidadeAlterarCurso.setText(String.valueOf(model.getUniversidade().getCodUniversidade()));
+                numUniversidade=model.getUniversidade().getCodUniversidade();
+                buscou=1;
+            } catch (SQLException ex) {
+                Logger.getLogger(JFrameAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jTableBuscaCursoMouseClicked
+
+    private void jTableBuscaCursoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableBuscaCursoKeyReleased
+
+    }//GEN-LAST:event_jTableBuscaCursoKeyReleased
+
+    private void jT_buscarAlterarCursoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jT_buscarAlterarCursoKeyReleased
+        Vector cabecalho = new  Vector();
+        cabecalho.add("Nome");
+        cabecalho.add("Matricula");
+        if(!jT_buscarAlterarCurso.getText().equals("")){
+            try {
+                DefaultTableModel nv = new DefaultTableModel(control.Pesquisar(jT_buscarAlterarCurso.getText()),cabecalho);
+                jTableBuscaCurso.setModel(nv);
+            } catch (Exception ex) {
+                Logger.getLogger(JFrameAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       }else{
+            jT_cargaAlterarCurso.setText("");
+            jT_conceitoAlterarCurso.setText("");
+            jT_descricaoAlterarCurso.setText("");
+            jT_nomeAlterarCurso.setText("");
+            jT_statusAlterarCurso.setText("");
+            jT_universidadeAlterarCurso.setText("");
+            jT_buscarAlterarCurso.setText("");
+            buscou=0;
+            DefaultTableModel nv = new DefaultTableModel(new Vector(),cabecalho);
+            jTableBuscaCurso.setModel(nv);
+        }
+
+    }//GEN-LAST:event_jT_buscarAlterarCursoKeyReleased
 
     /**
      * @param args the command line arguments
@@ -370,6 +482,7 @@ public class JFrameAlterarCurso extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jT_buscarAlterarCurso;
     private javax.swing.JTextField jT_cargaAlterarCurso;
     private javax.swing.JTextField jT_conceitoAlterarCurso;
@@ -377,6 +490,7 @@ public class JFrameAlterarCurso extends javax.swing.JFrame {
     private javax.swing.JTextField jT_nomeAlterarCurso;
     private javax.swing.JTextField jT_statusAlterarCurso;
     private javax.swing.JTextField jT_universidadeAlterarCurso;
+    private javax.swing.JTable jTableBuscaCurso;
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }

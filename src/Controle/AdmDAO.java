@@ -120,5 +120,23 @@ public class AdmDAO {
 
         return administrador;
     }
+    
+    public int loginAdm(int codAdm, String senha) throws SQLException {
+        Connection con = Conexao.getConnection();
+        String sql = "SELECT * FROM administrador WHERE cod_adm =" + codAdm + "and senha = '" + senha + "'";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        ResultSet result = stmt.executeQuery();
+        int retorno = 0;
+
+        if (result.next()) {
+            retorno = 1;
+        }
+
+        result.close();
+        stmt.close();
+        con.close();
+
+        return retorno;
+    }
 
 }

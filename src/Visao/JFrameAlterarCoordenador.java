@@ -19,6 +19,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import java.util.Date;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
 
 public class JFrameAlterarCoordenador extends javax.swing.JFrame {
     Coordenador model = new Coordenador();
@@ -54,7 +56,6 @@ public class JFrameAlterarCoordenador extends javax.swing.JFrame {
         jT_nomeprofessorAlterarCoordenador = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jB_cancelarAlterarCurso = new javax.swing.JButton();
-        jB_buscarAlterarCoordenador = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jT_cidadeAlterarCoordenador = new javax.swing.JTextField();
         jT_buscarAlterarCoordenador = new javax.swing.JTextField();
@@ -88,6 +89,8 @@ public class JFrameAlterarCoordenador extends javax.swing.JFrame {
         jT_permissaoAlterarCoordenador = new javax.swing.JTextField();
         jT_fimAlterarCoordenador = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableBuscaCoordenador = new javax.swing.JTable();
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -99,7 +102,7 @@ public class JFrameAlterarCoordenador extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(36, 44, 68));
         jLabel2.setText("Código do Curso");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 180, 110, 30);
+        jLabel2.setBounds(20, 320, 110, 30);
 
         jT_codigocursoAlterarCoordenador.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_codigocursoAlterarCoordenador.setForeground(new java.awt.Color(36, 44, 68));
@@ -110,7 +113,7 @@ public class JFrameAlterarCoordenador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jT_codigocursoAlterarCoordenador);
-        jT_codigocursoAlterarCoordenador.setBounds(20, 210, 110, 20);
+        jT_codigocursoAlterarCoordenador.setBounds(20, 350, 180, 30);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagens/curso.fw.png"))); // NOI18N
         getContentPane().add(jLabel4);
@@ -127,7 +130,7 @@ public class JFrameAlterarCoordenador extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(36, 44, 68));
-        jLabel3.setText("Buscar SIAPE coordenador");
+        jLabel3.setText("Buscar nome do coordenador");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(20, 70, 220, 27);
 
@@ -135,13 +138,13 @@ public class JFrameAlterarCoordenador extends javax.swing.JFrame {
         jT_nomeprofessorAlterarCoordenador.setForeground(new java.awt.Color(36, 44, 68));
         jT_nomeprofessorAlterarCoordenador.setText(" ");
         getContentPane().add(jT_nomeprofessorAlterarCoordenador);
-        jT_nomeprofessorAlterarCoordenador.setBounds(20, 160, 280, 20);
+        jT_nomeprofessorAlterarCoordenador.setBounds(20, 290, 280, 30);
 
         jLabel5.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(36, 44, 68));
         jLabel5.setText("Data de nascimento");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(20, 310, 150, 20);
+        jLabel5.setBounds(20, 480, 150, 20);
 
         jB_cancelarAlterarCurso.setBackground(new java.awt.Color(255, 51, 51));
         jB_cancelarAlterarCurso.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
@@ -153,42 +156,35 @@ public class JFrameAlterarCoordenador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_cancelarAlterarCurso);
-        jB_cancelarAlterarCurso.setBounds(390, 360, 110, 36);
-
-        jB_buscarAlterarCoordenador.setBackground(new java.awt.Color(0, 204, 51));
-        jB_buscarAlterarCoordenador.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
-        jB_buscarAlterarCoordenador.setForeground(new java.awt.Color(255, 255, 255));
-        jB_buscarAlterarCoordenador.setText("Buscar");
-        jB_buscarAlterarCoordenador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB_buscarAlterarCoordenadorActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jB_buscarAlterarCoordenador);
-        jB_buscarAlterarCoordenador.setBounds(160, 100, 110, 36);
+        jB_cancelarAlterarCurso.setBounds(320, 590, 110, 33);
 
         jLabel7.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(36, 44, 68));
         jLabel7.setText("Email");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(20, 350, 60, 20);
+        jLabel7.setBounds(20, 530, 60, 20);
 
         jT_cidadeAlterarCoordenador.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_cidadeAlterarCoordenador.setForeground(new java.awt.Color(36, 44, 68));
         jT_cidadeAlterarCoordenador.setText(" ");
         getContentPane().add(jT_cidadeAlterarCoordenador);
-        jT_cidadeAlterarCoordenador.setBounds(390, 120, 180, 20);
+        jT_cidadeAlterarCoordenador.setBounds(380, 290, 180, 30);
 
         jT_buscarAlterarCoordenador.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_buscarAlterarCoordenador.setForeground(new java.awt.Color(36, 44, 68));
+        jT_buscarAlterarCoordenador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jT_buscarAlterarCoordenadorKeyReleased(evt);
+            }
+        });
         getContentPane().add(jT_buscarAlterarCoordenador);
-        jT_buscarAlterarCoordenador.setBounds(20, 100, 120, 36);
+        jT_buscarAlterarCoordenador.setBounds(20, 100, 120, 30);
 
         jLabel9.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(36, 44, 68));
         jLabel9.setText("Nome do Aluno");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(20, 140, 160, 20);
+        jLabel9.setBounds(20, 270, 160, 20);
 
         jB_confirmarAlterarCoordenador.setBackground(new java.awt.Color(0, 204, 51));
         jB_confirmarAlterarCoordenador.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
@@ -200,7 +196,7 @@ public class JFrameAlterarCoordenador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_confirmarAlterarCoordenador);
-        jB_confirmarAlterarCoordenador.setBounds(530, 360, 110, 36);
+        jB_confirmarAlterarCoordenador.setBounds(450, 590, 110, 33);
 
         jT_senhaAlterarCoordenador.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_senhaAlterarCoordenador.setForeground(new java.awt.Color(36, 44, 68));
@@ -211,13 +207,13 @@ public class JFrameAlterarCoordenador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jT_senhaAlterarCoordenador);
-        jT_senhaAlterarCoordenador.setBounds(20, 250, 180, 20);
+        jT_senhaAlterarCoordenador.setBounds(20, 400, 180, 30);
 
         jLabel6.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(36, 44, 68));
         jLabel6.setText("Senha");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(20, 230, 90, 20);
+        jLabel6.setBounds(20, 380, 90, 20);
 
         jT_cpfAlterarCoordenador.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_cpfAlterarCoordenador.setForeground(new java.awt.Color(36, 44, 68));
@@ -228,108 +224,108 @@ public class JFrameAlterarCoordenador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jT_cpfAlterarCoordenador);
-        jT_cpfAlterarCoordenador.setBounds(20, 290, 180, 20);
+        jT_cpfAlterarCoordenador.setBounds(20, 450, 180, 30);
 
         jLabel8.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(36, 44, 68));
         jLabel8.setText("CPF");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(20, 270, 90, 20);
+        jLabel8.setBounds(20, 430, 90, 20);
 
         jT_nascimentoAlterarCoordenador.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_nascimentoAlterarCoordenador.setForeground(new java.awt.Color(36, 44, 68));
         jT_nascimentoAlterarCoordenador.setText(" ");
         getContentPane().add(jT_nascimentoAlterarCoordenador);
-        jT_nascimentoAlterarCoordenador.setBounds(20, 330, 180, 20);
+        jT_nascimentoAlterarCoordenador.setBounds(20, 500, 180, 30);
 
         jT_ufAlterarCoordenador.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_ufAlterarCoordenador.setForeground(new java.awt.Color(36, 44, 68));
         getContentPane().add(jT_ufAlterarCoordenador);
-        jT_ufAlterarCoordenador.setBounds(390, 160, 180, 20);
+        jT_ufAlterarCoordenador.setBounds(380, 350, 180, 30);
 
         jT_bairroAlterarCoordenador.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_bairroAlterarCoordenador.setForeground(new java.awt.Color(36, 44, 68));
         jT_bairroAlterarCoordenador.setText(" ");
         getContentPane().add(jT_bairroAlterarCoordenador);
-        jT_bairroAlterarCoordenador.setBounds(390, 240, 180, 20);
+        jT_bairroAlterarCoordenador.setBounds(380, 450, 180, 30);
 
         jT_cepAlterarCoordenador.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_cepAlterarCoordenador.setForeground(new java.awt.Color(36, 44, 68));
         jT_cepAlterarCoordenador.setText(" ");
         getContentPane().add(jT_cepAlterarCoordenador);
-        jT_cepAlterarCoordenador.setBounds(390, 280, 180, 20);
+        jT_cepAlterarCoordenador.setBounds(380, 500, 180, 30);
 
         jT_telefoneAlterarCoordenador.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_telefoneAlterarCoordenador.setForeground(new java.awt.Color(36, 44, 68));
         jT_telefoneAlterarCoordenador.setText(" ");
         getContentPane().add(jT_telefoneAlterarCoordenador);
-        jT_telefoneAlterarCoordenador.setBounds(390, 320, 180, 20);
+        jT_telefoneAlterarCoordenador.setBounds(380, 550, 180, 30);
 
         jT_emailAlterarCoordenador.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_emailAlterarCoordenador.setForeground(new java.awt.Color(36, 44, 68));
         jT_emailAlterarCoordenador.setText(" ");
         getContentPane().add(jT_emailAlterarCoordenador);
-        jT_emailAlterarCoordenador.setBounds(20, 370, 180, 20);
+        jT_emailAlterarCoordenador.setBounds(20, 550, 180, 30);
 
         jT_tituloAlterarCoordenador.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_tituloAlterarCoordenador.setForeground(new java.awt.Color(36, 44, 68));
         jT_tituloAlterarCoordenador.setText(" ");
         getContentPane().add(jT_tituloAlterarCoordenador);
-        jT_tituloAlterarCoordenador.setBounds(220, 210, 150, 20);
+        jT_tituloAlterarCoordenador.setBounds(220, 350, 150, 30);
 
         jLabel10.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(36, 44, 68));
         jLabel10.setText("Uf");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(390, 140, 60, 20);
+        jLabel10.setBounds(380, 330, 60, 20);
 
         jLabel11.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(36, 44, 68));
         jLabel11.setText("Rua");
         getContentPane().add(jLabel11);
-        jLabel11.setBounds(390, 180, 40, 20);
+        jLabel11.setBounds(380, 380, 40, 20);
 
         jLabel12.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(36, 44, 68));
         jLabel12.setText("Bairro");
         getContentPane().add(jLabel12);
-        jLabel12.setBounds(390, 220, 60, 20);
+        jLabel12.setBounds(380, 430, 60, 20);
 
         jLabel13.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(36, 44, 68));
         jLabel13.setText("Cep");
         getContentPane().add(jLabel13);
-        jLabel13.setBounds(390, 260, 60, 20);
+        jLabel13.setBounds(380, 480, 60, 20);
 
         jLabel14.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(36, 44, 68));
         jLabel14.setText("Telefone");
         getContentPane().add(jLabel14);
-        jLabel14.setBounds(390, 300, 60, 20);
+        jLabel14.setBounds(380, 530, 60, 20);
 
         jT_ruaAlterarCoordenador.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_ruaAlterarCoordenador.setForeground(new java.awt.Color(36, 44, 68));
         jT_ruaAlterarCoordenador.setText(" ");
         getContentPane().add(jT_ruaAlterarCoordenador);
-        jT_ruaAlterarCoordenador.setBounds(390, 200, 180, 20);
+        jT_ruaAlterarCoordenador.setBounds(380, 400, 180, 30);
 
         jLabel15.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(36, 44, 68));
         jLabel15.setText("Cidade");
         getContentPane().add(jLabel15);
-        jLabel15.setBounds(390, 100, 60, 20);
+        jLabel15.setBounds(380, 270, 60, 20);
 
         jLabel16.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(36, 44, 68));
         jLabel16.setText("Status");
         getContentPane().add(jLabel16);
-        jLabel16.setBounds(220, 230, 60, 20);
+        jLabel16.setBounds(220, 380, 60, 20);
 
         jLabel17.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(36, 44, 68));
         jLabel17.setText("Data inicio");
         getContentPane().add(jLabel17);
-        jLabel17.setBounds(220, 270, 90, 20);
+        jLabel17.setBounds(220, 430, 90, 20);
 
         jT_statusAlterarCoordenador.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_statusAlterarCoordenador.setForeground(new java.awt.Color(36, 44, 68));
@@ -340,51 +336,89 @@ public class JFrameAlterarCoordenador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jT_statusAlterarCoordenador);
-        jT_statusAlterarCoordenador.setBounds(220, 250, 150, 20);
+        jT_statusAlterarCoordenador.setBounds(220, 400, 150, 30);
 
         jLabel18.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(36, 44, 68));
         jLabel18.setText("Permissão");
         getContentPane().add(jLabel18);
-        jLabel18.setBounds(220, 350, 90, 20);
+        jLabel18.setBounds(220, 530, 90, 20);
 
         jLabel19.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(36, 44, 68));
         jLabel19.setText("Titulo");
         getContentPane().add(jLabel19);
-        jLabel19.setBounds(220, 190, 60, 20);
+        jLabel19.setBounds(220, 330, 60, 20);
 
         jLabel20.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(36, 44, 68));
         jLabel20.setText("Titulo");
         getContentPane().add(jLabel20);
-        jLabel20.setBounds(220, 190, 60, 20);
+        jLabel20.setBounds(220, 330, 60, 20);
 
         jT_inicioAlterarCoordenador.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_inicioAlterarCoordenador.setForeground(new java.awt.Color(36, 44, 68));
         jT_inicioAlterarCoordenador.setText(" ");
         getContentPane().add(jT_inicioAlterarCoordenador);
-        jT_inicioAlterarCoordenador.setBounds(220, 290, 150, 20);
+        jT_inicioAlterarCoordenador.setBounds(220, 450, 150, 30);
 
         jT_permissaoAlterarCoordenador.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_permissaoAlterarCoordenador.setForeground(new java.awt.Color(36, 44, 68));
         jT_permissaoAlterarCoordenador.setText(" ");
         getContentPane().add(jT_permissaoAlterarCoordenador);
-        jT_permissaoAlterarCoordenador.setBounds(220, 370, 150, 20);
+        jT_permissaoAlterarCoordenador.setBounds(220, 550, 150, 30);
 
         jT_fimAlterarCoordenador.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_fimAlterarCoordenador.setForeground(new java.awt.Color(36, 44, 68));
         jT_fimAlterarCoordenador.setText(" ");
         getContentPane().add(jT_fimAlterarCoordenador);
-        jT_fimAlterarCoordenador.setBounds(220, 330, 150, 20);
+        jT_fimAlterarCoordenador.setBounds(220, 500, 150, 30);
 
         jLabel21.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(36, 44, 68));
         jLabel21.setText("Data Fim");
         getContentPane().add(jLabel21);
-        jLabel21.setBounds(220, 310, 60, 20);
+        jLabel21.setBounds(220, 480, 60, 20);
 
-        setSize(new java.awt.Dimension(675, 446));
+        jTableBuscaCoordenador.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null}
+            },
+            new String [] {
+                "Nome", "Matricula"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableBuscaCoordenador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableBuscaCoordenadorMouseClicked(evt);
+            }
+        });
+        jTableBuscaCoordenador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTableBuscaCoordenadorKeyReleased(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTableBuscaCoordenador);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(20, 140, 450, 110);
+
+        setSize(new java.awt.Dimension(618, 699));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -392,84 +426,7 @@ public class JFrameAlterarCoordenador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jB_cancelarAlterarCursoActionPerformed
 
-    private void jB_buscarAlterarCoordenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_buscarAlterarCoordenadorActionPerformed
-         if(!(jT_buscarAlterarCoordenador.getText().equals(""))){
-             int codcoordenador =(Integer.parseInt(jT_buscarAlterarCoordenador.getText()));
-             try {
-                 model = controle.buscarCoordenador(codcoordenador);
-                    if(model!=null){
-                        jT_cidadeAlterarCoordenador.setText(String.valueOf(model.getCidade()));
-                        jT_senhaAlterarCoordenador.setText(String.valueOf(model.getSenha()));
-                        jT_codigocursoAlterarCoordenador.setText(String.valueOf(model.getCursoCod()));
-                        jT_nomeprofessorAlterarCoordenador.setText(String.valueOf(model.getNome()));
-                        jT_bairroAlterarCoordenador.setText(model.getBairro());
-                        jT_cepAlterarCoordenador.setText(model.getCep());
-                        jT_cpfAlterarCoordenador.setText(model.getCpf());
-                        jT_emailAlterarCoordenador.setText(model.getEmail());
-                        jT_nascimentoAlterarCoordenador.setText(String.valueOf(model.getDataNascimento()));
-                        jT_ruaAlterarCoordenador.setText(model.getRua());
-                        jT_senhaAlterarCoordenador.setText(model.getSenha());
-                        jT_tituloAlterarCoordenador.setText(String.valueOf(model.getTitulo()));
-                        jT_statusAlterarCoordenador.setText(String.valueOf(model.getStatus()));
-                        jT_telefoneAlterarCoordenador.setText(model.getTelefone());
-                        jT_ufAlterarCoordenador.setText(model.getUf());
-                        jT_inicioAlterarCoordenador.setText(String.valueOf(model.getDataInicio()));
-                        jT_fimAlterarCoordenador.setText(String.valueOf(model.getDataFim()));
-                        jT_permissaoAlterarCoordenador.setText(String.valueOf(model.getPermissao()));
-                        codigoCursoMudado=model.getCursoCod();
-                        
-                        buscou=1;
-                    }else{
-                        jT_cidadeAlterarCoordenador.setText("");
-                        jT_senhaAlterarCoordenador.setText("");
-                        jT_codigocursoAlterarCoordenador.setText("");
-                        jT_nomeprofessorAlterarCoordenador.setText("");
-                        jT_bairroAlterarCoordenador.setText("");
-                        jT_cepAlterarCoordenador.setText("");
-                        jT_cpfAlterarCoordenador.setText("");
-                        jT_emailAlterarCoordenador.setText("");
-                        jT_nascimentoAlterarCoordenador.setText("");
-                        jT_ruaAlterarCoordenador.setText("");
-                        jT_senhaAlterarCoordenador.setText("");
-                        jT_tituloAlterarCoordenador.setText("");
-                        jT_telefoneAlterarCoordenador.setText("");
-                        jT_ufAlterarCoordenador.setText("");
-                        jT_inicioAlterarCoordenador.setText("");
-                        jT_fimAlterarCoordenador.setText("");
-                        jT_permissaoAlterarCoordenador.setText("");
-                        codigoCursoMudado=-1;
-                        buscou=0;
-                        JOptionPane.showMessageDialog(null, "Este Professor não existe!");
-                    }
-             } catch (SQLException ex) {
-                 Logger.getLogger(JFrameAlterarCoordenador.class.getName()).log(Level.SEVERE, null, ex);
-             }
-        }else{
-            JOptionPane.showMessageDialog(null, "Insira algum número no campo para buscar um Professor");
-            jT_cidadeAlterarCoordenador.setText("");
-            jT_senhaAlterarCoordenador.setText("");
-            jT_codigocursoAlterarCoordenador.setText("");
-            jT_nomeprofessorAlterarCoordenador.setText("");
-            jT_bairroAlterarCoordenador.setText("");
-            jT_cepAlterarCoordenador.setText("");
-            jT_cpfAlterarCoordenador.setText("");
-            jT_emailAlterarCoordenador.setText("");
-            jT_nascimentoAlterarCoordenador.setText("");
-            jT_ruaAlterarCoordenador.setText("");
-            jT_senhaAlterarCoordenador.setText("");
-            jT_tituloAlterarCoordenador.setText("");
-            jT_telefoneAlterarCoordenador.setText("");
-            jT_ufAlterarCoordenador.setText("");
-            jT_inicioAlterarCoordenador.setText("");
-            jT_fimAlterarCoordenador.setText("");
-            jT_permissaoAlterarCoordenador.setText("");
-            codigoCursoMudado=-1;
-            buscou=0;
-         }
-    }//GEN-LAST:event_jB_buscarAlterarCoordenadorActionPerformed
-
     private void jB_confirmarAlterarCoordenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_confirmarAlterarCoordenadorActionPerformed
-        if(buscou==1){
             /*}else if(model.getUniversidadeCod()!=(Integer.parseInt(jT_universidadeAlterarCurso.getText()))){
                     JOptionPane.showMessageDialog(null,"Número da universidade não pode ser alterado!");*/
                 if((jT_fimAlterarCoordenador.getText().equals(""))||(jT_fimAlterarCoordenador.getText().equals(""))||(jT_permissaoAlterarCoordenador.getText().equals(""))||(jT_codigocursoAlterarCoordenador.getText().equals(""))||(jT_cidadeAlterarCoordenador.getText().equals(""))||(jT_senhaAlterarCoordenador.getText().equals(""))||(jT_nomeprofessorAlterarCoordenador.getText().equals(""))||jT_bairroAlterarCoordenador.getText().equals("")||jT_cepAlterarCoordenador.getText().equals("")||jT_cidadeAlterarCoordenador.getText().equals("")||jT_codigocursoAlterarCoordenador.getText().equals("")||jT_cpfAlterarCoordenador.getText().equals("")||jT_emailAlterarCoordenador.getText().equals("")||jT_nascimentoAlterarCoordenador.getText().equals("")||jT_nomeprofessorAlterarCoordenador.getText().equals("")||jT_tituloAlterarCoordenador.getText().equals("")||jT_ruaAlterarCoordenador.getText().equals("")||jT_senhaAlterarCoordenador.getText().equals("")||jT_tituloAlterarCoordenador.getText().equals("")||jT_telefoneAlterarCoordenador.getText().equals("")||jT_ufAlterarCoordenador.getText().equals(""))
@@ -489,7 +446,7 @@ public class JFrameAlterarCoordenador extends javax.swing.JFrame {
                         try {
                             model.setCidade(jT_cidadeAlterarCoordenador.getText());
                             model.setSenha(jT_senhaAlterarCoordenador.getText());
-                            model.setCursoCod(Integer.parseInt(jT_codigocursoAlterarCoordenador.getText()));
+                            model.getCurso().setCodCurso(Integer.parseInt(jT_codigocursoAlterarCoordenador.getText()));
                             model.setNome(jT_nomeprofessorAlterarCoordenador.getText());
                             model.setBairro(jT_bairroAlterarCoordenador.getText());
                             model.setCep(jT_cepAlterarCoordenador.getText());
@@ -537,8 +494,81 @@ public class JFrameAlterarCoordenador extends javax.swing.JFrame {
                         codigoCursoMudado=-1;
                     }
                 }
-        }else{
-            JOptionPane.showMessageDialog(null, "Você deve buscar um coordenador primeiro!");
+        
+    }//GEN-LAST:event_jB_confirmarAlterarCoordenadorActionPerformed
+
+    private void jT_codigocursoAlterarCoordenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jT_codigocursoAlterarCoordenadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jT_codigocursoAlterarCoordenadorActionPerformed
+
+    private void jT_senhaAlterarCoordenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jT_senhaAlterarCoordenadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jT_senhaAlterarCoordenadorActionPerformed
+
+    private void jT_cpfAlterarCoordenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jT_cpfAlterarCoordenadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jT_cpfAlterarCoordenadorActionPerformed
+
+    private void jT_statusAlterarCoordenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jT_statusAlterarCoordenadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jT_statusAlterarCoordenadorActionPerformed
+
+    private void jTableBuscaCoordenadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableBuscaCoordenadorMouseClicked
+        int linha = jTableBuscaCoordenador.getSelectedRow();
+        model=null;
+        try {
+            model = controle.buscarCoordenador(Integer.parseInt(jTableBuscaCoordenador.getValueAt(linha,1).toString()));
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrameAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(model!=null){
+            try {
+                model=null;
+                model = controle.buscarCoordenador(Integer.parseInt(jTableBuscaCoordenador.getValueAt(linha,1).toString()));
+                //jT_nomealunoAlterarAluno.setText(jTableBuscaAluno.getValueAt(linha,0).toString());
+                jT_cidadeAlterarCoordenador.setText(String.valueOf(model.getCidade()));
+                jT_senhaAlterarCoordenador.setText(String.valueOf(model.getSenha()));
+                jT_codigocursoAlterarCoordenador.setText(String.valueOf(model.getCurso().getCodCurso()));
+                jT_nomeprofessorAlterarCoordenador.setText(String.valueOf(model.getNome()));
+                jT_bairroAlterarCoordenador.setText(model.getBairro());
+                jT_cepAlterarCoordenador.setText(model.getCep());
+                jT_cpfAlterarCoordenador.setText(model.getCpf());
+                jT_emailAlterarCoordenador.setText(model.getEmail());
+                jT_nascimentoAlterarCoordenador.setText(String.valueOf(model.getDataNascimento()));
+                jT_ruaAlterarCoordenador.setText(model.getRua());
+                jT_senhaAlterarCoordenador.setText(model.getSenha());
+                jT_tituloAlterarCoordenador.setText(String.valueOf(model.getTitulo()));
+                jT_statusAlterarCoordenador.setText(String.valueOf(model.getStatus()));
+                jT_telefoneAlterarCoordenador.setText(model.getTelefone());
+                jT_ufAlterarCoordenador.setText(model.getUf());
+                jT_inicioAlterarCoordenador.setText(String.valueOf(model.getDataInicio()));
+                jT_fimAlterarCoordenador.setText(String.valueOf(model.getDataFim()));
+                jT_permissaoAlterarCoordenador.setText(String.valueOf(model.getPermissao()));
+                codigoCursoMudado=model.getCurso().getCodCurso();
+                buscou=1;
+
+            } catch (SQLException ex) {
+                Logger.getLogger(JFrameAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jTableBuscaCoordenadorMouseClicked
+
+    private void jTableBuscaCoordenadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableBuscaCoordenadorKeyReleased
+
+    }//GEN-LAST:event_jTableBuscaCoordenadorKeyReleased
+
+    private void jT_buscarAlterarCoordenadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jT_buscarAlterarCoordenadorKeyReleased
+        Vector cabecalho = new  Vector();
+        cabecalho.add("Nome");
+        cabecalho.add("Matricula");
+        if(!jT_buscarAlterarCoordenador.getText().equals("")){
+            try {
+                DefaultTableModel nv = new DefaultTableModel(controle.Pesquisar(jT_buscarAlterarCoordenador.getText()),cabecalho);
+                jTableBuscaCoordenador.setModel(nv);
+            } catch (Exception ex) {
+                Logger.getLogger(JFrameAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       }else{
             jT_cidadeAlterarCoordenador.setText("");
             jT_senhaAlterarCoordenador.setText("");
             jT_codigocursoAlterarCoordenador.setText("");
@@ -557,26 +587,13 @@ public class JFrameAlterarCoordenador extends javax.swing.JFrame {
             jT_inicioAlterarCoordenador.setText("");
             jT_fimAlterarCoordenador.setText("");
             jT_ufAlterarCoordenador.setText("");
-            codigoCursoMudado=-1;
-            buscou=0;
+            DefaultTableModel nv = new DefaultTableModel(new Vector(),cabecalho);
+            jTableBuscaCoordenador.setModel(nv);
         }
-    }//GEN-LAST:event_jB_confirmarAlterarCoordenadorActionPerformed
-
-    private void jT_codigocursoAlterarCoordenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jT_codigocursoAlterarCoordenadorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jT_codigocursoAlterarCoordenadorActionPerformed
-
-    private void jT_senhaAlterarCoordenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jT_senhaAlterarCoordenadorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jT_senhaAlterarCoordenadorActionPerformed
-
-    private void jT_cpfAlterarCoordenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jT_cpfAlterarCoordenadorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jT_cpfAlterarCoordenadorActionPerformed
-
-    private void jT_statusAlterarCoordenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jT_statusAlterarCoordenadorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jT_statusAlterarCoordenadorActionPerformed
+        
+        
+        
+    }//GEN-LAST:event_jT_buscarAlterarCoordenadorKeyReleased
 
     /**
      * @param args the command line arguments
@@ -615,7 +632,6 @@ public class JFrameAlterarCoordenador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jB_buscarAlterarCoordenador;
     private javax.swing.JButton jB_cancelarAlterarCurso;
     private javax.swing.JButton jB_confirmarAlterarCoordenador;
     private javax.swing.JLabel jLabel1;
@@ -640,6 +656,7 @@ public class JFrameAlterarCoordenador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jT_bairroAlterarCoordenador;
     private javax.swing.JTextField jT_buscarAlterarCoordenador;
     private javax.swing.JTextField jT_cepAlterarCoordenador;
@@ -658,6 +675,7 @@ public class JFrameAlterarCoordenador extends javax.swing.JFrame {
     private javax.swing.JTextField jT_telefoneAlterarCoordenador;
     private javax.swing.JTextField jT_tituloAlterarCoordenador;
     private javax.swing.JTextField jT_ufAlterarCoordenador;
+    private javax.swing.JTable jTableBuscaCoordenador;
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }
