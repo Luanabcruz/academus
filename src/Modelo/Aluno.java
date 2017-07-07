@@ -9,6 +9,10 @@ public class Aluno extends Usuario {
     private float cra;
     private String anoIngressante;
 
+    
+    public Aluno(){
+    }  
+
     public Aluno(int matricula, Curso curso, float cra, String anoIngressante, String nome, String senha, String cpf, Date dataNascimento, String cidade, String uf, String rua, String bairro, String telefone, String cep, String email, boolean status) {
         super(nome, senha, cpf, dataNascimento, cidade, uf, rua, bairro, telefone, cep, email, status);
         this.matricula = matricula;
@@ -17,8 +21,6 @@ public class Aluno extends Usuario {
         this.anoIngressante = anoIngressante;
     }
 
-    public Aluno(){
-    }  
 
     public int getMatricula() {
         return matricula;

@@ -180,7 +180,7 @@ public class ProfessorDAO {
             Professor professor = new Professor();
             professor.setNome(result.getString("nome"));
             professor.setSiape(result.getInt("siape"));
-            professor.getCurso().setCodCurso(result.getInt("curso_cod"));
+            //professor.getCurso().setCodCurso(result.getInt("curso_cod"));
             professor.setTitulo(result.getString("titulo"));
             professor.setCpf(result.getString("cpf"));
             professor.setDataNascimento(result.getDate("data_nascimento"));
@@ -191,6 +191,8 @@ public class ProfessorDAO {
             professor.setCep(result.getString("cep"));
             professor.setTelefone(result.getString("telefone"));
             professor.setEmail(result.getString("email"));
+            CursoDAO dao=new CursoDAO();
+            professor.setCurso(dao.buscarCurso(result.getInt("curso_cod")));
             professores.add(professor);
         }
         result.close();

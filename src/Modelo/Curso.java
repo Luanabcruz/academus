@@ -24,7 +24,7 @@ public class Curso {
 
     public Curso() {
         
-    }
+    } 
     
     public int getCodCurso() {
         return codCurso;
