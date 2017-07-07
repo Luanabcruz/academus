@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.Scanner;
+import java.util.Vector;
 
 public class InformarTurmaDAO {
 
@@ -24,7 +25,22 @@ public class InformarTurmaDAO {
     GregorianCalendar calendar = new GregorianCalendar();
     SimpleDateFormat formatador = new SimpleDateFormat("dd' de 'MMMMM' de 'yyyy' - 'HH':'mm'h'", locale);
     String dataHora = formatador.format(calendar.getTime());
-
+    
+    public Vector Pesquisar (String pesq) throws Exception{
+        Vector tb = new Vector();
+        String url = "SELECT * FROM curso where nome_curso like '" + pesq + "%'" ;
+        Connection con = Conexao.getConnection();
+        PreparedStatement ps = con.prepareStatement(url);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            Vector nl = new Vector();
+            nl.add(rs.getString("nome_curso"));
+            nl.add(rs.getInt("cod_curso"));
+            tb.add(nl);
+        }     
+        return tb;
+    }
+    
     public void cadastrarInformarTurma(InformarTurma turma) throws SQLException {
         Connection con = Conexao.getConnection();
         log.setIdLog(2);
