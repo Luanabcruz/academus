@@ -1,13 +1,44 @@
 package Controle;
 
+import Modelo.Disciplina;
+import Modelo.InformarTurma;
 import Modelo.Nota;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 
 public class NotaDAO {
 
+    
+    public Vector Pesquisar (int pesq) throws Exception{
+        Vector tb = new Vector();
+        String url = "SELECT * FROM nota where matricula like '" + String.valueOf(pesq) + "'";
+        
+        Connection con = Conexao.getConnection();
+        PreparedStatement ps = con.prepareStatement(url);
+        ResultSet rs = ps.executeQuery();
+        
+        while(rs.next()){
+            Vector nl = new Vector();
+            nl.add(rs.getInt("cod_nota"));
+            nl.add(rs.getInt("turma_cod"));
+            // Buscando os dados do informar turma
+            InformarTurma model = new InformarTurma();
+            InformarTurmaDAO control = new InformarTurmaDAO();
+            model = control.buscarInformarTurma(rs.getInt("turma_cod")); 
+            // Buscando o nome da disciplina
+            Disciplina modelD = new Disciplina();
+            DisciplinaDAO controlD = new DisciplinaDAO();
+            modelD = controlD.buscarDisciplina(model.getDisciplinaCod());
+            
+            nl.add(modelD.getNomeDisc().toString());
+            tb.add(nl);
+        }     
+        return tb;
+    }
+    
     public void cadastrarNota(Nota nota) throws SQLException {
         Connection con = Conexao.getConnection();
         String sql = "INSERT INTO nota(cod_nota, matricula, turma_cod, nota_1, nota_2, nota_3)VALUES(default,?,?,?,?,?)";
