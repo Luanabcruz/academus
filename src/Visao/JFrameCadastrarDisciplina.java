@@ -92,7 +92,7 @@ public class JFrameCadastrarDisciplina extends javax.swing.JFrame {
         jB_cadastrarDisciplina = new javax.swing.JButton();
         jB_cancelarDisciplina = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
-        jComboBox_listaCursos = new javax.swing.JComboBox<Object>();
+        jComboBox_listaCursos = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
 
         jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -103,12 +103,12 @@ public class JFrameCadastrarDisciplina extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(36, 44, 68));
         jLabel2.setText("Nome");
         jFrame1.getContentPane().add(jLabel2);
-        jLabel2.setBounds(25, 104, 64, 27);
+        jLabel2.setBounds(25, 104, 37, 27);
 
         Jt_nomeCurso.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         Jt_nomeCurso.setForeground(new java.awt.Color(36, 44, 68));
         jFrame1.getContentPane().add(Jt_nomeCurso);
-        Jt_nomeCurso.setBounds(25, 137, 349, 36);
+        Jt_nomeCurso.setBounds(25, 137, 349, 30);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagens/curso.fw.png"))); // NOI18N
         jFrame1.getContentPane().add(jLabel4);
@@ -132,7 +132,7 @@ public class JFrameCadastrarDisciplina extends javax.swing.JFrame {
         Jt_cargaHorario.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         Jt_cargaHorario.setForeground(new java.awt.Color(36, 44, 68));
         jFrame1.getContentPane().add(Jt_cargaHorario);
-        Jt_cargaHorario.setBounds(450, 137, 100, 36);
+        Jt_cargaHorario.setBounds(450, 137, 100, 30);
 
         jLabel5.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(36, 44, 68));
@@ -143,7 +143,7 @@ public class JFrameCadastrarDisciplina extends javax.swing.JFrame {
         jT_conceito.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_conceito.setForeground(new java.awt.Color(36, 44, 68));
         jFrame1.getContentPane().add(jT_conceito);
-        jT_conceito.setBounds(450, 230, 100, 36);
+        jT_conceito.setBounds(450, 230, 100, 30);
 
         jLabel6.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(36, 44, 68));
@@ -161,7 +161,7 @@ public class JFrameCadastrarDisciplina extends javax.swing.JFrame {
             }
         });
         jFrame1.getContentPane().add(jB_cadastrar);
-        jB_cadastrar.setBounds(330, 350, 110, 36);
+        jB_cadastrar.setBounds(330, 350, 110, 33);
 
         jT_descricao.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_descricao.setForeground(new java.awt.Color(36, 44, 68));
@@ -182,18 +182,23 @@ public class JFrameCadastrarDisciplina extends javax.swing.JFrame {
             }
         });
         jFrame1.getContentPane().add(jB_cadastrar1);
-        jB_cadastrar1.setBounds(460, 350, 110, 36);
+        jB_cadastrar1.setBounds(460, 350, 110, 33);
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagens/curso.fw.png"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         jLabel9.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(36, 44, 68));
         jLabel9.setText("Nome");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(20, 108, 37, 27);
 
         jT_nomeDisciplina.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_nomeDisciplina.setForeground(new java.awt.Color(36, 44, 68));
+        getContentPane().add(jT_nomeDisciplina);
+        jT_nomeDisciplina.setBounds(20, 141, 349, 30);
 
         jT_descricaoDisciplina.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_descricaoDisciplina.setForeground(new java.awt.Color(36, 44, 68));
@@ -201,18 +206,31 @@ public class JFrameCadastrarDisciplina extends javax.swing.JFrame {
         jT_descricaoDisciplina.setAlignmentY(0.0F);
         jScrollPane4.setViewportView(jT_descricaoDisciplina);
 
+        getContentPane().add(jScrollPane4);
+        jScrollPane4.setBounds(20, 251, 360, 70);
+
         jLabel10.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(36, 44, 68));
         jLabel10.setText("Descrição");
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(25, 221, 122, 27);
 
         jT_creditoDisciplina.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_creditoDisciplina.setForeground(new java.awt.Color(36, 44, 68));
+        getContentPane().add(jT_creditoDisciplina);
+        jT_creditoDisciplina.setBounds(636, 291, 100, 30);
 
         jLabel11.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(36, 44, 68));
         jLabel11.setText("Crédito");
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(636, 258, 110, 27);
+        getContentPane().add(jLabel12);
+        jLabel12.setBounds(475, 251, 75, 70);
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagens/curso.fw.png"))); // NOI18N
+        getContentPane().add(jLabel13);
+        jLabel13.setBounds(290, 10, 32, 32);
 
         jLabel14.setBackground(new java.awt.Color(36, 44, 68));
         jLabel14.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
@@ -220,6 +238,8 @@ public class JFrameCadastrarDisciplina extends javax.swing.JFrame {
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Cadastrar Disciplina");
         jLabel14.setOpaque(true);
+        getContentPane().add(jLabel14);
+        jLabel14.setBounds(0, 0, 851, 57);
 
         jB_cadastrarDisciplina.setBackground(new java.awt.Color(0, 204, 51));
         jB_cadastrarDisciplina.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
@@ -230,6 +250,8 @@ public class JFrameCadastrarDisciplina extends javax.swing.JFrame {
                 jB_cadastrarDisciplinaActionPerformed(evt);
             }
         });
+        getContentPane().add(jB_cadastrarDisciplina);
+        jB_cadastrarDisciplina.setBounds(506, 355, 148, 33);
 
         jB_cancelarDisciplina.setBackground(new java.awt.Color(255, 51, 51));
         jB_cancelarDisciplina.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
@@ -240,97 +262,27 @@ public class JFrameCadastrarDisciplina extends javax.swing.JFrame {
                 jB_cancelarDisciplinaActionPerformed(evt);
             }
         });
+        getContentPane().add(jB_cancelarDisciplina);
+        jB_cancelarDisciplina.setBounds(338, 355, 148, 33);
 
         jLabel15.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(36, 44, 68));
+        getContentPane().add(jLabel15);
+        jLabel15.setBounds(668, 167, 110, 0);
 
         jComboBox_listaCursos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox_listaCursosActionPerformed(evt);
             }
         });
+        getContentPane().add(jComboBox_listaCursos);
+        jComboBox_listaCursos.setBounds(636, 141, 28, 20);
 
         jLabel16.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(36, 44, 68));
         jLabel16.setText("Curso");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(jT_nomeDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(95, 95, 95)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox_listaCursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(73, 73, 73))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jT_creditoDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addGap(438, 438, 438))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jB_cancelarDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(jB_cadastrarDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(197, 197, 197))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel13))
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel16))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jT_nomeDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(jLabel10)
-                        .addGap(3, 3, 3)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox_listaCursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel11)
-                        .addGap(6, 6, 6)
-                        .addComponent(jT_creditoDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jB_cancelarDisciplina)
-                    .addComponent(jB_cadastrarDisciplina))
-                .addGap(27, 27, 27))
-        );
+        getContentPane().add(jLabel16);
+        jLabel16.setBounds(636, 108, 40, 27);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
