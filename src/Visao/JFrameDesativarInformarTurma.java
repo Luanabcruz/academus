@@ -19,17 +19,15 @@ import Modelo.Professor;
 import Modelo.Turma;
 import java.awt.Color;
 import java.sql.SQLException;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Anderson
  */
-public class JFrameAlterarInformarTurma extends javax.swing.JFrame {
+public class JFrameDesativarInformarTurma extends javax.swing.JFrame {
     InformarTurma model = new InformarTurma();
     InformarTurmaDAO control = new InformarTurmaDAO();
     int buscou=0;
@@ -39,7 +37,7 @@ public class JFrameAlterarInformarTurma extends javax.swing.JFrame {
     /**
      * Creates new form cadastrarCurso
      */
-    public JFrameAlterarInformarTurma() {
+    public JFrameDesativarInformarTurma() {
         initComponents();
         getContentPane().setBackground(Color.white);
     }
@@ -59,21 +57,13 @@ public class JFrameAlterarInformarTurma extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
-        jLabel2 = new javax.swing.JLabel();
-        jT_codigocursoAlterarInformarTurma = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jB_cancelarAlterarCurso = new javax.swing.JButton();
         jB_buscarAlteraInformarTurma = new javax.swing.JButton();
-        jT_codigodisciplinaAlterarInformarTurma = new javax.swing.JTextField();
         jT_buscarAlterarInformarTurma = new javax.swing.JTextField();
         jB_confirmarAlterarInformarTurma = new javax.swing.JButton();
-        jT_siapeprofessorAlterarInformarTurma = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTableBuscaInformarTurma = new javax.swing.JTable();
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -81,32 +71,15 @@ public class JFrameAlterarInformarTurma extends javax.swing.JFrame {
         setBackground(new java.awt.Color(153, 153, 0));
         getContentPane().setLayout(null);
 
-        jLabel2.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(36, 44, 68));
-        jLabel2.setText("Código do Curso");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 260, 110, 27);
-
-        jT_codigocursoAlterarInformarTurma.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
-        jT_codigocursoAlterarInformarTurma.setForeground(new java.awt.Color(36, 44, 68));
-        jT_codigocursoAlterarInformarTurma.setText(" ");
-        jT_codigocursoAlterarInformarTurma.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jT_codigocursoAlterarInformarTurmaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jT_codigocursoAlterarInformarTurma);
-        jT_codigocursoAlterarInformarTurma.setBounds(20, 290, 349, 30);
-
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagens/curso.fw.png"))); // NOI18N
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(190, 10, 32, 32);
+        jLabel4.setBounds(60, 10, 32, 32);
 
         jLabel1.setBackground(new java.awt.Color(36, 44, 68));
         jLabel1.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Alterar dados do informar turma");
+        jLabel1.setText("Desativar Informar Turmar");
         jLabel1.setOpaque(true);
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 708, 57);
@@ -115,13 +88,7 @@ public class JFrameAlterarInformarTurma extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(36, 44, 68));
         jLabel3.setText("Buscar do Informar Turma");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(20, 70, 220, 27);
-
-        jLabel5.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(36, 44, 68));
-        jLabel5.setText("SIAPE do professor da turma");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(20, 320, 210, 27);
+        jLabel3.setBounds(20, 70, 300, 27);
 
         jB_cancelarAlterarCurso.setBackground(new java.awt.Color(255, 51, 51));
         jB_cancelarAlterarCurso.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
@@ -133,7 +100,7 @@ public class JFrameAlterarInformarTurma extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_cancelarAlterarCurso);
-        jB_cancelarAlterarCurso.setBounds(410, 360, 110, 33);
+        jB_cancelarAlterarCurso.setBounds(330, 350, 110, 34);
 
         jB_buscarAlteraInformarTurma.setBackground(new java.awt.Color(0, 204, 51));
         jB_buscarAlteraInformarTurma.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
@@ -145,23 +112,12 @@ public class JFrameAlterarInformarTurma extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_buscarAlteraInformarTurma);
-        jB_buscarAlteraInformarTurma.setBounds(210, 100, 110, 33);
-
-        jT_codigodisciplinaAlterarInformarTurma.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
-        jT_codigodisciplinaAlterarInformarTurma.setForeground(new java.awt.Color(36, 44, 68));
-        jT_codigodisciplinaAlterarInformarTurma.setText(" ");
-        getContentPane().add(jT_codigodisciplinaAlterarInformarTurma);
-        jT_codigodisciplinaAlterarInformarTurma.setBounds(420, 290, 190, 30);
+        jB_buscarAlteraInformarTurma.setBounds(160, 100, 110, 34);
 
         jT_buscarAlterarInformarTurma.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_buscarAlterarInformarTurma.setForeground(new java.awt.Color(36, 44, 68));
-        jT_buscarAlterarInformarTurma.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jT_buscarAlterarInformarTurmaKeyReleased(evt);
-            }
-        });
         getContentPane().add(jT_buscarAlterarInformarTurma);
-        jT_buscarAlterarInformarTurma.setBounds(20, 100, 150, 30);
+        jT_buscarAlterarInformarTurma.setBounds(20, 100, 100, 41);
 
         jB_confirmarAlterarInformarTurma.setBackground(new java.awt.Color(0, 204, 51));
         jB_confirmarAlterarInformarTurma.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
@@ -173,64 +129,9 @@ public class JFrameAlterarInformarTurma extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_confirmarAlterarInformarTurma);
-        jB_confirmarAlterarInformarTurma.setBounds(540, 360, 110, 33);
+        jB_confirmarAlterarInformarTurma.setBounds(460, 350, 110, 34);
 
-        jT_siapeprofessorAlterarInformarTurma.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
-        jT_siapeprofessorAlterarInformarTurma.setForeground(new java.awt.Color(36, 44, 68));
-        jT_siapeprofessorAlterarInformarTurma.setText(" ");
-        jT_siapeprofessorAlterarInformarTurma.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jT_siapeprofessorAlterarInformarTurmaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jT_siapeprofessorAlterarInformarTurma);
-        jT_siapeprofessorAlterarInformarTurma.setBounds(20, 350, 349, 30);
-
-        jLabel8.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(36, 44, 68));
-        jLabel8.setText("Código da disciplina da turma");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(420, 260, 200, 27);
-
-        jTableBuscaInformarTurma.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null}
-            },
-            new String [] {
-                "Nome", "Codigo"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTableBuscaInformarTurma.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableBuscaInformarTurmaMouseClicked(evt);
-            }
-        });
-        jTableBuscaInformarTurma.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTableBuscaInformarTurmaKeyReleased(evt);
-            }
-        });
-        jScrollPane2.setViewportView(jTableBuscaInformarTurma);
-
-        getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(20, 140, 450, 110);
-
-        setSize(new java.awt.Dimension(677, 446));
+        setSize(new java.awt.Dimension(724, 446));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -244,7 +145,7 @@ public class JFrameAlterarInformarTurma extends javax.swing.JFrame {
              try {
                  model = control.buscarInformarTurma(codInformarTurma);
              } catch (SQLException ex) {
-                 Logger.getLogger(JFrameAlterarInformarTurma.class.getName()).log(Level.SEVERE, null, ex);
+                 Logger.getLogger(JFrameDesativarInformarTurma.class.getName()).log(Level.SEVERE, null, ex);
              }
              if(model!=null){
                  jT_codigodisciplinaAlterarInformarTurma.setText(String.valueOf(model.getDisciplinaCod()));
@@ -297,21 +198,21 @@ public class JFrameAlterarInformarTurma extends javax.swing.JFrame {
                             try {
                                 modelVerifica = controlVerifica.buscarCurso(Integer.parseInt(jT_codigocursoAlterarInformarTurma.getText()));
                             } catch (SQLException ex) {
-                                Logger.getLogger(JFrameAlterarInformarTurma.class.getName()).log(Level.SEVERE, null, ex);
+                                Logger.getLogger(JFrameDesativarInformarTurma.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         }
                         if(codigoDisciplinaMudado!=(Integer.parseInt(jT_codigodisciplinaAlterarInformarTurma.getText()))){
                             try {
                                 modelVerificaDisciplina = controlVerificaDisciplina.buscarDisciplina(Integer.parseInt(jT_codigodisciplinaAlterarInformarTurma.getText()));
                             } catch (SQLException ex) {
-                                Logger.getLogger(JFrameAlterarInformarTurma.class.getName()).log(Level.SEVERE, null, ex);
+                                Logger.getLogger(JFrameDesativarInformarTurma.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         }
                         if(codigoSiapeMudado!=Integer.parseInt(jT_siapeprofessorAlterarInformarTurma.getText())){
                             try {
                                 modelVerificaSiape = controlVerificaSiape.buscarProfessor(Integer.parseInt(jT_siapeprofessorAlterarInformarTurma.getText()));
                             } catch (SQLException ex) {
-                                Logger.getLogger(JFrameAlterarInformarTurma.class.getName()).log(Level.SEVERE, null, ex);
+                                Logger.getLogger(JFrameDesativarInformarTurma.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         }
                     if(modelVerifica!=null){
@@ -332,7 +233,7 @@ public class JFrameAlterarInformarTurma extends javax.swing.JFrame {
                                     codigoSiapeMudado=-1;
                                     buscou=0;
                                 } catch (SQLException ex) {
-                                    Logger.getLogger(JFrameAlterarInformarTurma.class.getName()).log(Level.SEVERE, null, ex);
+                                    Logger.getLogger(JFrameDesativarInformarTurma.class.getName()).log(Level.SEVERE, null, ex);
                                 }
                             }else{
                                 JOptionPane.showMessageDialog(null,"O Código da disciplina o qual você digitou, não existe!");
@@ -360,64 +261,6 @@ public class JFrameAlterarInformarTurma extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jB_confirmarAlterarInformarTurmaActionPerformed
 
-    private void jT_codigocursoAlterarInformarTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jT_codigocursoAlterarInformarTurmaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jT_codigocursoAlterarInformarTurmaActionPerformed
-
-    private void jT_siapeprofessorAlterarInformarTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jT_siapeprofessorAlterarInformarTurmaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jT_siapeprofessorAlterarInformarTurmaActionPerformed
-
-    private void jTableBuscaInformarTurmaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableBuscaInformarTurmaMouseClicked
-        int linha = jTableBuscaInformarTurma.getSelectedRow();
-        model=null;
-        try {
-            model = control.buscarInformarTurma(Integer.parseInt(jTableBuscaInformarTurma.getValueAt(linha,1).toString()));
-            //            System.out.println(model);
-        } catch (SQLException ex) {
-            Logger.getLogger(JFrameAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if(model!=null){
-            try {
-                model=null;
-                model = control.buscarInformarTurma(Integer.parseInt(jTableBuscaInformarTurma.getValueAt(linha,1).toString()));
-                //jT_nomealunoAlterarAluno.setText(jTableBuscaAluno.getValueAt(linha,0).toString());
-                jT_codigodisciplinaAlterarInformarTurma.setText(String.valueOf(model.getDisciplinaCod()));
-                 jT_siapeprofessorAlterarInformarTurma.setText(String.valueOf(model.getSiape()));
-                 jT_codigocursoAlterarInformarTurma.setText(String.valueOf(model.getCursoCod()));
-                codigoCursoMudado=model.getCursoCod();
-                buscou=1;
-            } catch (SQLException ex) {
-                Logger.getLogger(JFrameAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_jTableBuscaInformarTurmaMouseClicked
-
-    private void jTableBuscaInformarTurmaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableBuscaInformarTurmaKeyReleased
-
-    }//GEN-LAST:event_jTableBuscaInformarTurmaKeyReleased
-
-    private void jT_buscarAlterarInformarTurmaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jT_buscarAlterarInformarTurmaKeyReleased
-        Vector cabecalho = new  Vector();
-        cabecalho.add("Nome do curso");
-        cabecalho.add("Codigo do curso");
-        if(!jT_buscarAlterarInformarTurma.getText().equals("")){
-            try {
-                DefaultTableModel nv = new DefaultTableModel(control.Pesquisar(jT_buscarAlterarInformarTurma.getText()),cabecalho);
-                jTableBuscaInformarTurma.setModel(nv);
-            } catch (Exception ex) {
-                Logger.getLogger(JFrameAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
-            }
-       }else{
-            jT_codigodisciplinaAlterarInformarTurma.setText("");
-            jT_siapeprofessorAlterarInformarTurma.setText("");
-            jT_codigocursoAlterarInformarTurma.setText("");
-            jT_buscarAlterarInformarTurma.setText("");
-            DefaultTableModel nv = new DefaultTableModel(new Vector(),cabecalho);
-            jTableBuscaInformarTurma.setModel(nv);
-        }
-    }//GEN-LAST:event_jT_buscarAlterarInformarTurmaKeyReleased
-
     /**
      * @param args the command line arguments
      */
@@ -435,13 +278,13 @@ public class JFrameAlterarInformarTurma extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrameAlterarInformarTurma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrame_cadastrarCurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrameAlterarInformarTurma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrame_cadastrarCurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrameAlterarInformarTurma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrame_cadastrarCurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFrameAlterarInformarTurma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrame_cadastrarCurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -449,7 +292,7 @@ public class JFrameAlterarInformarTurma extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFrameAlterarInformarTurma().setVisible(true);
+                new JFrameDesativarInformarTurma().setVisible(true);
             }
         });
     }
@@ -459,18 +302,10 @@ public class JFrameAlterarInformarTurma extends javax.swing.JFrame {
     private javax.swing.JButton jB_cancelarAlterarCurso;
     private javax.swing.JButton jB_confirmarAlterarInformarTurma;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jT_buscarAlterarInformarTurma;
-    private javax.swing.JTextField jT_codigocursoAlterarInformarTurma;
-    private javax.swing.JTextField jT_codigodisciplinaAlterarInformarTurma;
-    private javax.swing.JTextField jT_siapeprofessorAlterarInformarTurma;
-    private javax.swing.JTable jTableBuscaInformarTurma;
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -25,6 +25,8 @@ import javax.swing.table.DefaultTableModel;
 public class JFrameAlterarCoordenador extends javax.swing.JFrame {
     Coordenador model = new Coordenador();
     CoordenadorDAO controle = new CoordenadorDAO();
+    
+    
     int buscou=0;
     int codigoCursoMudado=-1;
 
@@ -446,7 +448,7 @@ public class JFrameAlterarCoordenador extends javax.swing.JFrame {
                         try {
                             model.setCidade(jT_cidadeAlterarCoordenador.getText());
                             model.setSenha(jT_senhaAlterarCoordenador.getText());
-                            model.getCurso().setCodCurso(Integer.parseInt(jT_codigocursoAlterarCoordenador.getText()));
+                            model.getCurso().setCodCurso(1);
                             model.setNome(jT_nomeprofessorAlterarCoordenador.getText());
                             model.setBairro(jT_bairroAlterarCoordenador.getText());
                             model.setCep(jT_cepAlterarCoordenador.getText());
@@ -459,10 +461,19 @@ public class JFrameAlterarCoordenador extends javax.swing.JFrame {
                             model.setStatus(Boolean.parseBoolean(jT_tituloAlterarCoordenador.getText()));
                             model.setTelefone(jT_telefoneAlterarCoordenador.getText());
                             model.setUf(jT_ufAlterarCoordenador.getText());
+                            model.setPermissao(Boolean.parseBoolean(jT_permissaoAlterarCoordenador.getText()));
+                            model.setTelefone(jT_telefoneAlterarCoordenador.getText());
+                            model.setUf(jT_ufAlterarCoordenador.getText());
+                            
                             codigoCursoMudado=-1;
                             buscou=0;
                             controle.alterarCoordenador(model,1,"");
                             JOptionPane.showMessageDialog(null,"Coordenador alterado com sucesso!");
+                            
+                            Professor modelP = new Professor(model.getSiape(), model.getTitulo(), model.getCurso(), model.getNome(), model.getSenha(), model.getCpf(), model.getDataNascimento(), model.getCidade(),model.getUf(), model.getRua(), model.getBairro(),model.getTelefone(), model.getCep(), model.getEmail(), model.getStatus());
+                            ProfessorDAO controleP = new ProfessorDAO();
+                            controleP.alterarProfessor(modelP,1, "testeProfessor");
+                            
                             jT_cidadeAlterarCoordenador.setText("");
                             jT_senhaAlterarCoordenador.setText("");
                             jT_codigocursoAlterarCoordenador.setText("");

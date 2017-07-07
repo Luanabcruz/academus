@@ -44,6 +44,30 @@ public class DisciplinaDAO {
         }
     }
     
+    public Disciplina buscarDisciplinaNome(String nomeDisciplinap) throws SQLException {
+        Connection con = Conexao.getConnection();
+        String sql = "SELECT * FROM disciplina WHERE nome_disc =" + nomeDisciplinap;
+        PreparedStatement stmt = con.prepareStatement(sql);
+        ResultSet result = stmt.executeQuery();
+        Disciplina disciplina = null;
+
+        if (result.next()) {
+            CursoDAO cdao = new CursoDAO();
+            int cursoCod = result.getInt("curso_cod");
+            int codDisciplina = result.getInt("cod_disciplina");
+            String nomeDisciplina = result.getString("nome_disc");
+            int credito = result.getInt("credito");
+            String descricao = result.getString("descricao");
+            Boolean status = result.getBoolean("status");
+            disciplina = new Disciplina(codDisciplina, cdao.buscarCurso(result.getInt("curso_cod")), nomeDisciplina, credito, descricao, status);
+        }
+        result.close();
+        stmt.close();
+        con.close();
+
+        return disciplina;
+    }
+    
     public Disciplina buscarDisciplina(int codDisciplina) throws SQLException {
         Connection con = Conexao.getConnection();
         String sql = "SELECT * FROM disciplina WHERE cod_disciplina =" + codDisciplina;

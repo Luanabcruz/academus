@@ -7,8 +7,9 @@ package Visao.Menus;
 
 import Controle.AlunoDAO;
 import Modelo.Aluno;
-import static Visao.JFrame_login.user;
+import static Visao.JFrame_login.*;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,6 +25,7 @@ public class JFrame_aluno extends javax.swing.JFrame {
         initComponents();        
         setLocationRelativeTo(null);
          setSize(927, 500);
+        jL_bemvindoAluno.setText("Bem-vindo "+nome_user);
     }
 
     /**
@@ -38,12 +40,12 @@ public class JFrame_aluno extends javax.swing.JFrame {
         jL_bemvindoAluno = new javax.swing.JLabel();
         jB_turma = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jB_turma1 = new javax.swing.JButton();
         jB_turma2 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jB_turma3 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jB_turma4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(234, 234, 234));
@@ -59,7 +61,9 @@ public class JFrame_aluno extends javax.swing.JFrame {
         getContentPane().add(jL_bemvindoAluno);
         jL_bemvindoAluno.setBounds(0, 0, 920, 57);
 
-        jB_turma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagens/Aluno_EditarDados.fw.png"))); // NOI18N
+        jB_turma.setBackground(new java.awt.Color(234, 234, 234));
+        jB_turma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagens/Aluno_historico.fw.png"))); // NOI18N
+        jB_turma.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jB_turma.setFocusable(false);
         jB_turma.setOpaque(false);
         jB_turma.addActionListener(new java.awt.event.ActionListener() {
@@ -68,7 +72,7 @@ public class JFrame_aluno extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_turma);
-        jB_turma.setBounds(540, 310, 120, 70);
+        jB_turma.setBounds(250, 310, 120, 70);
 
         jLabel3.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(36, 46, 68));
@@ -76,18 +80,9 @@ public class JFrame_aluno extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(570, 220, 70, 27);
 
-        jB_turma1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagens/Aluno_historico.fw.png"))); // NOI18N
-        jB_turma1.setFocusable(false);
-        jB_turma1.setOpaque(false);
-        jB_turma1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB_turma1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jB_turma1);
-        jB_turma1.setBounds(250, 310, 120, 70);
-
+        jB_turma2.setBackground(new java.awt.Color(234, 234, 234));
         jB_turma2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagens/Aluno_turma.fw.png"))); // NOI18N
+        jB_turma2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jB_turma2.setFocusable(false);
         jB_turma2.setOpaque(false);
         jB_turma2.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +105,9 @@ public class JFrame_aluno extends javax.swing.JFrame {
         getContentPane().add(jLabel5);
         jLabel5.setBounds(280, 220, 50, 27);
 
+        jB_turma3.setBackground(new java.awt.Color(234, 234, 234));
         jB_turma3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagens/Aluno_matTurma.fw.png"))); // NOI18N
+        jB_turma3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jB_turma3.setFocusable(false);
         jB_turma3.setOpaque(false);
         jB_turma3.addActionListener(new java.awt.event.ActionListener() {
@@ -127,6 +124,19 @@ public class JFrame_aluno extends javax.swing.JFrame {
         getContentPane().add(jLabel6);
         jLabel6.setBounds(280, 380, 70, 27);
 
+        jB_turma4.setBackground(new java.awt.Color(234, 234, 234));
+        jB_turma4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagens/Aluno_EditarDados.fw.png"))); // NOI18N
+        jB_turma4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jB_turma4.setFocusable(false);
+        jB_turma4.setOpaque(false);
+        jB_turma4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_turma4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jB_turma4);
+        jB_turma4.setBounds(540, 310, 120, 70);
+
         setSize(new java.awt.Dimension(938, 583));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -135,10 +145,6 @@ public class JFrame_aluno extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jB_turmaActionPerformed
 
-    private void jB_turma1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_turma1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jB_turma1ActionPerformed
-
     private void jB_turma2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_turma2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jB_turma2ActionPerformed
@@ -146,6 +152,10 @@ public class JFrame_aluno extends javax.swing.JFrame {
     private void jB_turma3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_turma3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jB_turma3ActionPerformed
+
+    private void jB_turma4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_turma4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jB_turma4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,9 +202,9 @@ public void bemvindo() throws SQLException{
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jB_turma;
-    private javax.swing.JButton jB_turma1;
     private javax.swing.JButton jB_turma2;
     private javax.swing.JButton jB_turma3;
+    private javax.swing.JButton jB_turma4;
     private javax.swing.JLabel jL_bemvindoAluno;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
