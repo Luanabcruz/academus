@@ -47,6 +47,7 @@ public class JFrame_login extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         jL_tipo.setVisible(false);
+        jR_adm.setSelected(true);
         //setSize(500, 500);
     }
 
