@@ -18,22 +18,21 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import java.util.Date;
 
-public class JFrameAlterarProfessor extends javax.swing.JFrame {
-
+public class JFrame_alterarProfessor extends javax.swing.JFrame {
     Professor model = new Professor();
     ProfessorDAO controle = new ProfessorDAO();
-    int buscou = 0;
-    int codigoCursoMudado = -1;
+    int buscou=0;
+    int codigoCursoMudado=-1;
 
-    public JFrameAlterarProfessor() {
+    public JFrame_alterarProfessor() {
         initComponents();
         getContentPane().setBackground(Color.white);
     }
-
-    public void invisivel() {
+    
+    public void invisivel(){
+        
 
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -145,7 +144,7 @@ public class JFrameAlterarProfessor extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_cancelarAlterarCurso);
-        jB_cancelarAlterarCurso.setBounds(330, 350, 110, 36);
+        jB_cancelarAlterarCurso.setBounds(330, 350, 110, 33);
 
         jB_buscarAlterarDisciplina.setBackground(new java.awt.Color(0, 204, 51));
         jB_buscarAlterarDisciplina.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
@@ -157,7 +156,7 @@ public class JFrameAlterarProfessor extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_buscarAlterarDisciplina);
-        jB_buscarAlterarDisciplina.setBounds(160, 100, 110, 36);
+        jB_buscarAlterarDisciplina.setBounds(160, 100, 110, 33);
 
         jLabel7.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(36, 44, 68));
@@ -174,7 +173,7 @@ public class JFrameAlterarProfessor extends javax.swing.JFrame {
         jT_buscarAlterarProfessor.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_buscarAlterarProfessor.setForeground(new java.awt.Color(36, 44, 68));
         getContentPane().add(jT_buscarAlterarProfessor);
-        jT_buscarAlterarProfessor.setBounds(20, 100, 120, 36);
+        jT_buscarAlterarProfessor.setBounds(20, 100, 120, 30);
 
         jLabel9.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(36, 44, 68));
@@ -192,7 +191,7 @@ public class JFrameAlterarProfessor extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_confirmarAlterarProfessor);
-        jB_confirmarAlterarProfessor.setBounds(460, 350, 110, 36);
+        jB_confirmarAlterarProfessor.setBounds(460, 350, 110, 33);
 
         jT_senhaAlterarProfessor.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_senhaAlterarProfessor.setForeground(new java.awt.Color(36, 44, 68));
@@ -343,51 +342,51 @@ public class JFrameAlterarProfessor extends javax.swing.JFrame {
     }//GEN-LAST:event_jB_cancelarAlterarCursoActionPerformed
 
     private void jB_buscarAlterarDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_buscarAlterarDisciplinaActionPerformed
-        if (!(jT_buscarAlterarProfessor.getText().equals(""))) {
-            int codprofessor = (Integer.parseInt(jT_buscarAlterarProfessor.getText()));
-            try {
-                model = controle.buscarProfessor(codprofessor);
-                if (model != null) {
-                    jT_cidadeAlterarProfessor.setText(String.valueOf(model.getCidade()));
-                    jT_senhaAlterarProfessor.setText(String.valueOf(model.getSenha()));
-                    jT_codigocursoAlterarProfessor.setText(String.valueOf(model.getCursoCod()));
-                    jT_nomeprofessorAlterarProfessor.setText(String.valueOf(model.getNome()));
-                    jT_bairroAlterarProfessor.setText(model.getBairro());
-                    jT_cepAlterarProfessor.setText(model.getCep());
-                    jT_cpfAlterarProfessor.setText(model.getCpf());
-                    jT_emailAlterarProfessor.setText(model.getEmail());
-                    jT_nascimentoAlterarProfessor.setText(String.valueOf(model.getDataNascimento()));
-                    jT_ruaAlterarProfessor.setText(model.getRua());
-                    jT_senhaAlterarProfessor.setText(model.getSenha());
-                    jT_tituloAlterarProfessor.setText(String.valueOf(model.getTitulo()));
-                    jT_statusAlterarProfessor.setText(String.valueOf(model.getStatus()));
-                    jT_telefoneAlterarProfessor.setText(model.getTelefone());
-                    jT_ufAlterarProfessor.setText(model.getUf());
-                    codigoCursoMudado = model.getCursoCod();
-                    buscou = 1;
-                } else {
-                    jT_cidadeAlterarProfessor.setText("");
-                    jT_senhaAlterarProfessor.setText("");
-                    jT_codigocursoAlterarProfessor.setText("");
-                    jT_nomeprofessorAlterarProfessor.setText("");
-                    jT_bairroAlterarProfessor.setText("");
-                    jT_cepAlterarProfessor.setText("");
-                    jT_cpfAlterarProfessor.setText("");
-                    jT_emailAlterarProfessor.setText("");
-                    jT_nascimentoAlterarProfessor.setText("");
-                    jT_ruaAlterarProfessor.setText("");
-                    jT_senhaAlterarProfessor.setText("");
-                    jT_tituloAlterarProfessor.setText("");
-                    jT_telefoneAlterarProfessor.setText("");
-                    jT_ufAlterarProfessor.setText("");
-                    codigoCursoMudado = -1;
-                    buscou = 0;
-                    JOptionPane.showMessageDialog(null, "Este Professor não existe!");
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(JFrameAlterarProfessor.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
+         if(!(jT_buscarAlterarProfessor.getText().equals(""))){
+             int codprofessor =(Integer.parseInt(jT_buscarAlterarProfessor.getText()));
+             try {
+                 model = controle.buscarProfessor(codprofessor);
+                    if(model!=null){
+                        jT_cidadeAlterarProfessor.setText(String.valueOf(model.getCidade()));
+                        jT_senhaAlterarProfessor.setText(String.valueOf(model.getSenha()));
+                        jT_codigocursoAlterarProfessor.setText(String.valueOf(model.getCursoCod()));
+                        jT_nomeprofessorAlterarProfessor.setText(String.valueOf(model.getNome()));
+                        jT_bairroAlterarProfessor.setText(model.getBairro());
+                        jT_cepAlterarProfessor.setText(model.getCep());
+                        jT_cpfAlterarProfessor.setText(model.getCpf());
+                        jT_emailAlterarProfessor.setText(model.getEmail());
+                        jT_nascimentoAlterarProfessor.setText(String.valueOf(model.getDataNascimento()));
+                        jT_ruaAlterarProfessor.setText(model.getRua());
+                        jT_senhaAlterarProfessor.setText(model.getSenha());
+                        jT_tituloAlterarProfessor.setText(String.valueOf(model.getTitulo()));
+                        jT_statusAlterarProfessor.setText(String.valueOf(model.getStatus()));
+                        jT_telefoneAlterarProfessor.setText(model.getTelefone());
+                        jT_ufAlterarProfessor.setText(model.getUf());
+                        codigoCursoMudado=model.getCursoCod();
+                        buscou=1;
+                    }else{
+                        jT_cidadeAlterarProfessor.setText("");
+                        jT_senhaAlterarProfessor.setText("");
+                        jT_codigocursoAlterarProfessor.setText("");
+                        jT_nomeprofessorAlterarProfessor.setText("");
+                        jT_bairroAlterarProfessor.setText("");
+                        jT_cepAlterarProfessor.setText("");
+                        jT_cpfAlterarProfessor.setText("");
+                        jT_emailAlterarProfessor.setText("");
+                        jT_nascimentoAlterarProfessor.setText("");
+                        jT_ruaAlterarProfessor.setText("");
+                        jT_senhaAlterarProfessor.setText("");
+                        jT_tituloAlterarProfessor.setText("");
+                        jT_telefoneAlterarProfessor.setText("");
+                        jT_ufAlterarProfessor.setText("");
+                        codigoCursoMudado=-1;
+                        buscou=0;
+                        JOptionPane.showMessageDialog(null, "Este Professor não existe!");
+                    }
+             } catch (SQLException ex) {
+                 Logger.getLogger(JFrame_alterarProfessor.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        }else{
             JOptionPane.showMessageDialog(null, "Insira algum número no campo para buscar um Professor");
             jT_cidadeAlterarProfessor.setText("");
             jT_senhaAlterarProfessor.setText("");
@@ -403,69 +402,40 @@ public class JFrameAlterarProfessor extends javax.swing.JFrame {
             jT_tituloAlterarProfessor.setText("");
             jT_telefoneAlterarProfessor.setText("");
             jT_ufAlterarProfessor.setText("");
-            codigoCursoMudado = -1;
-            buscou = 0;
-        }
+            codigoCursoMudado=-1;
+            buscou=0;
+         }
     }//GEN-LAST:event_jB_buscarAlterarDisciplinaActionPerformed
 
     private void jB_confirmarAlterarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_confirmarAlterarProfessorActionPerformed
-        if (buscou == 1) {
+        if(buscou==1){
             /*}else if(model.getUniversidadeCod()!=(Integer.parseInt(jT_universidadeAlterarCurso.getText()))){
-             JOptionPane.showMessageDialog(null,"Número da universidade não pode ser alterado!");*/
-            if ((jT_codigocursoAlterarProfessor.getText().equals("")) || (jT_cidadeAlterarProfessor.getText().equals("")) || (jT_senhaAlterarProfessor.getText().equals("")) || (jT_nomeprofessorAlterarProfessor.getText().equals("")) || jT_bairroAlterarProfessor.getText().equals("") || jT_cepAlterarProfessor.getText().equals("") || jT_cidadeAlterarProfessor.getText().equals("") || jT_codigocursoAlterarProfessor.getText().equals("") || jT_cpfAlterarProfessor.getText().equals("") || jT_emailAlterarProfessor.getText().equals("") || jT_nascimentoAlterarProfessor.getText().equals("") || jT_nomeprofessorAlterarProfessor.getText().equals("") || jT_tituloAlterarProfessor.getText().equals("") || jT_ruaAlterarProfessor.getText().equals("") || jT_senhaAlterarProfessor.getText().equals("") || jT_tituloAlterarProfessor.getText().equals("") || jT_telefoneAlterarProfessor.getText().equals("") || jT_ufAlterarProfessor.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!");
-            } else {
-                Curso modelVerifica = new Curso();
-                CursoDAO controlVerifica = new CursoDAO();
-                if (codigoCursoMudado != Integer.parseInt(jT_codigocursoAlterarProfessor.getText())) {
-                    try {
-                        modelVerifica = controlVerifica.buscarCurso(Integer.parseInt(jT_codigocursoAlterarProfessor.getText()));
-                    } catch (SQLException ex) {
-                        Logger.getLogger(JFrameAlterarProfessor.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-                if (modelVerifica != null) {
-                    try {
-                        model.setCidade(jT_cidadeAlterarProfessor.getText());
-                        model.setSenha(jT_senhaAlterarProfessor.getText());
-                        model.setCursoCod(Integer.parseInt(jT_codigocursoAlterarProfessor.getText()));
-                        model.setNome(jT_nomeprofessorAlterarProfessor.getText());
-                        model.setBairro(jT_bairroAlterarProfessor.getText());
-                        model.setCep(jT_cepAlterarProfessor.getText());
-                        model.setCpf(jT_cpfAlterarProfessor.getText());
-                        model.setTitulo(jT_tituloAlterarProfessor.getText());
-                        model.setEmail(jT_emailAlterarProfessor.getText());
+                    JOptionPane.showMessageDialog(null,"Número da universidade não pode ser alterado!");*/
+                if((jT_codigocursoAlterarProfessor.getText().equals(""))||(jT_cidadeAlterarProfessor.getText().equals(""))||(jT_senhaAlterarProfessor.getText().equals(""))||(jT_nomeprofessorAlterarProfessor.getText().equals(""))||jT_bairroAlterarProfessor.getText().equals("")||jT_cepAlterarProfessor.getText().equals("")||jT_cidadeAlterarProfessor.getText().equals("")||jT_codigocursoAlterarProfessor.getText().equals("")||jT_cpfAlterarProfessor.getText().equals("")||jT_emailAlterarProfessor.getText().equals("")||jT_nascimentoAlterarProfessor.getText().equals("")||jT_nomeprofessorAlterarProfessor.getText().equals("")||jT_tituloAlterarProfessor.getText().equals("")||jT_ruaAlterarProfessor.getText().equals("")||jT_senhaAlterarProfessor.getText().equals("")||jT_tituloAlterarProfessor.getText().equals("")||jT_telefoneAlterarProfessor.getText().equals("")||jT_ufAlterarProfessor.getText().equals(""))
+                {   
+                    JOptionPane.showMessageDialog(null,"Todos os campos devem ser preenchidos!");
+                }else{
+                    Curso modelVerifica = new Curso();
+                    CursoDAO controlVerifica = new CursoDAO();
+                        if(codigoCursoMudado!=Integer.parseInt(jT_codigocursoAlterarProfessor.getText())){
+                            try {
+                                modelVerifica = controlVerifica.buscarCurso(Integer.parseInt(jT_codigocursoAlterarProfessor.getText()));
+                            } catch (SQLException ex) {
+                                Logger.getLogger(JFrame_alterarProfessor.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    if(modelVerifica!=null){
+                        try {
+                            model.setCidade(jT_cidadeAlterarProfessor.getText());
+                            model.setSenha(jT_senhaAlterarProfessor.getText());
+                            model.setCursoCod(Integer.parseInt(jT_codigocursoAlterarProfessor.getText()));
+                            model.setNome(jT_nomeprofessorAlterarProfessor.getText());
+                            model.setBairro(jT_bairroAlterarProfessor.getText());
+                            model.setCep(jT_cepAlterarProfessor.getText());
+                            model.setCpf(jT_cpfAlterarProfessor.getText());
+                            model.setTitulo(jT_tituloAlterarProfessor.getText());
+                            model.setEmail(jT_emailAlterarProfessor.getText());
                             //SimpleDateFormat formatter = new SimpleDateFormat(jT_nascimentoAlterarProfessor.getText());
-
-                        //model.setDataNascimento((java.sql.Date)formatter.parse(jT_nascimentoAlterarProfessor.getText()));
-                        model.setRua(jT_ruaAlterarProfessor.getText());
-                        model.setStatus(Boolean.parseBoolean(jT_tituloAlterarProfessor.getText()));
-                        model.setTelefone(jT_telefoneAlterarProfessor.getText());
-                        model.setUf(jT_ufAlterarProfessor.getText());
-                        codigoCursoMudado = -1;
-                        buscou = 0;
-                        controle.alterarProfessor(model,1,"");
-                        JOptionPane.showMessageDialog(null, "Professor alterado com sucesso!");
-                        jT_cidadeAlterarProfessor.setText("");
-                        jT_senhaAlterarProfessor.setText("");
-                        jT_codigocursoAlterarProfessor.setText("");
-                        jT_nomeprofessorAlterarProfessor.setText("");
-                        jT_bairroAlterarProfessor.setText("");
-                        jT_cepAlterarProfessor.setText("");
-                        jT_cpfAlterarProfessor.setText("");
-                        jT_tituloAlterarProfessor.setText("");
-                        jT_emailAlterarProfessor.setText("");
-                        jT_nascimentoAlterarProfessor.setText("");
-                        jT_ruaAlterarProfessor.setText("");
-                        jT_senhaAlterarProfessor.setText("");
-                        jT_tituloAlterarProfessor.setText("");
-                        jT_telefoneAlterarProfessor.setText("");
-                        jT_ufAlterarProfessor.setText("");
-                        codigoCursoMudado = -1;
-                        buscou = 0;
-                    } catch (SQLException ex) {
-                        Logger.getLogger(JFrameAlterarProfessor.class.getName()).log(Level.SEVERE, null, ex);
-
                             //model.setDataNascimento((java.sql.Date)formatter.parse(jT_nascimentoAlterarProfessor.getText()));
                             model.setRua(jT_ruaAlterarProfessor.getText());
                             model.setStatus(Boolean.parseBoolean(jT_tituloAlterarProfessor.getText()));
@@ -473,7 +443,7 @@ public class JFrameAlterarProfessor extends javax.swing.JFrame {
                             model.setUf(jT_ufAlterarProfessor.getText());
                             codigoCursoMudado=-1;
                             buscou=0;
-                            controle.alterarProfessor(model,1,"");
+                            controle.alterarProfessor(model);
                             JOptionPane.showMessageDialog(null,"Professor alterado com sucesso!");
                             jT_cidadeAlterarProfessor.setText("");
                             jT_senhaAlterarProfessor.setText("");
@@ -493,19 +463,14 @@ public class JFrameAlterarProfessor extends javax.swing.JFrame {
                             codigoCursoMudado=-1;
                             buscou=0;
                                         } catch (SQLException ex) {
-                            Logger.getLogger(JFrameAlterarProfessor.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(JFrame_alterarProfessor.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }else{
                         JOptionPane.showMessageDialog(null,"O código do curso o qual você digitou, não existe!");
                         codigoCursoMudado=-1;
-
                     }
-                } else {
-                    JOptionPane.showMessageDialog(null, "O código do curso o qual você digitou, não existe!");
-                    codigoCursoMudado = -1;
                 }
-            }
-        } else {
+        }else{
             JOptionPane.showMessageDialog(null, "Você deve buscar um professor primeiro!");
             jT_cidadeAlterarProfessor.setText("");
             jT_senhaAlterarProfessor.setText("");
@@ -522,8 +487,8 @@ public class JFrameAlterarProfessor extends javax.swing.JFrame {
             jT_tituloAlterarProfessor.setText("");
             jT_telefoneAlterarProfessor.setText("");
             jT_ufAlterarProfessor.setText("");
-            codigoCursoMudado = -1;
-            buscou = 0;
+            codigoCursoMudado=-1;
+            buscou=0;
         }
     }//GEN-LAST:event_jB_confirmarAlterarProfessorActionPerformed
 
@@ -560,13 +525,13 @@ public class JFrameAlterarProfessor extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrameCadastrarCurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrame_cadastrarCurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrameCadastrarCurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrame_cadastrarCurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrameCadastrarCurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrame_cadastrarCurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFrameCadastrarCurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrame_cadastrarCurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -574,7 +539,7 @@ public class JFrameAlterarProfessor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFrameAlterarAluno().setVisible(true);
+                new JFrame_alterarProfessor().setVisible(true);
             }
         });
     }
