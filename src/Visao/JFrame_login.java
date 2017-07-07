@@ -226,6 +226,7 @@ public class JFrame_login extends javax.swing.JFrame {
             if (retorno == 1) {
                 JFrame_aluno frame = new JFrame_aluno();
                 frame.setVisible(true);
+                dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Dados incorretos");
                 jT_usuario.grabFocus();                
@@ -241,6 +242,7 @@ public class JFrame_login extends javax.swing.JFrame {
             if (retorno == 1) {
                 JFrame_adm frame = new JFrame_adm();
                 frame.setVisible(true);
+                dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Dados incorretos");
                 jT_usuario.grabFocus();
@@ -256,6 +258,7 @@ public class JFrame_login extends javax.swing.JFrame {
             if (retorno == 1) {
                 JFrame_prof frame = new JFrame_prof();
                 frame.setVisible(true);
+                dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Dados incorretos");
                 jT_usuario.grabFocus();
