@@ -109,7 +109,7 @@ public class JFrameAlterarCurso extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(36, 44, 68));
-        jLabel3.setText("Buscar Código do Curso");
+        jLabel3.setText("Buscar nome do Curso");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(20, 70, 170, 27);
 
