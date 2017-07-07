@@ -15,6 +15,7 @@ import Modelo.Administrador;
 import Modelo.Aluno;
 import Modelo.Professor;
 import Modelo.Usuario;
+import Visao.Menus.JFrame_prof;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -253,7 +254,7 @@ public class JFrame_login extends javax.swing.JFrame {
         try {
             retorno = control_professor.loginProfessor(user, senha);
             if (retorno == 1) {
-                JFrame_aluno frame = new JFrame_aluno();
+                JFrame_prof frame = new JFrame_prof();
                 frame.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Dados incorretos");

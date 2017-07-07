@@ -7,7 +7,9 @@ package Visao.Menus;
 
 import Controle.AdmDAO;
 import Controle.AlunoDAO;
+import Controle.ProfessorDAO;
 import Modelo.Administrador;
+import Modelo.Professor;
 import static Visao.JFrame_login.user;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -19,8 +21,8 @@ import java.util.logging.Logger;
  */
 public class JFrame_prof extends javax.swing.JFrame {
 
-    AdmDAO controle = new AdmDAO();
-    Administrador model = new Administrador();
+    ProfessorDAO controle = new ProfessorDAO();
+    Professor model = new Professor();
 
     /**
      * Creates new form JFrame_aluno
@@ -245,7 +247,7 @@ public class JFrame_prof extends javax.swing.JFrame {
 
     public void bemvindo() {
         try {
-            model = controle.buscarAdministrador(user);
+            model = controle.buscarProfessor(user);
         } catch (SQLException ex) {
             Logger.getLogger(JFrame_prof.class.getName()).log(Level.SEVERE, null, ex);
         }
