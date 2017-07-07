@@ -31,12 +31,16 @@ public class JFrame_login extends javax.swing.JFrame {
     AlunoDAO control_aluno = new AlunoDAO();
     AdmDAO control_adm = new AdmDAO();
     ProfessorDAO control_professor = new ProfessorDAO();
+    
+    //Variáveis Globais
+    public static int user;
     /**
      * Creates new form login
      */
     public JFrame_login() {
         initComponents();
         setLocationRelativeTo(null);
+        jR_adm.isSelected();
         //setSize(500, 500);
     }
 
@@ -157,32 +161,22 @@ public class JFrame_login extends javax.swing.JFrame {
     private void jBtn_entrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_entrarActionPerformed
    int tipo_user;
         if((jT_usuario.getText()!="") || (jT_senha.getText()!="")){
+       
         //Atribui os  valores dos campos para as variaveis
-        int mat =(Integer.parseInt(jT_usuario.getText()));
+        user =(Integer.parseInt(jT_usuario.getText()));
         String senha = (jT_senha.getText());
         
         //Verifica o tipo de usuário
         if(jR_adm.isSelected()){
-            tipo_user = 1;
-           // int a = control_adm.loginAdm(mat, senha);
+            loginAdm(user, senha);
         }
         else if(jR_prof.isSelected()){
             tipo_user = 2;
-            //int a = control_professor.loginProfessor(mat, senha);
+            loginProfessor(user, senha);
         }
         else if(jR_aluno.isSelected()){
-            tipo_user = 3;
-            int a = control_aluno.loginAluno(mat, senha);
+            loginALuno(user, senha);
         }
-                
-        try {
-            int a = control_aluno.loginAluno(mat, senha);
-                JOptionPane.showMessageDialog(null, "Essa porra existe "+a);
-        } catch (SQLException ex) {
-            Logger.getLogger(JFrame_login.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        model.setNome(jT_usuario.getText());
-        model.setSenha(jT_senha.getText());
         //control.login(model)
         
     }
@@ -198,22 +192,7 @@ public class JFrame_login extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrameLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrameLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrameLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFrameLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+       
         //</editor-fold>
         //</editor-fold>
 
@@ -224,7 +203,31 @@ public class JFrame_login extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    public void loginALuno(int user,String senha){
+    try {
+        int a = control_aluno.loginAluno(user, senha);
+            } catch (SQLException ex) {
+                Logger.getLogger(JFrame_login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+    
+    public void loginAdm(int user,String senha){
+    try {
+        int a = control_adm.loginAdm(user, senha);
+            } catch (SQLException ex) {
+                Logger.getLogger(JFrame_login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+    public void loginProfessor(int user,String senha){
+    try {
+        int a = control_professor.loginProfessor(user, senha);
+            } catch (SQLException ex) {
+                Logger.getLogger(JFrame_login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+            
+            
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel icon;
