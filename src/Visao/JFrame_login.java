@@ -29,7 +29,7 @@ import javax.swing.JTextField;
  */
 public class JFrame_login extends javax.swing.JFrame {
 
-    Aluno model = new Aluno();
+    Aluno model_aluno = new Aluno();
     Professor model_professor = new Professor();
     Administrador model_adm = new Administrador();
     AlunoDAO control_aluno = new AlunoDAO();
@@ -39,6 +39,7 @@ public class JFrame_login extends javax.swing.JFrame {
 
     //Variáveis Globais
     public static int user;
+    public static String nome_user;
 
     /**
      * Creates new form login
@@ -184,7 +185,7 @@ public class JFrame_login extends javax.swing.JFrame {
         } else {
             if ((jT_usuario.getText() != "") || (jT_senha.getText() != "")) {
                 jL_tipo.setVisible(false);
-              //Atribui os  valores dos campos para as variaveis
+                //Atribui os  valores dos campos para as variaveis
                 user = (Integer.parseInt(jT_usuario.getText()));
                 String senha = (jT_senha.getText());
                 //Verifica o tipo de usuário
@@ -211,7 +212,6 @@ public class JFrame_login extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-        
     public static void main(String args[]) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -225,12 +225,13 @@ public class JFrame_login extends javax.swing.JFrame {
         try {
             retorno = control_aluno.loginAluno(user, senha);
             if (retorno == 1) {
+                bemvindoAluno(user);
                 JFrame_aluno frame = new JFrame_aluno();
                 frame.setVisible(true);
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Dados incorretos");
-                jT_usuario.grabFocus();                
+                jT_usuario.grabFocus();
             }
         } catch (SQLException ex) {
             Logger.getLogger(JFrame_login.class.getName()).log(Level.SEVERE, null, ex);
@@ -242,6 +243,7 @@ public class JFrame_login extends javax.swing.JFrame {
             retorno = control_adm.loginAdm(user, senha);
             if (retorno == 1) {
                 JFrame_adm frame = new JFrame_adm();
+                bemvindoAdm();
                 frame.setVisible(true);
                 dispose();
             } else {
@@ -258,6 +260,7 @@ public class JFrame_login extends javax.swing.JFrame {
             retorno = control_professor.loginProfessor(user, senha);
             if (retorno == 1) {
                 JFrame_prof frame = new JFrame_prof();
+                bemvindoProf();
                 frame.setVisible(true);
                 dispose();
             } else {
@@ -279,6 +282,27 @@ public class JFrame_login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Usuário incorreto", "Informação", JOptionPane.INFORMATION_MESSAGE);
                 Numero.grabFocus();
             }
+        }
+    }
+
+    public void bemvindoAluno(int id) throws SQLException {
+        model_aluno = control_aluno.buscarAluno(id);
+        if (model_aluno != null) {
+            nome_user = model_aluno.getNome();
+        }
+    }
+
+    public void bemvindoProf() throws SQLException {
+        model_professor = control_professor.buscarProfessor(user);
+        if (model_adm != null) {
+            nome_user = model_professor.getNome();
+        }
+    }
+
+    public void bemvindoAdm() throws SQLException {
+        model_adm = control_adm.buscarAdministrador(user);
+        if (model_adm != null) {
+            nome_user = model_adm.getNome();
         }
     }
 
