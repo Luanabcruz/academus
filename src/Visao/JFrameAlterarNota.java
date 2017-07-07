@@ -21,6 +21,7 @@ import Modelo.Professor;
 import Modelo.Turma;
 import java.awt.Color;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -188,17 +189,17 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
 
         jTableBuscaNota.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null}
+                {null, null, null, null}
             },
             new String [] {
-                "CodigoNota", "CodigoTurma", "Disciplina"
+                "Codigo Turma", "Nota 1", "Nota 2", "Nota 3"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -233,12 +234,13 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
     }//GEN-LAST:event_jB_cancelarAlterarCursoActionPerformed
 
     private void jB_buscarAlterarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_buscarAlterarNotaActionPerformed
-            
+        
         
     }//GEN-LAST:event_jB_buscarAlterarNotaActionPerformed
 
     private void jB_confirmarAlterarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_confirmarAlterarNotaActionPerformed
         int linha = jTableBuscaNota.getSelectedRow();
+        
         model=null;
         try {
             model = control.buscarNota(Integer.parseInt(jTableBuscaNota.getValueAt(linha,0).toString()));
@@ -305,7 +307,6 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
              } catch (SQLException ex) {
                  Logger.getLogger(JFrameAlterarNota.class.getName()).log(Level.SEVERE, null, ex);
              }
-        
         int linha = jTableBuscaNota.getSelectedRow();
         model=null;
         try {
@@ -321,8 +322,6 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
                 jT_nota1AlterarNota.setText(String.valueOf(model.getNota1()));
                 jT_nota2AlterarNota.setText(String.valueOf(model.getNota2()));
                 jT_nota3AlterarNota.setText(String.valueOf(model.getNota3()));
-                codigoMatriculaMudado=model.getAluno().getMatricula();
-                codigoTurmaMudado=model.getTurma().getCodTurma();
                 buscou=1;
             } catch (SQLException ex) {
                 Logger.getLogger(JFrameAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
@@ -336,26 +335,43 @@ public class JFrameAlterarNota extends javax.swing.JFrame {
 
     private void jT_buscarAlterarNotaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jT_buscarAlterarNotaKeyReleased
         Vector cabecalho = new  Vector();
-        cabecalho.add("Nome");
-        cabecalho.add("Matricula");
+        Vector teste =  new  Vector();
+        System.out.println("Luana show");
+        ArrayList<Nota> notas = new ArrayList<>();
+        cabecalho.add("Codigo de Turma");
+        cabecalho.add("Nota 1");
+        cabecalho.add("Nota 2");
+        cabecalho.add("Nota 3");
+        AlunoDAO alunoArray =  new AlunoDAO();
+        try {
+            notas = alunoArray.turmasNotasAlunoProfessor(codTuma, siape);
+            System.out.println(notas.get(0).getAluno().getNome());
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrameAlterarNota.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        for(int i=0;i<notas.size();i++){
+            teste.add(notas.get(i).getAluno().getNome());
+            teste.add(notas.get(i).getNota1());
+            teste.add(notas.get(i).getNota2());
+            teste.add(notas.get(i).getNota3());
+        }
         
-        if(!jT_buscarAlterarNota.getText().equals("")){
+        try {
+             DefaultTableModel nv = new DefaultTableModel(teste,cabecalho);
+             jTableBuscaNota.setModel(nv);
+         } catch (Exception ex) {
+             Logger.getLogger(JFrameAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
+         }
+        
+        if(!jT_buscarAlterarCoordenador.getText().equals("")){
             try {
-                DefaultTableModel nv = new DefaultTableModel(control.Pesquisar(Integer.parseInt(jT_buscarAlterarNota.getText())),cabecalho);
-                jTableBuscaNota.setModel(nv);
+                DefaultTableModel nv = new DefaultTableModel(controle.Pesquisar(jT_buscarAlterarCoordenador.getText()),cabecalho);
+                jTableBuscaCoordenador.setModel(nv);
             } catch (Exception ex) {
                 Logger.getLogger(JFrameAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
             }
-       }else{
-            jT_nota1AlterarNota.setText("");
-            jT_buscarAlterarNota.setText("");
-            jT_nota2AlterarNota.setText("");
-            jT_nota3AlterarNota.setText("");  
-            jT_buscarAlterarNota.setText("");
-            DefaultTableModel nv = new DefaultTableModel(new Vector(),cabecalho);
-            jTableBuscaNota.setModel(nv);
-        }
-        
+       }
+       
     }//GEN-LAST:event_jT_buscarAlterarNotaKeyReleased
 
     /**

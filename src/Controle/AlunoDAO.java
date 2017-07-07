@@ -154,12 +154,12 @@ public class AlunoDAO {
         ResultSet result = stmt.executeQuery();
 
         ArrayList<Aluno> alunos = new ArrayList<>();
-
+        Curso curso = new Curso();
         while (result.next()) {
             Aluno aluno = new Aluno();
             aluno.setNome(result.getString("nome"));
             aluno.setMatricula(result.getInt("matricula"));
-            aluno.getCurso().setCodCurso(result.getInt("curso_cod"));
+            aluno.getCurso().setCodCurso(result.getObject(0).getInt("curso_cod"));
             aluno.setCra(result.getFloat("cra"));
             aluno.setAnoIngressante(result.getString("ano_ingressante"));
             aluno.setCpf(result.getString("cpf"));
@@ -235,11 +235,12 @@ public class AlunoDAO {
             AlunoDAO adao = new AlunoDAO();
             TurmaDAO tdao = new TurmaDAO();
             int turmaCod = result.getInt("turma_cod");
-            int nota1 = result.getInt("nota_1");
-            int nota2 = result.getInt("nota_2");
-            int nota3 = result.getInt("nota_3");
+            Float nota1 = result.getFloat("nota_1");
+            Float nota2 = result.getFloat("nota_2");
+            Float nota3 = result.getFloat("nota_3");
             Nota nota = new Nota(turmaCod, adao.buscarAluno(result.getInt("matricula")), tdao.buscarTurma(result.getInt("turma_cod")), nota1, nota2, nota3);
             notas.add(nota);
+            System.out.println(notas.get(0).getAluno().getNome());
         }
         result.close();
         stmt.close();
