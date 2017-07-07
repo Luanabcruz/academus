@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -42,6 +43,7 @@ public class JFrame_login extends javax.swing.JFrame {
     public JFrame_login() {
         initComponents();
         setLocationRelativeTo(null);
+        jL_tipo.setVisible(false);
         //setSize(500, 500);
     }
 
@@ -69,6 +71,7 @@ public class JFrame_login extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jL_tipo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -133,6 +136,11 @@ public class JFrame_login extends javax.swing.JFrame {
         jT_usuario.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_usuario.setForeground(new java.awt.Color(36, 46, 68));
         jT_usuario.setOpaque(false);
+        jT_usuario.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jT_usuarioFocusLost(evt);
+            }
+        });
         getContentPane().add(jT_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, 380, -1));
 
         jT_senha.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
@@ -157,44 +165,50 @@ public class JFrame_login extends javax.swing.JFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagens/icon_professor.fw.png"))); // NOI18N
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, -1, -1));
+
+        jL_tipo.setFont(new java.awt.Font("Agency FB", 2, 14)); // NOI18N
+        jL_tipo.setForeground(new java.awt.Color(255, 51, 51));
+        jL_tipo.setText("Selecione o tipo de usuário");
+        getContentPane().add(jL_tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 120, 20));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtn_entrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_entrarActionPerformed
         int tipo_user;
-        if ((jT_usuario.getText() != "") || (jT_senha.getText() != "")) {
 
-            //Atribui os  valores dos campos para as variaveis
-            user = (Integer.parseInt(jT_usuario.getText()));
-            String senha = (jT_senha.getText());
-
-            //Verifica o tipo de usuário
-            if (jR_adm.isSelected()) {
-                loginAdm(user, senha);
-            } else if (jR_prof.isSelected()) {
-                tipo_user = 2;
-                loginProfessor(user, senha);
-            } else if (jR_aluno.isSelected()) {
-                loginALuno(user, senha);
+        if (jR_adm.isSelected() == false && jR_prof.isSelected() == false && jR_aluno.isSelected() == false) {
+            jL_tipo.setVisible(true);
+        } else {
+            if ((jT_usuario.getText() != "") || (jT_senha.getText() != "")) {
+                jL_tipo.setVisible(false);
+              //Atribui os  valores dos campos para as variaveis
+                user = (Integer.parseInt(jT_usuario.getText()));
+                String senha = (jT_senha.getText());
+                //Verifica o tipo de usuário
+                if (jR_adm.isSelected()) {
+                    loginAdm(user, senha);
+                } else if (jR_prof.isSelected()) {
+                    tipo_user = 2;
+                    loginProfessor(user, senha);
+                } else if (jR_aluno.isSelected()) {
+                    loginALuno(user, senha);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos");
             }
-            //control.login(model)
 
         }
-
     }//GEN-LAST:event_jBtn_entrarActionPerformed
+
+    private void jT_usuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jT_usuarioFocusLost
+        // TODO add your handling code here:
+        ValidaNumero(jT_usuario);
+    }//GEN-LAST:event_jT_usuarioFocusLost
 
     /**
      * @param args the command line arguments
      */
+        
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-
-        //</editor-fold>
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -206,11 +220,12 @@ public class JFrame_login extends javax.swing.JFrame {
     public void loginALuno(int user, String senha) {
         try {
             retorno = control_aluno.loginAluno(user, senha);
-            if (retorno == 1){
-            JFrame_aluno frame = new JFrame_aluno();
-            frame.setVisible(true);
-            }else{
-            JOptionPane.showMessageDialog(null,"Dados incorretos");
+            if (retorno == 1) {
+                JFrame_aluno frame = new JFrame_aluno();
+                frame.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Dados incorretos");
+                jT_usuario.grabFocus();                
             }
         } catch (SQLException ex) {
             Logger.getLogger(JFrame_login.class.getName()).log(Level.SEVERE, null, ex);
@@ -220,6 +235,13 @@ public class JFrame_login extends javax.swing.JFrame {
     public void loginAdm(int user, String senha) {
         try {
             retorno = control_adm.loginAdm(user, senha);
+            if (retorno == 1) {
+                JFrame_adm frame = new JFrame_adm();
+                frame.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Dados incorretos");
+                jT_usuario.grabFocus();
+            }
         } catch (SQLException ex) {
             Logger.getLogger(JFrame_login.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -228,16 +250,36 @@ public class JFrame_login extends javax.swing.JFrame {
     public void loginProfessor(int user, String senha) {
         try {
             retorno = control_professor.loginProfessor(user, senha);
+            if (retorno == 1) {
+                JFrame_aluno frame = new JFrame_aluno();
+                frame.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Dados incorretos");
+                jT_usuario.grabFocus();
+            }
         } catch (SQLException ex) {
             Logger.getLogger(JFrame_login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+    //Validar a matricula do usuario
+    public void ValidaNumero(JTextField Numero) {
+        long valor;
+        if (Numero.getText().length() != 0) {
+            try {
+                valor = Long.parseLong(Numero.getText());
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Usuário incorreto", "Informação", JOptionPane.INFORMATION_MESSAGE);
+                Numero.grabFocus();
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel icon;
     private javax.swing.JButton jBtn_entrar;
+    private javax.swing.JLabel jL_tipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

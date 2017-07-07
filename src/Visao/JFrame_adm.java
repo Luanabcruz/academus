@@ -77,7 +77,7 @@ public class JFrame_adm extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_turma1);
-        jB_turma1.setBounds(200, 310, 120, 70);
+        jB_turma1.setBounds(200, 330, 120, 70);
 
         jB_turma2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagens/Adm_Professor.fw.png"))); // NOI18N
         jB_turma2.setFocusable(false);
@@ -88,14 +88,14 @@ public class JFrame_adm extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_turma2);
-        jB_turma2.setBounds(200, 150, 120, 70);
+        jB_turma2.setBounds(200, 170, 120, 70);
 
         jLabel5.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(36, 46, 68));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Administrador");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(590, 220, 120, 27);
+        jLabel5.setBounds(590, 240, 120, 27);
 
         jB_turma3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagens/Adm_Administrador.fw.png"))); // NOI18N
         jB_turma3.setFocusable(false);
@@ -106,28 +106,28 @@ public class JFrame_adm extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_turma3);
-        jB_turma3.setBounds(590, 150, 120, 70);
+        jB_turma3.setBounds(590, 170, 120, 70);
 
         jLabel7.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(36, 46, 68));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Curso");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(200, 380, 120, 27);
+        jLabel7.setBounds(200, 400, 120, 27);
 
         jLabel8.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(36, 46, 68));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Professor");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(200, 220, 120, 27);
+        jLabel8.setBounds(200, 240, 120, 27);
 
         jLabel6.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(36, 46, 68));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Disciplina");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(400, 380, 120, 27);
+        jLabel6.setBounds(400, 400, 120, 27);
 
         jB_turma4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagens/Adm_Disciplina.fw.png"))); // NOI18N
         jB_turma4.setFocusable(false);
@@ -138,14 +138,14 @@ public class JFrame_adm extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_turma4);
-        jB_turma4.setBounds(400, 310, 120, 70);
+        jB_turma4.setBounds(400, 330, 120, 70);
 
         jLabel9.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(36, 46, 68));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Turma");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(580, 380, 120, 27);
+        jLabel9.setBounds(580, 400, 120, 27);
 
         jB_turma5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagens/Aluno_turma.fw.png"))); // NOI18N
         jB_turma5.setFocusable(false);
@@ -156,7 +156,7 @@ public class JFrame_adm extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_turma5);
-        jB_turma5.setBounds(580, 310, 120, 70);
+        jB_turma5.setBounds(580, 330, 120, 70);
 
         jB_turma6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagens/Adm_Aluno.fw.png"))); // NOI18N
         jB_turma6.setFocusable(false);
@@ -167,14 +167,14 @@ public class JFrame_adm extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_turma6);
-        jB_turma6.setBounds(400, 150, 120, 70);
+        jB_turma6.setBounds(400, 170, 120, 70);
 
         jLabel10.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(36, 46, 68));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Aluno");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(400, 220, 120, 27);
+        jLabel10.setBounds(400, 240, 120, 27);
 
         setSize(new java.awt.Dimension(938, 583));
         setLocationRelativeTo(null);
