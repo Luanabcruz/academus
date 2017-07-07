@@ -131,7 +131,7 @@ public class JFrameAlterarCoordenador extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(36, 44, 68));
-        jLabel3.setText("Buscar SIAPE coordenador");
+        jLabel3.setText("Buscar nome do coordenador");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(20, 70, 220, 27);
 
