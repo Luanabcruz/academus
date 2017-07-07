@@ -11,9 +11,11 @@ import Controle.DisciplinaDAO;
 import Modelo.Disciplina;
 import java.awt.Color;
 import java.sql.SQLException;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -64,6 +66,8 @@ public class JFrameAlterarDisciplina extends javax.swing.JFrame {
         jT_descricaoAlterarDisciplina = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jT_statusAlterarDisciplina = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableBuscaDisciplina = new javax.swing.JTable();
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -75,7 +79,7 @@ public class JFrameAlterarDisciplina extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(36, 44, 68));
         jLabel2.setText("Código do Curso");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 200, 110, 27);
+        jLabel2.setBounds(20, 330, 110, 27);
 
         jT_codigocursoAlterarDisciplina.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_codigocursoAlterarDisciplina.setForeground(new java.awt.Color(36, 44, 68));
@@ -86,7 +90,7 @@ public class JFrameAlterarDisciplina extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jT_codigocursoAlterarDisciplina);
-        jT_codigocursoAlterarDisciplina.setBounds(20, 230, 349, 30);
+        jT_codigocursoAlterarDisciplina.setBounds(20, 360, 349, 30);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagens/curso.fw.png"))); // NOI18N
         getContentPane().add(jLabel4);
@@ -111,13 +115,13 @@ public class JFrameAlterarDisciplina extends javax.swing.JFrame {
         jT_nomedisciplinaAlterarDisciplina.setForeground(new java.awt.Color(36, 44, 68));
         jT_nomedisciplinaAlterarDisciplina.setText(" ");
         getContentPane().add(jT_nomedisciplinaAlterarDisciplina);
-        jT_nomedisciplinaAlterarDisciplina.setBounds(20, 170, 340, 30);
+        jT_nomedisciplinaAlterarDisciplina.setBounds(20, 300, 340, 30);
 
         jLabel5.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(36, 44, 68));
         jLabel5.setText("Descrição");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(20, 260, 90, 27);
+        jLabel5.setBounds(20, 390, 90, 27);
 
         jB_cancelarAlterarCurso.setBackground(new java.awt.Color(255, 51, 51));
         jB_cancelarAlterarCurso.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
@@ -129,7 +133,7 @@ public class JFrameAlterarDisciplina extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_cancelarAlterarCurso);
-        jB_cancelarAlterarCurso.setBounds(330, 350, 110, 33);
+        jB_cancelarAlterarCurso.setBounds(330, 480, 110, 33);
 
         jB_buscarAlterarDisciplina.setBackground(new java.awt.Color(0, 204, 51));
         jB_buscarAlterarDisciplina.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
@@ -147,16 +151,21 @@ public class JFrameAlterarDisciplina extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(36, 44, 68));
         jLabel7.setText("Creditos");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(480, 140, 60, 27);
+        jLabel7.setBounds(480, 270, 60, 27);
 
         jT_creditosAlterarDisciplina.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_creditosAlterarDisciplina.setForeground(new java.awt.Color(36, 44, 68));
         jT_creditosAlterarDisciplina.setText(" ");
         getContentPane().add(jT_creditosAlterarDisciplina);
-        jT_creditosAlterarDisciplina.setBounds(460, 170, 100, 30);
+        jT_creditosAlterarDisciplina.setBounds(460, 300, 100, 30);
 
         jT_buscarAlterarDisciplina.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_buscarAlterarDisciplina.setForeground(new java.awt.Color(36, 44, 68));
+        jT_buscarAlterarDisciplina.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jT_buscarAlterarDisciplinaKeyReleased(evt);
+            }
+        });
         getContentPane().add(jT_buscarAlterarDisciplina);
         jT_buscarAlterarDisciplina.setBounds(20, 100, 100, 30);
 
@@ -164,7 +173,7 @@ public class JFrameAlterarDisciplina extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(36, 44, 68));
         jLabel9.setText("Nome da Disciplina");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(20, 140, 160, 27);
+        jLabel9.setBounds(20, 270, 160, 27);
 
         jB_confirmarAlterarDisciplina.setBackground(new java.awt.Color(0, 204, 51));
         jB_confirmarAlterarDisciplina.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
@@ -176,7 +185,7 @@ public class JFrameAlterarDisciplina extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_confirmarAlterarDisciplina);
-        jB_confirmarAlterarDisciplina.setBounds(460, 350, 110, 33);
+        jB_confirmarAlterarDisciplina.setBounds(460, 480, 110, 33);
 
         jT_descricaoAlterarDisciplina.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_descricaoAlterarDisciplina.setForeground(new java.awt.Color(36, 44, 68));
@@ -187,21 +196,59 @@ public class JFrameAlterarDisciplina extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jT_descricaoAlterarDisciplina);
-        jT_descricaoAlterarDisciplina.setBounds(20, 290, 349, 30);
+        jT_descricaoAlterarDisciplina.setBounds(20, 420, 349, 30);
 
         jLabel8.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(36, 44, 68));
         jLabel8.setText("Status");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(480, 210, 60, 27);
+        jLabel8.setBounds(480, 340, 60, 27);
 
         jT_statusAlterarDisciplina.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_statusAlterarDisciplina.setForeground(new java.awt.Color(36, 44, 68));
         jT_statusAlterarDisciplina.setText(" ");
         getContentPane().add(jT_statusAlterarDisciplina);
-        jT_statusAlterarDisciplina.setBounds(460, 240, 100, 30);
+        jT_statusAlterarDisciplina.setBounds(460, 370, 100, 30);
 
-        setSize(new java.awt.Dimension(724, 446));
+        jTableBuscaDisciplina.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null}
+            },
+            new String [] {
+                "Nome", "Codigo"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableBuscaDisciplina.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableBuscaDisciplinaMouseClicked(evt);
+            }
+        });
+        jTableBuscaDisciplina.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTableBuscaDisciplinaKeyReleased(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTableBuscaDisciplina);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(20, 140, 450, 110);
+
+        setSize(new java.awt.Dimension(618, 580));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -217,9 +264,9 @@ public class JFrameAlterarDisciplina extends javax.swing.JFrame {
                     if(model!=null){
                         jT_creditosAlterarDisciplina.setText(String.valueOf(model.getCredito()));
                         jT_descricaoAlterarDisciplina.setText(model.getDescricao());
-                        jT_codigocursoAlterarDisciplina.setText(String.valueOf(model.getCursoCod()));
+                        jT_codigocursoAlterarDisciplina.setText(String.valueOf(model.getCurso().getCodCurso()));
                         jT_nomedisciplinaAlterarDisciplina.setText(String.valueOf(model.getNomeDisc()));
-                        codigoCursoMudado=model.getCursoCod();
+                        codigoCursoMudado=model.getCurso().getCodCurso();
                         buscou=1;
                     }else{
                         jT_creditosAlterarDisciplina.setText("");
@@ -265,7 +312,7 @@ public class JFrameAlterarDisciplina extends javax.swing.JFrame {
                     if(modelVerifica!=null){
                         try {
                             model.setCredito((Integer.parseInt(jT_creditosAlterarDisciplina.getText())));
-                            model.setCursoCod((Integer.parseInt(jT_codigocursoAlterarDisciplina.getText())));
+                            model.getCurso().setCodCurso((Integer.parseInt(jT_codigocursoAlterarDisciplina.getText())));
                             model.setDescricao(jT_descricaoAlterarDisciplina.getText());
                             model.setNomeDisc(jT_nomedisciplinaAlterarDisciplina.getText());
                             control.alterarDisciplina(model);
@@ -303,6 +350,60 @@ public class JFrameAlterarDisciplina extends javax.swing.JFrame {
     private void jT_descricaoAlterarDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jT_descricaoAlterarDisciplinaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jT_descricaoAlterarDisciplinaActionPerformed
+
+    private void jTableBuscaDisciplinaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableBuscaDisciplinaMouseClicked
+        int linha = jTableBuscaDisciplina.getSelectedRow();
+        model=null;
+        try {
+            model = control.buscarDisciplina(Integer.parseInt(jTableBuscaDisciplina.getValueAt(linha,1).toString()));
+//            System.out.println(model);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrameAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(model!=null){
+            try {
+                model=null;
+                model = control.buscarDisciplina(Integer.parseInt(jTableBuscaDisciplina.getValueAt(linha,1).toString()));
+                //jT_nomealunoAlterarAluno.setText(jTableBuscaAluno.getValueAt(linha,0).toString());
+                jT_creditosAlterarDisciplina.setText(String.valueOf(model.getCredito()));
+                jT_descricaoAlterarDisciplina.setText(model.getDescricao());
+                jT_codigocursoAlterarDisciplina.setText(String.valueOf(model.getCurso().getCodCurso()));
+                jT_nomedisciplinaAlterarDisciplina.setText(String.valueOf(model.getNomeDisc()));
+                jT_statusAlterarDisciplina.setText(String.valueOf(model.getStatus()));
+                codigoCursoMudado=model.getCurso().getCodCurso();
+                buscou=1;
+            } catch (SQLException ex) {
+                Logger.getLogger(JFrameAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jTableBuscaDisciplinaMouseClicked
+
+    private void jTableBuscaDisciplinaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableBuscaDisciplinaKeyReleased
+
+    }//GEN-LAST:event_jTableBuscaDisciplinaKeyReleased
+
+    private void jT_buscarAlterarDisciplinaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jT_buscarAlterarDisciplinaKeyReleased
+        Vector cabecalho = new  Vector();
+        cabecalho.add("Nome");
+        cabecalho.add("Codigo");
+        if(!jT_buscarAlterarDisciplina.getText().equals("")){
+            try {
+                DefaultTableModel nv = new DefaultTableModel(control.Pesquisar(jT_buscarAlterarDisciplina.getText()),cabecalho);
+                jTableBuscaDisciplina.setModel(nv);
+            } catch (Exception ex) {
+                Logger.getLogger(JFrameAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       }else{
+            jT_creditosAlterarDisciplina.setText("");
+            jT_descricaoAlterarDisciplina.setText("");
+            jT_codigocursoAlterarDisciplina.setText("");
+            jT_nomedisciplinaAlterarDisciplina.setText("");
+            jT_buscarAlterarDisciplina.setText("");
+            DefaultTableModel nv = new DefaultTableModel(new Vector(),cabecalho);
+            jTableBuscaDisciplina.setModel(nv);
+        }
+        
+    }//GEN-LAST:event_jT_buscarAlterarDisciplinaKeyReleased
 
     /**
      * @param args the command line arguments
@@ -353,12 +454,14 @@ public class JFrameAlterarDisciplina extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jT_buscarAlterarDisciplina;
     private javax.swing.JTextField jT_codigocursoAlterarDisciplina;
     private javax.swing.JTextField jT_creditosAlterarDisciplina;
     private javax.swing.JTextField jT_descricaoAlterarDisciplina;
     private javax.swing.JTextField jT_nomedisciplinaAlterarDisciplina;
     private javax.swing.JTextField jT_statusAlterarDisciplina;
+    private javax.swing.JTable jTableBuscaDisciplina;
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }

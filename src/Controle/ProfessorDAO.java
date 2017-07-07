@@ -8,12 +8,28 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class ProfessorDAO {
 
     LogDAO log = new LogDAO();
     String tabela, func;
 
+    public Vector Pesquisar (String pesq) throws Exception{
+        Vector tb = new Vector();
+        String url = "SELECT * FROM professor where nome like '" + pesq + "%'" ;
+        Connection con = Conexao.getConnection();
+        PreparedStatement ps = con.prepareStatement(url);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            Vector nl = new Vector();
+            nl.add(rs.getString("nome"));
+            nl.add(rs.getInt("siape"));
+            tb.add(nl);
+        }     
+        return tb;
+    }
+    
     public void cadastrarProfessor(Professor professor, int codUsuario, String nomeUsuario) throws SQLException {
         Connection con = Conexao.getConnection();
         tabela = "professor";

@@ -6,12 +6,28 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class CursoDAO {
 
     LogDAO log = new LogDAO();
     String tabela, func;
 
+    public Vector Pesquisar (String pesq) throws Exception{
+        Vector tb = new Vector();
+        String url = "SELECT * FROM curso where nome_curso like '" + pesq + "%'" ;
+        Connection con = Conexao.getConnection();
+        PreparedStatement ps = con.prepareStatement(url);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            Vector nl = new Vector();
+            nl.add(rs.getString("nome_curso"));
+            nl.add(rs.getInt("cod_curso"));
+            tb.add(nl);
+        }     
+        return tb;
+    }
+    
     public void cadastrarCurso(Curso curso, int codUsuario, String nomeUsuario) throws SQLException {
         Connection con = Conexao.getConnection();
         tabela = "curso";
