@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Visao;
+package Visao.Menus;
 
 import Controle.AdmDAO;
 import Controle.AlunoDAO;
@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author Anderson
  */
-public class JFrame_adm extends javax.swing.JFrame {
+public class JFrame_prof extends javax.swing.JFrame {
 
     AdmDAO controle = new AdmDAO();
     Administrador model = new Administrador();
@@ -25,7 +25,7 @@ public class JFrame_adm extends javax.swing.JFrame {
     /**
      * Creates new form JFrame_aluno
      */
-    public JFrame_adm() {
+    public JFrame_prof() {
         initComponents();
         setLocationRelativeTo(null);
         setSize(927, 500);
@@ -221,21 +221,23 @@ public class JFrame_adm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrame_adm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrame_prof.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrame_adm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrame_prof.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrame_adm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrame_prof.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFrame_adm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrame_prof.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFrame_adm().setVisible(true);
+                new JFrame_prof().setVisible(true);
 
             }
         });
@@ -245,7 +247,7 @@ public class JFrame_adm extends javax.swing.JFrame {
         try {
             model = controle.buscarAdministrador(user);
         } catch (SQLException ex) {
-            Logger.getLogger(JFrame_adm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JFrame_prof.class.getName()).log(Level.SEVERE, null, ex);
         }
         String jL_nome = null;
         if (model != null) {

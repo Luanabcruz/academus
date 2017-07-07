@@ -5,6 +5,8 @@
  */
 package Visao;
 
+import Visao.Menus.JFrame_adm;
+import Visao.Menus.JFrame_aluno;
 import Controle.AdmDAO;
 import Controle.AlunoDAO;
 import Controle.Conexao;
