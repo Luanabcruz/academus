@@ -1,24 +1,39 @@
 package Controle;
 
 import Modelo.Coordenador;
-import Modelo.Professor;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 
 public class CoordenadorDAO {
-    
+
     LogDAO log = new LogDAO();
     String tabela, func;
 
+    public Vector Pesquisar (String pesq) throws Exception{
+        Vector tb = new Vector();
+        String url = "SELECT * FROM coordenador where nome like '" + pesq + "%'" ;
+        Connection con = Conexao.getConnection();
+        PreparedStatement ps = con.prepareStatement(url);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            Vector nl = new Vector();
+            nl.add(rs.getString("nome"));
+            nl.add(rs.getInt("siape"));
+            tb.add(nl);
+        }     
+        return tb;
+    }
+    
     public void cadastrarCoordenador(Coordenador coordenador, int codUsuario, String nomeUsuario) throws SQLException {
         Connection con = Conexao.getConnection();
         tabela = "coordenador";
-        func = "Cadastrar Coordenador";        
+        func = "Cadastrar Coordenador";
         log.inserirLog(codUsuario, nomeUsuario, tabela, coordenador.getSiape(), func);
-        
+
         String sql = "INSERT INTO professor(siape, nome, senha, cpf, data_nascimento, cidade, uf, rua, bairro, cep, telefone, email, status, titulo, curso_cod, data_inicio, data_fim, permissao)VALUES(default,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -51,9 +66,9 @@ public class CoordenadorDAO {
     public void alterarCoordenador(Coordenador coordenador, int codUsuario, String nomeUsuario) throws SQLException {
         Connection con = Conexao.getConnection();
         tabela = "coordenador";
-        func = "Cadastrar Coordenador";        
+        func = "Cadastrar Coordenador";
         log.inserirLog(codUsuario, nomeUsuario, tabela, coordenador.getSiape(), func);
-        
+
         String sql = "UPDATE coordenador SET nome = ?, senha = ?, cpf = ?, data_nascimento = ?, cidade= ?, uf = ?, rua = ?, bairro = ?, cep = ?, telefone = ?, email = ?, titulo = ? where siape=" + coordenador.getSiape();
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -81,9 +96,9 @@ public class CoordenadorDAO {
     public void desativarCoordenador(int siape, boolean status, int codUsuario, String nomeUsuario) throws SQLException {
         Connection con = Conexao.getConnection();
         tabela = "coordenador";
-        func = "Desativar Coordenador";        
+        func = "Desativar Coordenador";
         log.inserirLog(codUsuario, nomeUsuario, tabela, siape, func);
-        
+
         String sql = "UPDATE coordenador SET  status = ? where siape=" + siape;
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -121,9 +136,9 @@ public class CoordenadorDAO {
             String email = result.getString("email");
             Boolean status = result.getBoolean("status");
             Date dataInicio = result.getDate("data_inicio");
-            Date dataFim= result.getDate("data_fim");
+            Date dataFim = result.getDate("data_fim");
             Boolean permissao = result.getBoolean("permissao");
-            
+
             coordenador = new Coordenador(dataInicio, dataFim, permissao, siape, titulo, cdao.buscarCurso(result.getInt("curso_cod")), nome, senha, cpf, dataNascimento, cidade, uf, rua, bairro, telefone, cep, email, status);
         }
         result.close();
@@ -132,10 +147,10 @@ public class CoordenadorDAO {
 
         return coordenador;
     }
-    
+
     public int loginCoordenador(int siape, String senha) throws SQLException {
         Connection con = Conexao.getConnection();
-        String sql = "SELECT * FROM coordenador WHERE siape =" + siape + "and senha = '" + senha + "'";
+        String sql = "SELECT * FROM coordenador WHERE siape =" + siape + "and senha = '" + senha + "' and permissao = true";
         PreparedStatement stmt = con.prepareStatement(sql);
         ResultSet result = stmt.executeQuery();
         int retorno = 0;
