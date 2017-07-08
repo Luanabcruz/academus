@@ -11,6 +11,8 @@ import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -28,6 +30,18 @@ public class JFrameCadastrarCurso extends javax.swing.JFrame {
         getContentPane().setBackground(Color.white);
     }
 
+    //Validar a matricula do usuario
+    public void ValidaNumero(JTextField Numero) {
+        long valor;
+        if (Numero.getText().length() != 0) {
+            try {
+                valor = Long.parseLong(Numero.getText());
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Usuário incorreto", "Informação", JOptionPane.INFORMATION_MESSAGE);
+                Numero.grabFocus();
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,11 +58,11 @@ public class JFrameCadastrarCurso extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        Jt_cargaHorario = new javax.swing.JTextField();
+        Jt_cargaHoraria = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jT_conceito = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jB_cadastrar = new javax.swing.JButton();
+        jB_cancelarCadCurso = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jT_descricaoCurso = new javax.swing.JTextPane();
         jB_cadastrar1 = new javax.swing.JButton();
@@ -63,12 +77,12 @@ public class JFrameCadastrarCurso extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(36, 44, 68));
         jLabel2.setText("Nome");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(25, 104, 37, 27);
+        jLabel2.setBounds(25, 104, 64, 27);
 
         Jt_nomeCurso.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         Jt_nomeCurso.setForeground(new java.awt.Color(36, 44, 68));
         getContentPane().add(Jt_nomeCurso);
-        Jt_nomeCurso.setBounds(25, 137, 349, 30);
+        Jt_nomeCurso.setBounds(25, 137, 349, 36);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagens/curso.fw.png"))); // NOI18N
         getContentPane().add(jLabel4);
@@ -89,10 +103,10 @@ public class JFrameCadastrarCurso extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(450, 104, 110, 27);
 
-        Jt_cargaHorario.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
-        Jt_cargaHorario.setForeground(new java.awt.Color(36, 44, 68));
-        getContentPane().add(Jt_cargaHorario);
-        Jt_cargaHorario.setBounds(450, 137, 100, 30);
+        Jt_cargaHoraria.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
+        Jt_cargaHoraria.setForeground(new java.awt.Color(36, 44, 68));
+        getContentPane().add(Jt_cargaHoraria);
+        Jt_cargaHoraria.setBounds(450, 137, 100, 36);
 
         jLabel5.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(36, 44, 68));
@@ -103,7 +117,7 @@ public class JFrameCadastrarCurso extends javax.swing.JFrame {
         jT_conceito.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_conceito.setForeground(new java.awt.Color(36, 44, 68));
         getContentPane().add(jT_conceito);
-        jT_conceito.setBounds(450, 230, 100, 30);
+        jT_conceito.setBounds(450, 230, 100, 36);
 
         jLabel6.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(36, 44, 68));
@@ -111,17 +125,17 @@ public class JFrameCadastrarCurso extends javax.swing.JFrame {
         getContentPane().add(jLabel6);
         jLabel6.setBounds(450, 200, 110, 27);
 
-        jB_cadastrar.setBackground(new java.awt.Color(255, 51, 51));
-        jB_cadastrar.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
-        jB_cadastrar.setForeground(new java.awt.Color(255, 255, 255));
-        jB_cadastrar.setText("Cancelar");
-        jB_cadastrar.addActionListener(new java.awt.event.ActionListener() {
+        jB_cancelarCadCurso.setBackground(new java.awt.Color(255, 51, 51));
+        jB_cancelarCadCurso.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
+        jB_cancelarCadCurso.setForeground(new java.awt.Color(255, 255, 255));
+        jB_cancelarCadCurso.setText("Cancelar");
+        jB_cancelarCadCurso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB_cadastrarActionPerformed(evt);
+                jB_cancelarCadCursoActionPerformed(evt);
             }
         });
-        getContentPane().add(jB_cadastrar);
-        jB_cadastrar.setBounds(330, 350, 110, 33);
+        getContentPane().add(jB_cancelarCadCurso);
+        jB_cancelarCadCurso.setBounds(260, 350, 130, 36);
 
         jT_descricaoCurso.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_descricaoCurso.setForeground(new java.awt.Color(36, 44, 68));
@@ -142,30 +156,41 @@ public class JFrameCadastrarCurso extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_cadastrar1);
-        jB_cadastrar1.setBounds(460, 350, 110, 33);
+        jB_cadastrar1.setBounds(400, 350, 140, 36);
 
         setSize(new java.awt.Dimension(724, 446));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jB_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cadastrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jB_cadastrarActionPerformed
+    private void jB_cancelarCadCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cancelarCadCursoActionPerformed
+        Object[] options = { "Sim", "Não" };
+        int opcao = JOptionPane.showOptionDialog(null, "Deseja realmente cancelar o cadastro?", "Cancelar Cadastro", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE , null, options, options[0]);
+        System.out.println("opcao "+opcao);
+        
+        if(opcao==0){
+            dispose();
+            System.exit(0);
+            //setDefaultCloseOperation(JFrameCadastrarAluno.DISPOSE_ON_CLOSE);
+        }else{}
+    }//GEN-LAST:event_jB_cancelarCadCursoActionPerformed
 
     private void jB_cadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cadastrar1ActionPerformed
        
-        if(!(Jt_nomeCurso.getText().trim().equals("") || jT_conceito.getText().trim().isEmpty()||
-            Jt_cargaHorario.getText().trim().isEmpty() || jT_descricaoCurso.getText().trim().equals(""))
-          ){
-            
-        }
-        
+        ValidaNumero(Jt_cargaHoraria);
+      try { 
+        if((Jt_nomeCurso.getText().trim().equals("") || jT_conceito.getText().trim().isEmpty()||
+            Jt_cargaHoraria.getText().trim().isEmpty() || jT_descricaoCurso.getText().trim().equals(""))
+          ){ 
+              JOptionPane.showMessageDialog(null, "Todos os campos tem que estar preenchidos!");
+           }
+        else{
        model.setNomeCurso(Jt_nomeCurso.getText());
        model.setConceitoCurso(Float.parseFloat(jT_conceito.getText()));
-       model.setCargaCurso(Integer.parseInt(Jt_cargaHorario.getText()));
+       model.setCargaCurso(Integer.parseInt(Jt_cargaHoraria.getText()));
        model.setDescricao(jT_descricaoCurso.getText());
-        try {
-            controle.cadastrarCurso(model);
+       
+       controle.cadastrarCurso(model,model.getAdministrador().getCodAdm(),model.getAdministrador().getNome());
+        }
         } catch (SQLException ex) {
             Logger.getLogger(JFrameCadastrarCurso.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -211,10 +236,10 @@ public class JFrameCadastrarCurso extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Jt_cargaHorario;
+    private javax.swing.JTextField Jt_cargaHoraria;
     private javax.swing.JTextField Jt_nomeCurso;
-    private javax.swing.JButton jB_cadastrar;
     private javax.swing.JButton jB_cadastrar1;
+    private javax.swing.JButton jB_cancelarCadCurso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
