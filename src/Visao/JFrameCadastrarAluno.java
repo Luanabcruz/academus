@@ -5,13 +5,14 @@
  */
 package Visao;
 
-
+import java.sql.Date;
 import Controle.AlunoDAO;
 import Controle.CursoDAO;
 import Modelo.Aluno;
 import Modelo.Curso;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -375,17 +376,14 @@ public class JFrameCadastrarAluno extends javax.swing.JFrame{
      * @param date
      * @return
      */
-    public Date FormatDate(String dateInput){
-
-        SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
-        Date dateOutput = null;
-        try {
-            dateOutput = (Date) formatDate.parse(dateInput);
-        } catch (ParseException ex) {
-            ex.printStackTrace();
-        }
+    public Date FormatDate(String dateInput) throws ParseException{
         
-       return dateOutput;  
+        Date dataFormat=null;
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        dataFormat = (Date) formato.parse(dateInput);
+        
+        
+       return dataFormat; 
     }
     
     private void jB_cadastrarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_cadastrarAlunoActionPerformed
@@ -398,7 +396,7 @@ public class JFrameCadastrarAluno extends javax.swing.JFrame{
               jF_dataNascCadAluno.getText().trim().equals("") || jT_foneCadAluno.getText().trim().equals("")) ||
               jT_cepCadAluno.getText().trim().equals("") || jT_craCadAluno.getText().trim().equals("")||
               jT_ufCadAluno.getText().trim().equals("")|| jT_statusCadAluno.getText().trim().equals("") ||
-              jP_senhaCadAluno.getText().trim().equals("")
+              jP_senhaCadAluno.getText().trim().equals("") || jT_bairroAluno.getText().trim().equals("")
              ){
                JOptionPane.showMessageDialog(null, "Todos os campos tem que está preenchidos!");
            }else{
@@ -409,14 +407,24 @@ public class JFrameCadastrarAluno extends javax.swing.JFrame{
            model.setCidade(jT_cidadeCadAluno.getText());
            model.setEmail(jTextField_emailCadAluno.getText());
            model.setAnoIngressante(jT_anoIngressoCadAluno.getText());
+              try {
+                  model.setCurso(cursodao.buscarCurso(Integer.parseInt(jT_cursoCadAluno.getText())));
+              } catch (SQLException ex) {
+                  Logger.getLogger(JFrameCadastrarAluno.class.getName()).log(Level.SEVERE, null, ex);
+              }
            model.getCurso().setCodCurso(Integer.parseInt(jT_cursoCadAluno.getText())); //Falta Implementar o autocomplete.
-           model.setDataNascimento(FormatDate(jF_dataNascCadAluno.getText()));
+              try {
+                  model.setDataNascimento(FormatDate(jF_dataNascCadAluno.getText()));
+              } catch (ParseException ex) {
+                  Logger.getLogger(JFrameCadastrarAluno.class.getName()).log(Level.SEVERE, null, ex);
+              }
            model.setTelefone(jT_foneCadAluno.getText());
            model.setCep(jT_cepCadAluno.getText());
            model.setCra(Float.parseFloat(jT_craCadAluno.getText()));
            model.setUf((String) jT_ufCadAluno.getText());
            model.setStatus(Boolean.parseBoolean(jT_statusCadAluno.getText()));
            model.setSenha(jP_senhaCadAluno.getText());
+           model.setBairro(jT_bairroAluno.getText());
            
     
               try {
