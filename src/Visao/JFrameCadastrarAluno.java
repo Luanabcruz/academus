@@ -440,7 +440,7 @@ public class JFrameCadastrarAluno extends javax.swing.JFrame{
            model.setEmail(jTextField_emailCadAluno.getText());
            model.setAnoIngressante(jT_anoIngressoCadAluno.getText()); 
            model.setCpf(jT_cpfAluno.getText());
-           model.getCurso().setCodCurso(Integer.parseInt(jT_cursoCadAluno.getText()));
+           model.getCurso().setCodCurso(Integer.parseInt(jT_cursoCadAluno.getText()));//
            model.setTelefone(jT_foneCadAluno.getText());
            model.setCep(jT_cepCadAluno.getText());
            model.setCra(Float.parseFloat(jT_craCadAluno.getText()));
