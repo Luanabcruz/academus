@@ -1,6 +1,7 @@
 package Controle;
 
 import Modelo.Aluno;
+import Modelo.Curso;
 import Modelo.Nota;
 import Modelo.Turma;
 import Visao.JFrameAlterarAluno;
@@ -159,12 +160,9 @@ public class AlunoDAO {
             Aluno aluno = new Aluno();
             aluno.setNome(result.getString("nome"));
             aluno.setMatricula(result.getInt("matricula"));
-<<<<<<< HEAD
-            aluno.getCurso().setCodCurso(result.getObject(0).getInt("curso_cod"));
-=======
+          //aluno.getCurso().setCodCurso(result.getObject(0).getInt("curso_cod"));
             CursoDAO cdao = new CursoDAO();
             aluno.setCurso(cdao.buscarCurso(result.getInt("curso_cod")));
->>>>>>> 4400ae29956c16f161c9b6f60aadf8fda9055cab
             aluno.setCra(result.getFloat("cra"));
             aluno.setAnoIngressante(result.getString("ano_ingressante"));
             aluno.setCpf(result.getString("cpf"));
