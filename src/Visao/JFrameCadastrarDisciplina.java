@@ -92,7 +92,7 @@ public class JFrameCadastrarDisciplina extends javax.swing.JFrame {
         jB_cadastrarDisciplina = new javax.swing.JButton();
         jB_cancelarDisciplina = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
-        jComboBox_listaCursos = new javax.swing.JComboBox<>();
+        jComboBox_listaCursos = new javax.swing.JComboBox<Object>();
         jLabel16 = new javax.swing.JLabel();
 
         jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -103,12 +103,12 @@ public class JFrameCadastrarDisciplina extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(36, 44, 68));
         jLabel2.setText("Nome");
         jFrame1.getContentPane().add(jLabel2);
-        jLabel2.setBounds(25, 104, 37, 27);
+        jLabel2.setBounds(25, 104, 64, 27);
 
         Jt_nomeCurso.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         Jt_nomeCurso.setForeground(new java.awt.Color(36, 44, 68));
         jFrame1.getContentPane().add(Jt_nomeCurso);
-        Jt_nomeCurso.setBounds(25, 137, 349, 30);
+        Jt_nomeCurso.setBounds(25, 137, 349, 36);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagens/curso.fw.png"))); // NOI18N
         jFrame1.getContentPane().add(jLabel4);
@@ -132,7 +132,7 @@ public class JFrameCadastrarDisciplina extends javax.swing.JFrame {
         Jt_cargaHorario.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         Jt_cargaHorario.setForeground(new java.awt.Color(36, 44, 68));
         jFrame1.getContentPane().add(Jt_cargaHorario);
-        Jt_cargaHorario.setBounds(450, 137, 100, 30);
+        Jt_cargaHorario.setBounds(450, 137, 100, 36);
 
         jLabel5.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(36, 44, 68));
@@ -143,7 +143,7 @@ public class JFrameCadastrarDisciplina extends javax.swing.JFrame {
         jT_conceito.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_conceito.setForeground(new java.awt.Color(36, 44, 68));
         jFrame1.getContentPane().add(jT_conceito);
-        jT_conceito.setBounds(450, 230, 100, 30);
+        jT_conceito.setBounds(450, 230, 100, 36);
 
         jLabel6.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(36, 44, 68));
@@ -161,7 +161,7 @@ public class JFrameCadastrarDisciplina extends javax.swing.JFrame {
             }
         });
         jFrame1.getContentPane().add(jB_cadastrar);
-        jB_cadastrar.setBounds(330, 350, 110, 33);
+        jB_cadastrar.setBounds(330, 350, 110, 36);
 
         jT_descricao.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_descricao.setForeground(new java.awt.Color(36, 44, 68));
@@ -182,7 +182,7 @@ public class JFrameCadastrarDisciplina extends javax.swing.JFrame {
             }
         });
         jFrame1.getContentPane().add(jB_cadastrar1);
-        jB_cadastrar1.setBounds(460, 350, 110, 33);
+        jB_cadastrar1.setBounds(460, 350, 110, 36);
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagens/curso.fw.png"))); // NOI18N
 
@@ -193,12 +193,12 @@ public class JFrameCadastrarDisciplina extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(36, 44, 68));
         jLabel9.setText("Nome");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(20, 108, 37, 27);
+        jLabel9.setBounds(20, 108, 64, 27);
 
         jT_nomeDisciplina.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_nomeDisciplina.setForeground(new java.awt.Color(36, 44, 68));
         getContentPane().add(jT_nomeDisciplina);
-        jT_nomeDisciplina.setBounds(20, 141, 349, 30);
+        jT_nomeDisciplina.setBounds(20, 141, 349, 36);
 
         jT_descricaoDisciplina.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_descricaoDisciplina.setForeground(new java.awt.Color(36, 44, 68));
@@ -218,7 +218,7 @@ public class JFrameCadastrarDisciplina extends javax.swing.JFrame {
         jT_creditoDisciplina.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jT_creditoDisciplina.setForeground(new java.awt.Color(36, 44, 68));
         getContentPane().add(jT_creditoDisciplina);
-        jT_creditoDisciplina.setBounds(636, 291, 100, 30);
+        jT_creditoDisciplina.setBounds(636, 291, 100, 36);
 
         jLabel11.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(36, 44, 68));
@@ -251,7 +251,7 @@ public class JFrameCadastrarDisciplina extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_cadastrarDisciplina);
-        jB_cadastrarDisciplina.setBounds(506, 355, 148, 33);
+        jB_cadastrarDisciplina.setBounds(506, 355, 148, 36);
 
         jB_cancelarDisciplina.setBackground(new java.awt.Color(255, 51, 51));
         jB_cancelarDisciplina.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
@@ -263,7 +263,7 @@ public class JFrameCadastrarDisciplina extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jB_cancelarDisciplina);
-        jB_cancelarDisciplina.setBounds(338, 355, 148, 33);
+        jB_cancelarDisciplina.setBounds(338, 355, 148, 36);
 
         jLabel15.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(36, 44, 68));
@@ -276,13 +276,13 @@ public class JFrameCadastrarDisciplina extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jComboBox_listaCursos);
-        jComboBox_listaCursos.setBounds(636, 141, 28, 20);
+        jComboBox_listaCursos.setBounds(636, 141, 44, 32);
 
         jLabel16.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(36, 44, 68));
         jLabel16.setText("Curso");
         getContentPane().add(jLabel16);
-        jLabel16.setBounds(636, 108, 40, 27);
+        jLabel16.setBounds(636, 108, 62, 27);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
