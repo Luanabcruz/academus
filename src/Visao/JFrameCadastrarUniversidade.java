@@ -5,12 +5,19 @@
  */
 package Visao;
 
+import Controle.UniversidadeDAO;
+import Modelo.Universidade;
+
 /**
  *
  * @author laercio
  */
 public class JFrameCadastrarUniversidade extends javax.swing.JFrame {
 
+    Universidade model = new Universidade();
+    UniversidadeDAO controle = new UniversidadeDAO();
+    
+    
     /**
      * Creates new form JFrameCadastrarUniversidade
      */
@@ -31,6 +38,7 @@ public class JFrameCadastrarUniversidade extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jT_cnpjUniversidade = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
+        jT_nomeUniversidade = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,10 +67,11 @@ public class JFrameCadastrarUniversidade extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel10)
-                    .addComponent(jT_cnpjUniversidade, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                    .addComponent(jT_cnpjUniversidade)
+                    .addComponent(jLabel9)
+                    .addComponent(jT_nomeUniversidade, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -75,7 +84,9 @@ public class JFrameCadastrarUniversidade extends javax.swing.JFrame {
                 .addComponent(jT_cnpjUniversidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel10)
-                .addGap(0, 227, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jT_nomeUniversidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 189, Short.MAX_VALUE))
         );
 
         pack();
@@ -121,5 +132,6 @@ public class JFrameCadastrarUniversidade extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jT_cnpjUniversidade;
+    private javax.swing.JTextField jT_nomeUniversidade;
     // End of variables declaration//GEN-END:variables
 }
