@@ -1,3 +1,8 @@
-/build/
-
+/academus/academus/build/
+<<<<<<< HEAD
+/academus/academus/nbproject/private/
+=======
 *.class
+academus\academus\nbproject\*
+>>>>>>> 801ccdec46ec55c17391573f8e5839526166e5e3
+/academus/academus/dist/
